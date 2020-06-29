@@ -1,5 +1,5 @@
 [[redirects]]
-  from = "/"
+  from = "/old/"
   to = "https://nusae.wordpress.com/"
   status = 200
   force = true # ensure that we always redirect
