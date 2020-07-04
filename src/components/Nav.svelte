@@ -15,6 +15,7 @@
         font-weight: 300;
         padding: 0 1em;
         float: left;
+        width: 100%;
     }
 
     ul {
