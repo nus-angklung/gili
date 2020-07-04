@@ -1,5 +1,9 @@
-<script></script>
+<script>
 
-<style></style>
+</script>
+
+<style>
+
+</style>
 
 <h1>Our Music</h1>
