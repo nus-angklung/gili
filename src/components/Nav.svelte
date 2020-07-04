@@ -50,29 +50,11 @@
 
 <nav>
     <ul>
-        <li>
-            <a
-                aria-current="{segment === undefined ? 'page' : undefined}"
-                href="."
-                >home</a
-            >
-        </li>
-        <li>
-            <a
-                aria-current="{segment === 'about' ? 'page' : undefined}"
-                href="about"
-                >about</a
-            >
-        </li>
-
-        <!-- for the blog link, we're using rel=prefetch so that Sapper prefetches
-		     the blog data when we hover over the link or tap it on a touchscreen -->
-        <li>
-            <a
-                aria-current="{segment === 'team' ? 'page' : undefined}"
-                href="team"
-                >team</a
-            >
-        </li>
+        <li><a aria-current="{segment === undefined ? 'page' : undefined}" href=".">Home</a></li>
+        <li><a aria-current="{segment === 'our-ensemble' ? 'page' : undefined}" href="our-ensemble">Our Ensemble</a></li>
+        <li><a aria-current="{segment === 'our-music' ? 'page' : undefined}" href="our-music">Our Music</a></li>
+        <li><a aria-current="{segment === 'contact-us' ? 'page' : undefined}" href="contact-us">Contact Us</a></li>
+        <!--TODO: set team under our ensemble-->
+        <li><a aria-current="{segment === 'team' ? 'page' : undefined}" href="team">Team</a></li>
     </ul>
 </nav>
