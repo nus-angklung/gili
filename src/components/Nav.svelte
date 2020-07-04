@@ -60,16 +60,40 @@
         background-color: white;
         color: black;
     }
+
+    .dropdown {
+        overflow: hidden;
+    }
+
+    .dropdown-content {
+        display: none;
+        min-width: 120px;
+        z-index: 1;
+        position: absolute;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown-content li {
+        float: none;
+    }
+
 </style>
 
 <nav>
     <ul>
         <li><a aria-current="{segment === undefined ? 'page' : undefined}" href=".">Home</a></li>
-        <li><a aria-current="{isInsideEnsembleSubmenu ? 'page' : undefined}" href="about">Our Ensemble</a></li>
+        <li class="dropdown">
+            <a aria-current="{isInsideEnsembleSubmenu ? 'page' : undefined}" href="about">Our Ensemble</a>
+            <ul class = "dropdown-content">
+                {#each ensembleSubmenu as submenu}
+                    <li><a href={submenu.resource_path}>{submenu.display}</a></li>
+                {/each}
+            </ul>
+        </li>
         <li><a aria-current="{segment === 'our-music' ? 'page' : undefined}" href="our-music">Our Music</a></li>
         <li><a aria-current="{segment === 'contact-us' ? 'page' : undefined}" href="contact-us">Contact Us</a></li>
-        {#each ensembleSubmenu as submenu}
-            <li><a href={submenu.resource_path}>{submenu.display}</a></li>
-        {/each}
     </ul>
 </nav>
