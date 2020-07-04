@@ -2,8 +2,10 @@
   from = "/about-us"
   to = "https://nusae.wordpress.com/aboutus"
   status = 200
+  force = true
 
 [[redirects]]
   from = "/contact-us"
   to = "https://nusae.wordpress.com/contact-us"
   status = 200
+  force = true
