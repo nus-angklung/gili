@@ -8,7 +8,7 @@
         if (res.status === 200) {
             return {
                 team: data.team,
-                last: data.last,
+                secondLast: data.secondLast,
                 year: data.year,
             };
         } else {
@@ -20,7 +20,7 @@
 <script>
     export let team = [];
     export let year;
-    let last;
+    export let secondLast;
 </script>
 
 <style>
@@ -34,7 +34,7 @@
     <title>Team</title>
 </svelte:head>
 
-<h1>Our Ensemble (AY {year} / {Number(year) + 1})</h1>
+<h1>Past Ensemble (AY {year} / {Number(year) + 1})</h1>
 <h3>Executive Committee</h3>
 <ul>
     {#each team as member}
@@ -42,8 +42,7 @@
     {/each}
 </ul>
 
-{#if !last}
-<a href="team/{Number(year) + 1}">Next year</a>
-{/if} {#if Number(year) > 2007}
+<a href="team/{ !secondLast ? Number(year) + 1 : '' }">Next year</a>
+{#if Number(year) > 2007}
 <a href="team/{Number(year) - 1}">Previous year</a>
 {/if}
