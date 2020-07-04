@@ -68,15 +68,8 @@
         <li><a aria-current="{isInsideEnsembleSubmenu ? 'page' : undefined}" href="about">Our Ensemble</a></li>
         <li><a aria-current="{segment === 'our-music' ? 'page' : undefined}" href="our-music">Our Music</a></li>
         <li><a aria-current="{segment === 'contact-us' ? 'page' : undefined}" href="contact-us">Contact Us</a></li>
-        <!--TODO: set team under our ensemble-->
-        <li><a aria-current="{segment === 'team' ? 'page' : undefined}" href="team">Team</a></li>
-
         {#each ensembleSubmenu as submenu}
-            <li>
-                <a aria-current="{segment === 'team' ? 'page' : undefined}" href={submenu.resource_path}>
-                    {submenu.display}
-                </a>
-            </li>
+            <li><a href={submenu.resource_path}>{submenu.display}</a></li>
         {/each}
     </ul>
 </nav>
