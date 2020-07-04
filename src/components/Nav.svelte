@@ -5,6 +5,10 @@
         {resource_path: 'about-us', display: 'About Us'},
         {resource_path: 'team', display: 'Team'}
     ];
+
+    func isInsideEnsembleSubmenu() {
+        return ensembleSubmenu.some((submenu) => submenu.resource_path === segment);
+    }
 </script>
 
 <style>
@@ -63,7 +67,7 @@
 <nav>
     <ul>
         <li><a aria-current="{segment === undefined ? 'page' : undefined}" href=".">Home</a></li>
-        <li><a aria-current="{segment === 'our-ensemble' ? 'page' : undefined}" href="our-ensemble">Our Ensemble</a></li>
+        <li><span aria-current="{isInsideEnsembleSubmenu() ? 'page' : undefined}">Our Ensemble</span></li>
         <li><a aria-current="{segment === 'our-music' ? 'page' : undefined}" href="our-music">Our Music</a></li>
         <li><a aria-current="{segment === 'contact-us' ? 'page' : undefined}" href="contact-us">Contact Us</a></li>
         <!--TODO: set team under our ensemble-->
