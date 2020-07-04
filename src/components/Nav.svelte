@@ -33,6 +33,8 @@
     li {
         display: block;
         float: left;
+        width: 25%;
+        text-align: center;
     }
 
     [aria-current] {
@@ -54,6 +56,7 @@
         text-decoration: none;
         padding: 1em 0.5em;
         display: block;
+        width: 100%;
     }
 
     a:hover {
@@ -68,9 +71,10 @@
 
     .dropdown-content {
         display: none;
-        min-width: 120px;
+        width: 100%;
         z-index: 1;
         position: absolute;
+        background-color: black;
     }
 
     .dropdown:hover .dropdown-content {
