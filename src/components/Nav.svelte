@@ -49,7 +49,7 @@
         bottom: -1px;
     }
 
-    a {
+    a, span {
         text-decoration: none;
         padding: 1em 0.5em;
         display: block;
@@ -86,7 +86,7 @@
     <ul>
         <li><a aria-current="{segment === undefined ? 'page' : undefined}" href=".">Home</a></li>
         <li class="dropdown">
-            <a aria-current="{isInsideEnsembleSubmenu ? 'page' : undefined}" href="about">Our Ensemble</a>
+            <span aria-current="{isInsideEnsembleSubmenu ? 'page' : undefined}">Our Ensemble</span>
             <ul class = "dropdown-content">
                 {#each ensembleSubmenu as submenu}
                     <li><a href={submenu.resource_path}>{submenu.display}</a></li>
