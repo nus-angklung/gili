@@ -1,6 +1,6 @@
 {
-    "name": "TODO",
-    "description": "TODO",
+    "name": "gili",
+    "description": "NUS Angklung website",
     "version": "0.0.1",
     "scripts": {
         "dev": "sapper dev",
@@ -19,8 +19,7 @@
     },
     "dependencies": {
         "compression": "^1.7.1",
-        "polka": "next",
-        "sirv": "^0.4.0"
+        "express": "^4.17.1"
     },
     "devDependencies": {
         "@babel/core": "^7.0.0",

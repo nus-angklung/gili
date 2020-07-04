@@ -2,4 +2,3 @@
   from = "/old/*"
   to = "https://nusae.wordpress.com/:splat"
   status = 200
-
