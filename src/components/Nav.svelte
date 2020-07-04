@@ -71,7 +71,7 @@
 
     .dropdown-content {
         display: none;
-        width: 100%;
+        width: 25%;
         z-index: 1;
         position: absolute;
         background-color: black;
@@ -83,6 +83,7 @@
 
     .dropdown-content li {
         float: none;
+        width: 100%;
     }
 
 </style>
