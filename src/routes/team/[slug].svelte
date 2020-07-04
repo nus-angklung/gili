@@ -38,11 +38,11 @@
 <h3>Executive Committee</h3>
 <ul>
     {#each team as member}
-    <li>{member.position} : {member.name}</li>
+        <li>{member.position} : {member.name}</li>
     {/each}
 </ul>
 
-<a href="team/{ !secondLast ? Number(year) + 1 : '' }">Next year</a>
+<a href="team/{!secondLast ? Number(year) + 1 : ''}">Next year</a>
 {#if Number(year) > 2007}
-<a href="team/{Number(year) - 1}">Previous year</a>
+    <a href="team/{Number(year) - 1}">Previous year</a>
 {/if}

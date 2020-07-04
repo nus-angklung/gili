@@ -31,7 +31,7 @@
 <h3>Executive Committee</h3>
 <ul>
     {#each team as member}
-    <li>{member.position} : {member.name}</li>
+        <li>{member.position} : {member.name}</li>
     {/each}
 </ul>
 <a href="team/{Number(year) - 1}">Previous year</a>
