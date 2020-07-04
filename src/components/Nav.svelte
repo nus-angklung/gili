@@ -7,6 +7,7 @@
         border-bottom: 1px solid rgba(255, 62, 0, 0.1);
         font-weight: 300;
         padding: 0 1em;
+        float: right;
     }
 
     ul {
@@ -45,6 +46,12 @@
         text-decoration: none;
         padding: 1em 0.5em;
         display: block;
+    }
+
+    a:hover {
+        text-decoration: underline;
+        background-color: white;
+        color: black;
     }
 </style>
 
