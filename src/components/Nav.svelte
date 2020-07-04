@@ -1,5 +1,10 @@
 <script>
     export let segment;
+
+    const ensembleSubmenu = [
+        {resource_path: 'about-us', display: 'About Us'},
+        {resource_path: 'team', display: 'Team'}
+    ];
 </script>
 
 <style>
@@ -63,5 +68,13 @@
         <li><a aria-current="{segment === 'contact-us' ? 'page' : undefined}" href="contact-us">Contact Us</a></li>
         <!--TODO: set team under our ensemble-->
         <li><a aria-current="{segment === 'team' ? 'page' : undefined}" href="team">Team</a></li>
+
+        {#each ensembleSubmenu as submenu}
+            <li>
+                <a aria-current="{segment === 'team' ? 'page' : undefined}" href={submenu.resource_path}>
+                    {submenu.display}
+                </a>
+            </li>
+        {/each}
     </ul>
 </nav>
