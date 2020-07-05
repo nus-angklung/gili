@@ -1,18 +1,5 @@
 <script>
-    import { onMount } from 'svelte';
     let form;
-
-    // progressively enhance form submission if javascript is enabled
-    // showed success / error after form submission
-    onMount(() => {
-        if (form) {
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
-                processForm(form);
-            });
-        }
-    });
-
     let name;
     let email;
     let message;
@@ -28,17 +15,23 @@
         data.append('name', name);
         data.append('email', email);
         data.append('message', message);
-        data.append('form-name', 'web-enquiry');
+        data.append('formType', 'Web Enquiry');
         return data;
     }
 
-    function processForm(form) {
+    function processForm() {
         const data = processFormData();
         fetch('/', {
             method: 'POST',
             body: data,
         })
-            .then(() => {
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(response.statusText);
+                }
+                return response.json();
+            })
+            .then((res) => {
                 form.innerHTML = `
                     <div>
                         <h2 style="font-size: 150%; font-weight: 700; word-spacing: -.15rem;"> 🎉 Success!!</h2>
@@ -49,7 +42,8 @@
             .catch((error) => {
                 form.innerHTML = `
                     <div>
-                        <h2 style="font-size: 150%; font-weight: 700; word-spacing: -.15rem;"> 🛑 Error: </h2>
+                        <h2 style="font-size: 150%; font-weight: 700; word-spacing: -.15rem;"> 🛑 Error </h2>
+                        <p>It's not your fault, we are sorry about that 🙏🙏!!</p>
                         <p>${error}</p>
                     </div>
                 `;
@@ -162,6 +156,7 @@
     class="contact-form"
     netlify-honeypot="bot-field"
     data-netlify="true"
+    on:submit|preventDefault={processForm}
     bind:this={form}>
     <div class="hidden" style="height: 1px;">
         <label>
