@@ -11,10 +11,6 @@
 </script>
 
 <style>
-    * {
-        font-size: 16px;
-    }
-
     label {
         opacity: 0.8;
     }
