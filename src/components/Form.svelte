@@ -8,9 +8,46 @@
         email = '';
         message = '';
     }
+
+    function processFormData() {
+        const data = new FormData();
+        data.append('name', name);
+        data.append('email', email);
+        data.append('message', message);
+        data.append('form-name', 'web-enquiry');
+        return data;
+    }
+
+    function handleSubmit(e) {
+        const form = e.target;
+        const data = processFormData();
+        fetch('/', {
+            method: 'POST',
+            body: data,
+        })
+            .then(() => {
+                form.innerHTML = `
+                    <div>
+                        <h2 style="font-size: 150%; font-weight: 700; word-spacing: -.15rem;"> 🎉 Success!!</h2>
+                        <p>Thank you for your enquiry! We will reply as soon as we can!</p>
+                    </div>
+                `;
+            })
+            .catch((error) => {
+                form.innerHTML = `
+                    <div>
+                        <h2 style="font-size: 150%; font-weight: 700; word-spacing: -.15rem;"> 🛑 Error: </h2>
+                        <p>${error}</p>
+                    </div>
+                `;
+            });
+    }
 </script>
 
 <style>
+    form {
+        min-height: 350px;
+    }
     label {
         opacity: 0.8;
     }
@@ -108,7 +145,11 @@
     }
 </style>
 
-<form class="contact-form" netlify-honeypot="bot-field" data-netlify="true">
+<form
+    class="contact-form"
+    netlify-honeypot="bot-field"
+    data-netlify="true"
+    on:submit|preventDefault={handleSubmit}>
     <div class="hidden" style="height: 1px;">
         <label>
             Don’t fill this out if you're human:
