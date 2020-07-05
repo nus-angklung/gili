@@ -9,6 +9,8 @@ exports.handler = async function (event, context, callback) {
         event.body
     ).payload.data;
 
+    console.log(`Received forms submission from ${email}`);
+
     // set up email msg. We are sending from our self to ourself.
     const responseSubject = encodeURIComponent(
         `Regarding your Angklung Ensemble enquiry, ${name}`
@@ -42,10 +44,9 @@ exports.handler = async function (event, context, callback) {
         </div>
         `,
     };
-    console.log(msg);
     // now send the email
     try {
-        // const res = await sgMail.send(msg);
+        const res = await sgMail.send(msg);
         return {
             statusCode: 200,
             body: JSON.stringify('success'),
