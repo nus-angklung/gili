@@ -1,5 +1,12 @@
 <script>
     export let segment;
+
+    const ensembleSubmenu = [
+        {resource_path: 'about-us', display: 'About Us'},
+        {resource_path: 'team', display: 'Team'}
+    ];
+
+    $: isInsideEnsembleSubmenu = ensembleSubmenu.some((submenu) => submenu.resource_path === segment);
 </script>
 
 <style>
@@ -7,6 +14,8 @@
         border-bottom: 1px solid rgba(255, 62, 0, 0.1);
         font-weight: 300;
         padding: 0 1em;
+        float: left;
+        width: 100%;
     }
 
     ul {
@@ -24,6 +33,8 @@
     li {
         display: block;
         float: left;
+        width: 25%;
+        text-align: center;
     }
 
     [aria-current] {
@@ -41,38 +52,54 @@
         bottom: -1px;
     }
 
-    a {
+    a, span {
         text-decoration: none;
         padding: 1em 0.5em;
         display: block;
+        width: 100%;
     }
+
+    a:hover {
+        text-decoration: underline;
+        background-color: white;
+        color: black;
+    }
+
+    .dropdown {
+        overflow: hidden;
+    }
+
+    .dropdown-content {
+        display: none;
+        width: 25%;
+        z-index: 1;
+        position: absolute;
+        background-color: black;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown-content li {
+        float: none;
+        width: 100%;
+    }
+
 </style>
 
 <nav>
     <ul>
-        <li>
-            <a
-                aria-current={segment === undefined ? 'page' : undefined}
-                href=".">
-                home
-            </a>
+        <li><a aria-current="{segment === undefined ? 'page' : undefined}" href=".">Home</a></li>
+        <li class="dropdown">
+            <span aria-current="{isInsideEnsembleSubmenu ? 'page' : undefined}">Our Ensemble</span>
+            <ul class = "dropdown-content">
+                {#each ensembleSubmenu as submenu}
+                    <li><a href={submenu.resource_path}>{submenu.display}</a></li>
+                {/each}
+            </ul>
         </li>
-        <li>
-            <a
-                aria-current={segment === 'about' ? 'page' : undefined}
-                href="about">
-                about
-            </a>
-        </li>
-
-        <!-- for the blog link, we're using rel=prefetch so that Sapper prefetches
-		     the blog data when we hover over the link or tap it on a touchscreen -->
-        <li>
-            <a
-                aria-current={segment === 'team' ? 'page' : undefined}
-                href="team">
-                team
-            </a>
-        </li>
+        <li><a aria-current="{segment === 'our-music' ? 'page' : undefined}" href="our-music">Our Music</a></li>
+        <li><a aria-current="{segment === 'contact-us' ? 'page' : undefined}" href="contact-us">Contact Us</a></li>
     </ul>
 </nav>
