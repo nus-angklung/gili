@@ -16,6 +16,8 @@
         data.append('email', email);
         data.append('message', message);
         data.append('formType', 'Web Enquiry');
+        // below needed by netlify. should be the same value as form name in html
+        data.append('form-name', 'contact');
         return data;
     }
 
@@ -153,17 +155,13 @@
 </style>
 
 <form
+    name="contact"
     class="contact-form"
     netlify-honeypot="bot-field"
     data-netlify="true"
     on:submit|preventDefault={processForm}
     bind:this={form}>
-    <div class="hidden" style="height: 1px;">
-        <label>
-            Don’t fill this out if you're human:
-            <input name="bot-field" />
-        </label>
-    </div>
+    <input type="hidden" name="bot-field" />
     <div class="first-row">
         <div class="name-col">
             <label for="contact__name">First Name</label>

@@ -10,6 +10,7 @@ exports.handler = async function (event, context, callback) {
     ).payload.data;
 
     console.log(`Received forms submission from ${email}`);
+    console.log(JSON.parse(event.body).payload);
 
     // set up email msg. We are sending from our self to ourself.
     const responseSubject = encodeURIComponent(
