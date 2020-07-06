@@ -9,3 +9,7 @@
   to = "https://nusae.wordpress.com/contact-us"
   status = 200
   force = true
+
+[build]
+  base = "."
+  functions = "./functions"
