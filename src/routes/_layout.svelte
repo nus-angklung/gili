@@ -8,7 +8,7 @@
 <style>
     main {
         max-width: 80%;
-        padding: 5em 2em;
+        padding: 2em;
         margin: 0 auto;
         box-sizing: border-box;
     }

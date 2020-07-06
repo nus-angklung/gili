@@ -2,39 +2,56 @@
     export let segment;
 
     const ensembleSubmenu = [
-        {resource_path: 'about-us', display: 'About Us'},
-        {resource_path: 'team', display: 'Team'}
+        { resource_path: 'about-us', display: 'About Us' },
+        { resource_path: 'team', display: 'Team' },
     ];
 
-    $: isInsideEnsembleSubmenu = ensembleSubmenu.some((submenu) => submenu.resource_path === segment);
+    $: isInsideEnsembleSubmenu = ensembleSubmenu.some(
+        (submenu) => submenu.resource_path === segment
+    );
 </script>
 
 <style>
+    :root {
+        --highlight: #c4c4c4;
+    }
+
     nav {
-        border-bottom: 1px solid rgba(255, 62, 0, 0.1);
-        font-weight: 300;
-        padding: 0 1em;
-        float: left;
-        width: 100%;
+        font-size: 16px;
+        z-index: 1;
+    }
+
+    .container {
+        max-width: 80%;
+        padding: 0 2em 2em;
+        margin: 0 auto;
+        box-sizing: border-box;
     }
 
     ul {
-        margin: 0;
-        padding: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: flex-end;
+        list-style-type: none;
+        padding-inline-start: unset;
     }
 
     /* clearfix */
-    ul::after {
+    /* ul::after {
         content: '';
         display: block;
         clear: both;
-    }
+    } */
 
     li {
         display: block;
-        float: left;
-        width: 25%;
         text-align: center;
+        padding: 5px;
+    }
+
+    li > * {
+        box-sizing: border-box;
     }
 
     [aria-current] {
@@ -47,59 +64,100 @@
         content: '';
         width: calc(100% - 1em);
         height: 2px;
-        background-color: rgb(255, 62, 0);
+        background-color: var(--highlight);
         display: block;
         bottom: -1px;
     }
 
-    a, span {
+    a,
+    span {
         text-decoration: none;
-        padding: 1em 0.5em;
+        padding: 0 0.5em 0.5em;
         display: block;
         width: 100%;
     }
 
-    a:hover {
-        text-decoration: underline;
-        background-color: white;
-        color: black;
+    ul li > *:hover {
+        opacity: 0.5;
     }
 
     .dropdown {
-        overflow: hidden;
+        display: flex;
+        flex-direction: column;
     }
 
-    .dropdown-content {
-        display: none;
-        width: 25%;
-        z-index: 1;
-        position: absolute;
-        background-color: black;
+    .dropdown ul {
+        transition: all 0.5s ease;
+        margin-top: 1rem 5px 5px;
+        background-color: transparent;
+        text-align: center;
+        opacity: 0;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 
-    .dropdown:hover .dropdown-content {
-        display: block;
+    .dropdown:hover > ul,
+    .dropdown:hover > ul:hover {
+        display: flex;
+        opacity: 1;
+        transform: translateY(calc(100% + 36px));
     }
 
-    .dropdown-content li {
-        float: none;
+    .dropdown ul li {
+        clear: both;
         width: 100%;
     }
 
+    .dropdown ul li a {
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+    @media (max-width: 576px) {
+        nav {
+            font-size: 14px;
+        }
+        .container {
+            max-width: 90%;
+        }
+    }
 </style>
 
-<nav>
+<nav class="container">
     <ul>
-        <li><a aria-current="{segment === undefined ? 'page' : undefined}" href=".">Home</a></li>
+        <li>
+            <a
+                aria-current={segment === undefined ? 'page' : undefined}
+                href=".">
+                Home
+            </a>
+        </li>
         <li class="dropdown">
-            <span aria-current="{isInsideEnsembleSubmenu ? 'page' : undefined}">Our Ensemble</span>
-            <ul class = "dropdown-content">
+            <ul class="dropdown-content">
                 {#each ensembleSubmenu as submenu}
-                    <li><a href={submenu.resource_path}>{submenu.display}</a></li>
+                    <li>
+                        <a href={submenu.resource_path}>{submenu.display}</a>
+                    </li>
                 {/each}
             </ul>
+            <span aria-current={isInsideEnsembleSubmenu ? 'page' : undefined}>
+                Our Ensemble
+            </span>
         </li>
-        <li><a aria-current="{segment === 'our-music' ? 'page' : undefined}" href="our-music">Our Music</a></li>
-        <li><a aria-current="{segment === 'contact-us' ? 'page' : undefined}" href="contact-us">Contact Us</a></li>
+        <li>
+            <a
+                aria-current={segment === 'our-music' ? 'page' : undefined}
+                href="our-music">
+                Our Music
+            </a>
+        </li>
+        <li>
+            <a
+                aria-current={segment === 'contact-us' ? 'page' : undefined}
+                href="contact-us">
+                Contact Us
+            </a>
+        </li>
     </ul>
 </nav>
