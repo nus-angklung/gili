@@ -19,7 +19,7 @@
     }
 </style>
 
-<Nav segment="segment" />
+<Nav {segment} />
 
 <main>
     <slot />

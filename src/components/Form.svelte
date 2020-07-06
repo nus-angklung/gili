@@ -1,4 +1,14 @@
 <script>
+    import { stores } from '@sapper/app';
+    import { onMount } from 'svelte';
+    const { page } = stores();
+
+    // set this up so the form can go back to original after submission
+    let formInitialHTML;
+    onMount(() => {
+        formInitialHTML = form.innerHTML;
+    });
+
     let form;
     let name;
     let email;
@@ -31,7 +41,7 @@
                 if (!response.ok) {
                     throw new Error(response.statusText);
                 }
-                return response.json();
+                return response;
             })
             .then((res) => {
                 form.innerHTML = `
@@ -46,9 +56,14 @@
                     <div>
                         <h2 style="font-size: 150%; font-weight: 700; word-spacing: -.15rem;"> 🛑 Error </h2>
                         <p>It's not your fault, we are sorry about that 🙏🙏!!</p>
-                        <p>${error}</p>
+                        <p>${JSON.parse(error)}</p>
                     </div>
                 `;
+            })
+            .finally(() => {
+                setTimeout(() => {
+                    form.innerHTML = formInitialHTML;
+                }, 2 * 60 * 1000); // 2 min
             });
     }
 </script>
@@ -156,15 +171,24 @@
 
 <form
     name="contact"
+    action={$page.path}
+    method="post"
     class="contact-form"
     netlify-honeypot="bot-field"
+    data-netlify="true"
     on:submit|preventDefault={processForm}
     bind:this={form}>
     <input type="hidden" name="bot-field" />
+    <input type="hidden" name="formType" value="Web Enquiry" />
     <div class="first-row">
         <div class="name-col">
             <label for="contact__name">First Name</label>
-            <input id="contact__name" type="text" bind:value={name} required />
+            <input
+                id="contact__name"
+                type="text"
+                name="name"
+                bind:value={name}
+                required />
             <div class="text-input-border" />
         </div>
         <div class="spacer" />
@@ -173,13 +197,18 @@
             <input
                 id="contact__email"
                 type="email"
+                name="email"
                 bind:value={email}
                 required />
             <div class="text-input-border" />
         </div>
     </div>
     <label for="contact__message">Message:</label>
-    <textarea id="contact__message" bind:value={message} required />
+    <textarea
+        id="contact__message"
+        name="message"
+        bind:value={message}
+        required />
     <div class="last-row">
         <button
             class:hidden={!name && !email && !message}
