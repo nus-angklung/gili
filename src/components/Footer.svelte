@@ -55,8 +55,12 @@
         list-style-type: none;
         padding-inline-start: 0;
     }
-    .links-col > ul li:hover {
-        color: red;
+    .links-col > ul li * {
+        box-sizing: border-box;
+        text-decoration: none;
+    }
+    .links-col > ul li *:hover {
+        opacity: 0.5;
     }
     .copyright-tag {
         border-top: 1px solid black;
@@ -76,12 +80,12 @@
             grid-column: 1 / 13;
         }
     }
-    @media (min-width: 992px) {
+    /* @media (min-width: 992px) {
         .form {
             transform: translateY(12.5vw);
             margin-top: -15vw;
         }
-    }
+    } */
 
     @media (max-width: 576px) {
         footer {
@@ -108,17 +112,36 @@
             <div class="links-col">
                 <div>Links</div>
                 <ul>
-                    <li>Home</li>
-                    <li>About us</li>
-                    <li>Our Music</li>
+                    <li>
+                        <a href=".">Home</a>
+                    </li>
+                    <li>
+                        <a href="/about">About us</a>
+                    </li>
+                    <li>
+                        <a href="/our-music">Our Music</a>
+                    </li>
                 </ul>
             </div>
             <div class="links-col">
                 <div>Social</div>
                 <ul>
-                    <li>Instagram</li>
-                    <li>Facebook</li>
-                    <li>Youtube</li>
+                    <li>
+                        <a href="https://www.instagram.com/nusangklung">
+                            Instagram
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.facebook.com/NUSAngklung">
+                            Facebook
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="https://www.youtube.com/channel/UC86Z1UcM82LOKvlS2HyQZSg">
+                            Youtube
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

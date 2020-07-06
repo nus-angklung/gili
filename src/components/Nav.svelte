@@ -2,7 +2,7 @@
     export let segment;
 
     const ensembleSubmenu = [
-        { resource_path: 'about-us', display: 'About Us' },
+        { resource_path: 'about', display: 'About Us' },
         { resource_path: 'team', display: 'Team' },
     ];
 
@@ -18,6 +18,7 @@
 
     nav {
         font-size: 16px;
+        font-weight: 500;
         z-index: 1;
     }
 
@@ -155,7 +156,7 @@
         <li>
             <a
                 aria-current={segment === 'contact-us' ? 'page' : undefined}
-                href="contact-us">
+                href="contact">
                 Contact Us
             </a>
         </li>
