@@ -3,6 +3,9 @@
 </script>
 
 <style>
+    :root {
+        --footer-shade: rgba(245, 236, 207, 0.4);
+    }
     footer {
         font-size: 19px;
         color: white;
@@ -30,9 +33,9 @@
         grid-column: 1 / 9;
     }
     .links {
-        background: url('/wave.svg') no-repeat bottom center;
+        /* background: url('/wave.svg') no-repeat bottom center; */
         background-size: cover;
-        min-height: 20vw;
+        background: linear-gradient(transparent, var(--footer-shade));
     }
     .links-container {
         display: flex;
@@ -57,7 +60,7 @@
     }
     .copyright-tag {
         border-top: 1px solid black;
-        background-color: rgba(245, 236, 207, 0.4);
+        background-color: var(--footer-shade);
         font-size: 12px;
         text-align: center;
         padding: 0.5rem;
@@ -65,9 +68,6 @@
     @media (max-width: 992px) {
         footer {
             font-size: 16px;
-        }
-        .links {
-            background: rgba(245, 236, 207, 0.4);
         }
         .links-col {
             font-size: 14px;
@@ -79,16 +79,15 @@
     @media (min-width: 992px) {
         .form {
             transform: translateY(12.5vw);
-        }
-        .links-container {
-            transform: translateY(7.5vw);
+            margin-top: -15vw;
         }
     }
-    @media (max-width: 400px) {
+
+    @media (max-width: 576px) {
         footer {
             font-size: 14px;
         }
-        container {
+        .container {
             max-width: 90%;
         }
     }

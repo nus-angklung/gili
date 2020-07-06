@@ -8,11 +8,11 @@
 <style>
     main {
         max-width: 80%;
-        padding: 2em;
+        padding: 5em 2em;
         margin: 0 auto;
         box-sizing: border-box;
     }
-    @media (max-width: 400px) {
+    @media (max-width: 576px) {
         main {
             max-width: 90%;
         }

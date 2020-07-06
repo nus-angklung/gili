@@ -38,7 +38,7 @@ code {
     border-radius: 2px;
 }
 
-@media (min-width: 400px) {
+@media (min-width: 576px) {
     body {
         font-size: 19px;
     }
