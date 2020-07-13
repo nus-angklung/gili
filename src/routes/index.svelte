@@ -46,7 +46,7 @@
 <button class="navigation-button">Learn To Play</button>
 <br />
 <div class="angklung-logo">
-    <img class="big-angklung" src="/homepage/angklung-large.svg" height="400" />
-    <img class="mid-angklung" src="/homepage/angklung-mid.svg" height="370" />
-    <img src="/homepage/angklung-small.svg" height="340" />
+    <img class="big-angklung" src="/homepage/angklung-large.svg" width="20%" />
+    <img class="mid-angklung" src="/homepage/angklung-mid.svg" width="18%" />
+    <img src="/homepage/angklung-small.svg" width="16%" />
 </div>
