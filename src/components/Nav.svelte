@@ -156,7 +156,7 @@
         <li>
             <a
                 aria-current={segment === 'contact-us' ? 'page' : undefined}
-                href="contact">
+                href="contact-us">
                 Contact Us
             </a>
         </li>
