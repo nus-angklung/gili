@@ -7,6 +7,32 @@
         background-color: black;
         color: white;
     }
+
+    .angklung-logo {
+        width: 100%;
+        padding-top: 100px;
+    }
+
+    .angklung-logo img {
+        float: right;
+        margin: 10px 20px 10px 20px;
+    }
+
+    .big-angklung {
+        position: relative;
+        bottom: 200px;
+    }
+
+    .mid-angklung {
+        position: relative;
+        bottom: 100px;
+    }
+
+    .angklung-logo::after {
+        content: '';
+        display: block;
+        clear: both;
+    }
 </style>
 
 <svelte:head>
@@ -19,6 +45,8 @@
 <button class="navigation-button">Join Us Now</button>
 <button class="navigation-button">Learn To Play</button>
 <br />
-<img src="/homepage/angklung-small.svg" height="200" />
-<img src="/homepage/angklung-mid.svg" height="300" />
-<img src="/homepage/angklung-large.svg" height="400" />
+<div class="angklung-logo">
+    <img class="big-angklung" src="/homepage/angklung-large.svg" height="400" />
+    <img class="mid-angklung" src="/homepage/angklung-mid.svg" height="370" />
+    <img src="/homepage/angklung-small.svg" height="340" />
+</div>

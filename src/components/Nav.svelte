@@ -38,13 +38,6 @@
         padding-inline-start: unset;
     }
 
-    /* clearfix */
-    /* ul::after {
-        content: '';
-        display: block;
-        clear: both;
-    } */
-
     li {
         display: block;
         text-align: center;
