@@ -1,4 +1,5 @@
 <style>
+    /* header */
     .navigation-button {
         border: solid 2px white;
         padding: 10px;
@@ -10,7 +11,8 @@
 
     .angklung-logo {
         width: 100%;
-        padding-top: 100px;
+        padding-top: 15vh;
+        padding-bottom: 15vh;
     }
 
     .angklung-logo img {
@@ -34,6 +36,18 @@
         display: block;
         clear: both;
     }
+
+    /* body */
+    .message {
+        width: 50%;
+        margin: auto;
+        text-align: center;
+    }
+
+    .message p {
+        margin-top: 5vh;
+        font-size: 15px;
+    }
 </style>
 
 <svelte:head>
@@ -50,4 +64,14 @@
     <img class="big-angklung" src="/homepage/angklung-large.svg" width="20%" />
     <img class="mid-angklung" src="/homepage/angklung-mid.svg" width="18%" />
     <img src="/homepage/angklung-small.svg" width="16%" />
+</div>
+
+<div class="message">
+    <h2>LOREM IPSUM DOLOR SIT AMET</h2>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+        convallis neque ac ante lacinia vestibulum. Suspendisse ligula tortor,
+        egestas ac tincidunt nec, finibus vel orci. Maecenas gravida commodo
+        felis ut tincidunt.
+    </p>
 </div>
