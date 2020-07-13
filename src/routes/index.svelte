@@ -15,17 +15,18 @@
 
     .angklung-logo img {
         float: right;
-        margin: 10px 20px 10px 20px;
+        margin-right: 2%;
+        margin-left: 2%;
     }
 
     .big-angklung {
         position: relative;
-        bottom: 200px;
+        bottom: 25vh;
     }
 
     .mid-angklung {
         position: relative;
-        bottom: 100px;
+        bottom: 12.5vh;
     }
 
     .angklung-logo::after {
