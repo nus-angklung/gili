@@ -1,22 +1,82 @@
 <style>
+    :root {
+        text-align: justify;
+    }
+
+    h2 {
+        color: #f5eccf;
+    }
+
+    h2:not(:first-child) {
+        margin-top: 3rem;
+    }
+
     .grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        column-gap: 0.5rem;
+        column-gap: 2rem;
+        row-gap: 2rem;
     }
 
     .photo {
-        padding: 0.5rem 0;
+        padding: 1rem 0;
+        margin: auto;
+        grid-column: 1 / 2;
+    }
+
+    .photo--text {
+        position: relative;
+        grid-column: 2 / 4;
+    }
+
+    .photo--text h3 {
+        line-height: 56px;
+    }
+    .photo--text h3::after {
+        position: absolute;
+        content: '';
+        width: calc(100% - 1em);
+        height: 2px;
+        background-color: var(--highlight);
+        display: block;
+    }
+
+    .photo--text p {
+        opacity: 0.8;
     }
     .photo img {
         width: 100%;
     }
 
-    @media (max-width: 576px) {
-        .grid {
-            grid-template-columns: repeat(1, 1fr);
+    @media (max-width: 992px) {
+        .photo,
+        .photo--text {
+            grid-column: 1 / -1;
         }
     }
+
+    /* .photo .hover {
+        position: absolute;
+        bottom: 10%;
+    }
+
+    .photo .hover::after {
+        content: '';
+        background-color: white;
+        opacity: 0.7;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    }
+
+    .photo:hover .hover {
+        opacity: 1;
+    }
+
+    .photo--caption {
+        text-align: center;
+        width: 100%;
+    } */
 </style>
 
 <svelte:head>
@@ -51,52 +111,55 @@
 
 <h2>Our Activities</h2>
 
-<div class=" grid photos">
+<div class="grid">
     <div class="photo">
         <img src="client/perform.jpg" alt="Our Performance" />
     </div>
-    <div class="photo">
-        <img src="client/perform.jpg" alt="Our Performance" />
+    <div class="photo--text">
+        <h3>Our Performance</h3>
+        <p>
+            We have been holding our annual concert since 2011, having the main
+            purpose of showcasing angklung and introducing NUS Angklung Ensemble
+            to the NUS community. In our 2015 concert, “The Chronicle”, we
+            performed 13 well-known songs spanning diverse eras to take the
+            audience in a journey through time. As the biggest concert in the
+            history of NUS Angklung Ensemble, “The Chronicle” successfully
+            attracted 150 people, including the Education Attaché of the Embassy
+            of the Republic of Indonesia in Singapore, Mr. Ismunandar, and the
+            manager of NUS Office of Student Affairs, Ms. Lyana Wang Wanzhen.
+        </p>
     </div>
     <div class="photo">
-        <img src="client/perform.jpg" alt="Our Performance" />
+        <img src="client/perform.jpg" alt="Our Weekly Practice" />
+    </div>
+    <div class="photo--text">
+        <h3>Our Weekly Practice</h3>
+        <p>
+            We have our biweekly practice at NUS CAC Clubroom. The collection of
+            songs we play is extensive, ranging from the traditional Indonesian
+            songs such as Manuk Dadali and Ayam Den Lapeh, to the modern tunes
+            such as Pirates of the Carribean and Winter Games. Apart from that,
+            we also organise a musical camp for all members at the end of the
+            year to prepare ourselves for the upcoming performances and
+            simultaneously build solid ties between the members. While the main
+            activities during the camp are practising and reviewing the songs we
+            have learnt, a series of exhilarating welfare events, is also held
+            so that the members has the chance to get to know each other better.
+        </p>
+    </div>
+    <div class="photo">
+        <img src="client/perform.jpg" alt="Our Workshops" />
+    </div>
+    <div class="photo--text">
+        <h3>Our Workshops</h3>
+        <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi,
+            obcaecati! Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Iure, molestias. Lorem, ipsum dolor sit amet consectetur adipisicing
+            elit. Fuga, nobis. Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Facere ullam corrupti minus fuga placeat
+            reiciendis quo? Iste veniam quae, deserunt unde rem a mollitia
+            ullam. Nemo incidunt quaerat nostrum quidem.
+        </p>
     </div>
 </div>
-
-<h3>Our Performance</h3>
-<p>
-    We have been holding our annual concert since 2011, having the main purpose
-    of showcasing angklung and introducing NUS Angklung Ensemble to the NUS
-    community. In our 2015 concert, “The Chronicle”, we performed 13 well-known
-    songs spanning diverse eras to take the audience in a journey through time.
-    As the biggest concert in the history of NUS Angklung Ensemble, “The
-    Chronicle” successfully attracted 150 people, including the Education
-    Attaché of the Embassy of the Republic of Indonesia in Singapore, Mr.
-    Ismunandar, and the manager of NUS Office of Student Affairs, Ms. Lyana Wang
-    Wanzhen.
-</p>
-
-<h3>Weekly Practice</h3>
-
-<p>
-    We have our biweekly practice at NUS CAC Clubroom. The collection of songs
-    we play is extensive, ranging from the traditional Indonesian songs such as
-    Manuk Dadali and Ayam Den Lapeh, to the modern tunes such as Pirates of the
-    Carribean and Winter Games. Apart from that, we also organise a musical camp
-    for all members at the end of the year to prepare ourselves for the upcoming
-    performances and simultaneously build solid ties between the members. While
-    the main activities during the camp are practising and reviewing the songs
-    we have learnt, a series of exhilarating welfare events, is also held so
-    that the members has the chance to get to know each other better.
-</p>
-
-<h3>Workshops</h3>
-
-<p>
-    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi,
-    obcaecati! Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure,
-    molestias. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga,
-    nobis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere ullam
-    corrupti minus fuga placeat reiciendis quo? Iste veniam quae, deserunt unde
-    rem a mollitia ullam. Nemo incidunt quaerat nostrum quidem.
-</p>
