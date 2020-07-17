@@ -1,60 +1,157 @@
 <script>
-	export let segment;
+    export let segment;
+
+    const ensembleSubmenu = [
+        { resource_path: 'about', display: 'About Us' },
+        { resource_path: 'team', display: 'Team' },
+    ];
+
+    $: isInsideEnsembleSubmenu = ensembleSubmenu.some(
+        (submenu) => submenu.resource_path === segment
+    );
 </script>
 
 <style>
-	nav {
-		border-bottom: 1px solid rgba(255,62,0,0.1);
-		font-weight: 300;
-		padding: 0 1em;
-	}
+    :root {
+        --highlight: #c4c4c4;
+    }
 
-	ul {
-		margin: 0;
-		padding: 0;
-	}
+    nav {
+        font-size: 16px;
+        font-weight: 500;
+        z-index: 1;
+    }
 
-	/* clearfix */
-	ul::after {
-		content: '';
-		display: block;
-		clear: both;
-	}
+    .container {
+        max-width: 80%;
+        padding: 0 2em 2em;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
 
-	li {
-		display: block;
-		float: left;
-	}
+    ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: flex-end;
+        list-style-type: none;
+        padding-inline-start: unset;
+    }
 
-	[aria-current] {
-		position: relative;
-		display: inline-block;
-	}
+    li {
+        display: block;
+        text-align: center;
+        padding: 5px;
+    }
 
-	[aria-current]::after {
-		position: absolute;
-		content: '';
-		width: calc(100% - 1em);
-		height: 2px;
-		background-color: rgb(255,62,0);
-		display: block;
-		bottom: -1px;
-	}
+    li > * {
+        box-sizing: border-box;
+    }
 
-	a {
-		text-decoration: none;
-		padding: 1em 0.5em;
-		display: block;
-	}
+    [aria-current] {
+        position: relative;
+        display: inline-block;
+    }
+
+    [aria-current]::after {
+        position: absolute;
+        content: '';
+        width: calc(100% - 1em);
+        height: 2px;
+        background-color: var(--highlight);
+        display: block;
+        bottom: -1px;
+    }
+
+    a,
+    span {
+        text-decoration: none;
+        padding: 0 0.5em 0.5em;
+        display: block;
+        width: 100%;
+    }
+
+    ul li > *:hover {
+        opacity: 0.5;
+    }
+
+    .dropdown {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .dropdown ul {
+        transition: all 0.5s ease;
+        margin-top: 1rem 5px 5px;
+        background-color: transparent;
+        text-align: center;
+        opacity: 0;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .dropdown:hover > ul,
+    .dropdown:hover > ul:hover {
+        display: flex;
+        opacity: 1;
+        transform: translateY(calc(100% + 36px));
+    }
+
+    .dropdown ul li {
+        clear: both;
+        width: 100%;
+    }
+
+    .dropdown ul li a {
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+    @media (max-width: 576px) {
+        nav {
+            font-size: 14px;
+        }
+        .container {
+            max-width: 90%;
+        }
+    }
 </style>
 
-<nav>
-	<ul>
-		<li><a aria-current="{segment === undefined ? 'page' : undefined}" href=".">home</a></li>
-		<li><a aria-current="{segment === 'about' ? 'page' : undefined}" href="about">about</a></li>
-
-		<!-- for the blog link, we're using rel=prefetch so that Sapper prefetches
-		     the blog data when we hover over the link or tap it on a touchscreen -->
-		<li><a rel=prefetch aria-current="{segment === 'blog' ? 'page' : undefined}" href="blog">blog</a></li>
-	</ul>
+<nav class="container">
+    <ul>
+        <li>
+            <a
+                aria-current={segment === undefined ? 'page' : undefined}
+                href=".">
+                Home
+            </a>
+        </li>
+        <li class="dropdown">
+            <ul class="dropdown-content">
+                {#each ensembleSubmenu as submenu}
+                    <li>
+                        <a href={submenu.resource_path}>{submenu.display}</a>
+                    </li>
+                {/each}
+            </ul>
+            <span aria-current={isInsideEnsembleSubmenu ? 'page' : undefined}>
+                Our Ensemble
+            </span>
+        </li>
+        <li>
+            <a
+                aria-current={segment === 'our-music' ? 'page' : undefined}
+                href="our-music">
+                Our Music
+            </a>
+        </li>
+        <li>
+            <a
+                aria-current={segment === 'contact' ? 'page' : undefined}
+                href="contact">
+                Contact Us
+            </a>
+        </li>
+    </ul>
 </nav>

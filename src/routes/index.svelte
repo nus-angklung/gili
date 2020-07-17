@@ -1,46 +1,140 @@
 <style>
-	h1, figure, p {
-		text-align: center;
-		margin: 0 auto;
-	}
+    /* header */
+    .navigation-button {
+        border: solid 2px white;
+        padding: 10px;
+        margin: 0 4px 4px 4px;
+        border-radius: 10px;
+        background-color: black;
+        color: white;
+    }
 
-	h1 {
-		font-size: 2.8em;
-		text-transform: uppercase;
-		font-weight: 700;
-		margin: 0 0 0.5em 0;
-	}
+    .angklung-logo {
+        width: 100%;
+        padding-top: 15vh;
+        padding-bottom: 15vh;
+    }
 
-	figure {
-		margin: 0 0 1em 0;
-	}
+    .angklung-logo img {
+        float: right;
+        margin-right: 2%;
+        margin-left: 2%;
+    }
 
-	img {
-		width: 100%;
-		max-width: 400px;
-		margin: 0 0 1em 0;
-	}
+    .big-angklung {
+        position: relative;
+        bottom: 25vh;
+    }
 
-	p {
-		margin: 1em auto;
-	}
+    .mid-angklung {
+        position: relative;
+        bottom: 12.5vh;
+    }
 
-	@media (min-width: 480px) {
-		h1 {
-			font-size: 4em;
-		}
-	}
+    .angklung-logo::after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+
+    /* body */
+    .message {
+        width: 50%;
+        margin: auto;
+        text-align: center;
+    }
+
+    .message p {
+        margin-top: 5vh;
+        font-size: 15px;
+        margin-bottom: 10vh;
+    }
+
+    .deck {
+        width: 75%;
+        margin: auto;
+        position: relative;
+
+        display: flex;
+        justify-content: center;
+        flex-flow: row wrap;
+    }
+
+    .card {
+        width: 300px;
+        margin: 20px;
+        padding: 25px;
+        background-color: rgba(250, 250, 250, 0.2);
+    }
+
+    .card p {
+        font-size: 15px;
+        color: rgba(250, 250, 250, 0.7);
+    }
+
+    .card a {
+        font-size: 15px;
+    }
 </style>
 
 <svelte:head>
-	<title>Sapper project template</title>
+    <title>NUS Angklung Ensemble</title>
 </svelte:head>
 
-<h1>Great success!</h1>
+<img src="/homepage/header.svg" alt="NUS Angklung Ensemble" width="50%" />
+<br />
+<p>Listen to the sound of Nusantara</p>
+<button class="navigation-button">Join Us Now</button>
+<button class="navigation-button">Learn To Play</button>
+<br />
+<div class="angklung-logo">
+    <img
+        class="big-angklung"
+        src="/homepage/angklung-large.svg"
+        alt="Angklung-large"
+        width="20%" />
+    <img
+        class="mid-angklung"
+        src="/homepage/angklung-mid.svg"
+        alt="Angklung-mid"
+        width="18%" />
+    <img src="/homepage/angklung-small.svg" alt="Angklung-small" width="16%" />
+</div>
 
-<figure>
-	<img alt='Success Kid' src='successkid.jpg'>
-	<figcaption>Have fun with Sapper!</figcaption>
-</figure>
+<div class="message">
+    <h2>LOREM IPSUM DOLOR SIT AMET</h2>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+        convallis neque ac ante lacinia vestibulum. Suspendisse ligula tortor,
+        egestas ac tincidunt nec, finibus vel orci. Maecenas gravida commodo
+        felis ut tincidunt.
+    </p>
+</div>
 
-<p><strong>Try editing this file (src/routes/index.svelte) to test live reloading.</strong></p>
+<div class="deck">
+    <div class="card">
+        <h3>
+            <img src="/homepage/music-note.svg" alt="music-note" width="23px" />
+            OUR MUSIC
+        </h3>
+        <p>
+            We play a diverset set of song, ranging from contemporary to
+            traditional songs. Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit. Curabitur convallis neque ac ante lacinia
+            vestibulum.
+        </p>
+        <a href="our-music">Learn more about what we play >>></a>
+    </div>
+    <div class="card">
+        <h3>
+            <img src="/homepage/music-note.svg" alt="music-note" width="23px" />
+            OUR ACTIVITIES
+        </h3>
+        <p>
+            We not only practice, we also do good to the community. We do
+            workshops for kids. We also perform in the largest student - run
+            concert in Singapore, the annual CaCtus.
+        </p>
+        <a href="/about">More about us >>></a>
+    </div>
+</div>

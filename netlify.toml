@@ -1,5 +1,3 @@
-[[redirects]]
-  from = "/old/*"
-  to = "https://nusae.wordpress.com/:splat"
-  status = 200
-
+[build]
+  base = "."
+  functions = "./functions"
