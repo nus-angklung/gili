@@ -55,15 +55,15 @@
         margin: auto;
         position: relative;
 
-        display: grid;
-        grid-template-columns: auto auto;
-        grid-gap: 20px;
-
+        display: flex;
         justify-content: center;
+        align-items: center;
+        flex-flow: row wrap;
     }
 
     .card {
         width: 300px;
+        margin: 20px;
         padding: 25px;
         background-color: rgba(250, 250, 250, 0.2);
     }
