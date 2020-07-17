@@ -47,6 +47,34 @@
     .message p {
         margin-top: 5vh;
         font-size: 15px;
+        margin-bottom: 10vh;
+    }
+
+    .deck {
+        width: 75%;
+        margin: auto;
+        position: relative;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-flow: row wrap;
+    }
+
+    .card {
+        width: 300px;
+        margin: 20px;
+        padding: 25px;
+        background-color: rgba(250, 250, 250, 0.2);
+    }
+
+    .card p {
+        font-size: 15px;
+        color: rgba(250, 250, 250, 0.7);
+    }
+
+    .card a {
+        font-size: 15px;
     }
 </style>
 
@@ -74,4 +102,32 @@
         egestas ac tincidunt nec, finibus vel orci. Maecenas gravida commodo
         felis ut tincidunt.
     </p>
+</div>
+
+<div class="deck">
+    <div class="card">
+        <h3>
+            <img src="/homepage/music-note.svg" width="23px" />
+            OUR MUSIC
+        </h3>
+        <p>
+            We play a diverset set of song, ranging from contemporary to
+            traditional songs. Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit. Curabitur convallis neque ac ante lacinia
+            vestibulum.
+        </p>
+        <a href="our-music">Learn more about what we play >>></a>
+    </div>
+    <div class="card">
+        <h3>
+            <img src="/homepage/music-note.svg" width="23px" />
+            OUR ACTIVITIES
+        </h3>
+        <p>
+            We not only practice, we also do good to the community. We do
+            workshops for kids. We also perform in the largest student - run
+            concert in Singapore, the annual CaCtus.
+        </p>
+        <a href="/about">More about us >>></a>
+    </div>
 </div>
