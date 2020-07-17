@@ -113,7 +113,7 @@
 
 <div class="grid">
     <div class="photo">
-        <img src="client/perform.jpg" alt="Our Performance" />
+        <img src="about/perform.jpg" alt="Our Performance" />
     </div>
     <div class="photo--text">
         <h3>Our Performance</h3>
@@ -130,7 +130,7 @@
         </p>
     </div>
     <div class="photo">
-        <img src="client/perform.jpg" alt="Our Weekly Practice" />
+        <img src="about/perform.jpg" alt="Our Weekly Practice" />
     </div>
     <div class="photo--text">
         <h3>Our Weekly Practice</h3>
@@ -148,7 +148,7 @@
         </p>
     </div>
     <div class="photo">
-        <img src="client/perform.jpg" alt="Our Workshops" />
+        <img src="about/perform.jpg" alt="Our Workshops" />
     </div>
     <div class="photo--text">
         <h3>Our Workshops</h3>
