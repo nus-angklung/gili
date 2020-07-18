@@ -1,5 +1,6 @@
 <style>
-    p {
+    p,
+    ol {
         opacity: 0.8;
     }
 
@@ -41,7 +42,7 @@
 </p>
 
 <h2>Direction</h2>
-<p>
-    Creating a closely-knit “famsemble” Establishing the club’s presence towards
-    the wider NUS community
-</p>
+<ol>
+    <li>Creating a closely-knit “famsemble”</li>
+    <li>Establishing the club’s presence towards the wider NUS community</li>
+</ol>
