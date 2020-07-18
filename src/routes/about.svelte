@@ -29,6 +29,10 @@
         grid-column: 2 / 4;
     }
 
+    .banner {
+        width: 100%;
+    }
+
     .photo--text h3 {
         line-height: 56px;
     }
@@ -100,8 +104,8 @@
     performance. That is why everybody plays a pivotal role in an angklung
     ensemble.
 </p>
-
 <h2>About the ensemble</h2>
+<img src="about/angklung-banner.jpg" class="banner" />
 
 <p>
     Established in 2007, NUS Angklung Ensemble has reached a greater height as a
@@ -134,7 +138,7 @@
         </p>
     </div>
     <div class="photo">
-        <img src="about/perform.jpg" alt="Our Weekly Practice" />
+        <img src="about/weekly-prac.jpg" alt="Our Weekly Practice" />
     </div>
     <div class="photo--text">
         <h3>Our Weekly Practice</h3>
