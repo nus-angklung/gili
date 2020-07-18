@@ -34,7 +34,7 @@
     <title>Team</title>
 </svelte:head>
 
-<h1>Past Ensemble (AY {year} / {Number(year) + 1})</h1>
+<h1>Past Ensemble ({year} / {Number(year) + 1})</h1>
 <h3>Executive Committee</h3>
 <ul>
     {#each team as member}
@@ -42,7 +42,7 @@
     {/each}
 </ul>
 
-<a href="team/{!secondLast ? Number(year) + 1 : ''}">Next year</a>
 {#if Number(year) > 2007}
     <a href="team/{Number(year) - 1}">Previous year</a>
 {/if}
+<a href="team/{!secondLast ? Number(year) + 1 : ''}">Next year</a>
