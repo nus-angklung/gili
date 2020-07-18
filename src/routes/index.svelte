@@ -1,6 +1,7 @@
 <style>
     :root {
         --card-bg-color: rgba(250, 250, 250, 0.2);
+        --link-highlight: tomato;
     }
     /* header */
     .navigation-button {
@@ -60,8 +61,21 @@
         opacity: 0.8;
     }
 
+    .message a {
+        text-decoration: none;
+        display: block;
+        font-weight: 500;
+        color: var(--link-highlight);
+    }
+
+    .message a:hover {
+        transform: translateY(-1px);
+        transition: ease 0.2s;
+    }
+
     .deck {
         margin: auto;
+        padding-top: 2rem;
         display: flex;
         justify-content: center;
         flex-flow: row wrap;
@@ -102,7 +116,7 @@
     }
 
     .card-action svg {
-        fill: tomato;
+        fill: var(--link-highlight);
         padding: 0 10px;
         height: 20px;
         margin: auto 0;
@@ -117,7 +131,7 @@
     }
 
     .card-action:hover {
-        color: tomato;
+        color: var(--link-highlight);
     }
 
     .card-action a {
@@ -179,6 +193,7 @@
         subsequently gives birth to what we call our ensemble as a “famsemble” -
         a portmanteau of family and ensemble.
     </p>
+    <a href="vision-mission">Learn more about our vision and mission</a>
 </div>
 
 <div class="deck">
