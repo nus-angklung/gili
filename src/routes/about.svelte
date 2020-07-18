@@ -152,7 +152,7 @@
         </p>
     </div>
     <div class="photo">
-        <img src="about/perform.jpg" alt="Our Workshops" />
+        <img src="about/workshop.jpg" alt="Our Workshops" />
     </div>
     <div class="photo--text">
         <h3>Our Workshops</h3>
