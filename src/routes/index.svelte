@@ -165,7 +165,7 @@
     <title>NUS Angklung Ensemble</title>
 </svelte:head>
 
-<img src="/homepage/header.svg" alt="NUS Angklung Ensemble" width="50%" />
+<img src="client/home/header.svg" alt="NUS Angklung Ensemble" width="50%" />
 <br />
 <p>Listen to the sounds of NUSantara</p>
 <button class="navigation-button">Join Us Now</button>
@@ -174,15 +174,18 @@
 <div class="angklung-logo">
     <img
         class="big-angklung"
-        src="/homepage/angklung-large.svg"
+        src="client/home/angklung-large.svg"
         alt="Angklung-large"
         width="20%" />
     <img
         class="mid-angklung"
-        src="/homepage/angklung-mid.svg"
+        src="client/home/angklung-mid.svg"
         alt="Angklung-mid"
         width="18%" />
-    <img src="/homepage/angklung-small.svg" alt="Angklung-small" width="16%" />
+    <img
+        src="client/home/angklung-small.svg"
+        alt="Angklung-small"
+        width="16%" />
 </div>
 
 <div class="message">
@@ -199,7 +202,7 @@
 <div class="deck">
     <div class="card">
         <div class="card-title">
-            <img src="/homepage/music-note.svg" alt="music-note" />
+            <img src="client/home/music-note.svg" alt="music-note" />
             <h3>Our Music</h3>
         </div>
         <p>
@@ -227,7 +230,7 @@
     </div>
     <div class="card">
         <div class="card-title">
-            <img src="/homepage/music-note.svg" alt="music-note" />
+            <img src="client/home/music-note.svg" alt="music-note" />
             <h3>Our Activities</h3>
         </div>
         <p>

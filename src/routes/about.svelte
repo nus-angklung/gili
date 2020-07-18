@@ -45,7 +45,7 @@
         display: block;
     }
 
-    .photo--text p {
+    p {
         opacity: 0.8;
     }
     .photo img {
@@ -105,7 +105,10 @@
     ensemble.
 </p>
 <h2>About the ensemble</h2>
-<img src="about/angklung-banner.jpg" class="banner" />
+<img
+    src="client/about/angklung-banner.jpg"
+    class="banner"
+    alt="angklung stage performance banner" />
 
 <p>
     Established in 2007, NUS Angklung Ensemble has reached a greater height as a
@@ -121,7 +124,7 @@
 
 <div class="grid">
     <div class="photo">
-        <img src="about/perform.jpg" alt="Our Performance" />
+        <img src="client/about/perform.jpg" alt="Our Performance" />
     </div>
     <div class="photo--text">
         <h3>Our Performance</h3>
@@ -138,7 +141,7 @@
         </p>
     </div>
     <div class="photo">
-        <img src="about/weekly-prac.jpg" alt="Our Weekly Practice" />
+        <img src="client/about/weekly-prac.jpg" alt="Our Weekly Practice" />
     </div>
     <div class="photo--text">
         <h3>Our Weekly Practice</h3>
@@ -156,7 +159,7 @@
         </p>
     </div>
     <div class="photo">
-        <img src="about/workshop.jpg" alt="Our Workshops" />
+        <img src="client/about/workshop.jpg" alt="Our Workshops" />
     </div>
     <div class="photo--text">
         <h3>Our Workshops</h3>
