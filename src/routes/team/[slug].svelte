@@ -24,9 +24,29 @@
 </script>
 
 <style>
-    ul {
+    .container {
         margin: 0 0 1em 0;
         line-height: 1.5;
+        list-style-type: none;
+
+        display: flex;
+        flex-flow: row wrap;
+    }
+
+    .container p {
+        text-align: center;
+    }
+
+    .profile {
+        padding: 2rem;
+        width: 250px;
+    }
+
+    .profile img {
+        border-radius: 50%;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
     }
 </style>
 
@@ -36,9 +56,13 @@
 
 <h1>Past Ensemble ({year} / {Number(year) + 1})</h1>
 <h3>Executive Committee</h3>
-<ul>
+<ul class="container">
     {#each team as member}
-        <li>{member.position} : {member.name}</li>
+        <li class="profile">
+            <img src="client/team/default-picture.svg" width="100px" />
+            <p>{member.name}</p>
+            <p>{member.position}</p>
+        </li>
     {/each}
 </ul>
 
