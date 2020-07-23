@@ -40,6 +40,7 @@
     .profile {
         padding: 2rem;
         width: 250px;
+        font-size: 1.5rem;
     }
 
     .profile img {
