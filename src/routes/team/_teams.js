@@ -21,7 +21,7 @@ const teams = {
         },
         {
             position: 'General Secretary',
-            name: 'Alyssa Harijanto',
+            name: 'Alyssa Alexandra Harijanto',
             img: 'alyssa.jpg',
         },
         {
@@ -40,19 +40,19 @@ const teams = {
             img: 'james.jpg',
         },
         {
-            position: 'Artistic Director',
-            name: 'Amelia Regina',
-            img: 'amelia.jpg',
-        },
-        {
-            position: 'Publicity Director',
+            position: 'Communications Director',
             name: 'Erin May Gunawan',
             img: 'erin.jpg',
         },
         {
-            position: 'Publicity Director',
+            position: 'Communications Director',
             name: 'Florencia Martina',
             img: 'florencia.jpg',
+        },
+        {
+            position: 'Artistic Director',
+            name: 'Amelia Regina Sutikna',
+            img: 'amelia.jpg',
         },
         {
             position: 'Logistics Director',
