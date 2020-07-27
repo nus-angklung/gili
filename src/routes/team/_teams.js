@@ -72,7 +72,7 @@ const teams = {
     ],
     2019: [
         { position: 'President', name: 'Matheus Aaron', img: 'matheus.jpeg' },
-        { position: 'Vice President', name: 'Joel Sugiarto', img: 'joel.jpeg' },
+        { position: 'Vice President', name: 'Joel Sugiarto', img: 'joel.jpg' },
         { position: 'General Secretary', name: 'Georgia Kelly Lau' },
         { position: 'Financial Secretary', name: 'Georgia Kelly Lau' },
         {
@@ -93,7 +93,7 @@ const teams = {
         {
             position: 'Vice President',
             name: 'Tjiu Karuna Bakti Sudarsono',
-            img: 'karuna.jpeg',
+            img: 'karuna.jpg',
         },
         {
             position: 'Student Conductor',
