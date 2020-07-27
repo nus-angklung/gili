@@ -20,7 +20,6 @@
     import { current_year, first_year } from './_constants.js';
     export let team = [];
     export let year;
-    export let secondLast;
 
     const default_picture = 'client/team/default-picture.svg';
 
@@ -119,7 +118,9 @@
 <ul class="container">
     {#each team as member}
         <li class="profile">
-            <img src={get_image_source(member.img)} />
+            <img
+                src={get_image_source(member.img)}
+                alt="{member.name} profile photo" />
             <p>{member.name}</p>
             <p>{member.position}</p>
         </li>
