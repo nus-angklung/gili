@@ -2,11 +2,11 @@
     .social {
         display: flex;
         justify-content: center;
-        margin: 3rem 10rem;
+        flex-flow: row wrap;
     }
 
     .social a {
-        margin: 0 auto;
+        padding: 1rem;
     }
 </style>
 
