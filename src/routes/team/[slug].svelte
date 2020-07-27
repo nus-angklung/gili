@@ -26,12 +26,12 @@
 
 <style>
     .container {
-        margin: 0 0 1em 0;
         line-height: 1.5;
         list-style-type: none;
 
         display: flex;
         flex-flow: row wrap;
+        justify-content: center;
     }
 
     .container p {
