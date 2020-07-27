@@ -110,7 +110,7 @@
 </svelte:head>
 
 {#if Number(year) == current_year}
-    <h1>Current Ensemble</h1>
+    <h1>Current Ensemble ({year} / {Number(year) + 1})</h1>
 {:else}
     <h1>Past Ensemble ({year} / {Number(year) + 1})</h1>
 {/if}

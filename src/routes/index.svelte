@@ -11,6 +11,7 @@
         border-radius: 10px;
         background-color: black;
         color: white;
+        text-decoration: none;
     }
 
     .angklung-logo {
@@ -168,8 +169,15 @@
 <img src="client/home/header.svg" alt="NUS Angklung Ensemble" width="50%" />
 <br />
 <p>Listen to the sounds of NUSantara</p>
-<button class="navigation-button">Join Us Now</button>
-<button class="navigation-button">Learn To Play</button>
+
+<a
+    target="_blank"
+    rel="noopener noreferrer"
+    href="https://nus.campuslabs.com/engage/submitter/form/step/1?Guid=66df4253-d27e-4833-af78-bc29586dae44"
+    class="navigation-button">
+    Join Us Now
+</a>
+
 <br />
 <div class="angklung-logo">
     <img
