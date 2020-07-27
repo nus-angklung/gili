@@ -39,9 +39,11 @@
     }
 
     .profile {
-        padding: 2rem;
+        padding: 1rem;
+        margin: 1rem;
         width: 250px;
         font-size: 1.5rem;
+        border: 1px solid gray;
     }
 
     .profile img {
