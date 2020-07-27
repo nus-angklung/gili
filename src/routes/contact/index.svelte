@@ -10,7 +10,7 @@
     }
 
     .social a img {
-        width: 100px;
+        width: 80px;
     }
 </style>
 
@@ -18,7 +18,7 @@
     <title>Contact us</title>
 </svelte:head>
 <center>
-    <h1>Find us at our social media!</h1>
+    <h1>Connect with us!</h1>
 </center>
 
 <div class="social">
@@ -26,20 +26,26 @@
         target="_blank"
         rel="noopener noreferrer"
         href="https://www.facebook.com/NUSAngklung">
-        <img src="client/contact/facebook.svg" />
+        <img
+            src="client/contact/facebook.svg"
+            alt="NUS Angklung Facebook Profile" />
     </a>
 
     <a
         target="_blank"
         rel="noopener noreferrer"
         href="https://www.youtube.com/channel/UC86Z1UcM82LOKvlS2HyQZSg">
-        <img src="client/contact/youtube.svg" />
+        <img
+            src="client/contact/youtube.svg"
+            alt="NUS Angklung Youtube Channel" />
     </a>
 
     <a
         target="_blank"
         rel="noopener noreferrer"
         href="https://www.instagram.com/nusangklung">
-        <img src="client/contact/instagram.svg" />
+        <img
+            src="client/contact/instagram.svg"
+            alt="NUS Angklung Instagram Account" />
     </a>
 </div>
