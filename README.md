@@ -5,11 +5,14 @@ The website aims to introduce Angklung CCA to NUS Students as well as inviting t
 
 ## Updating the team
 
-The CCA team structure changes every year. As a result, the technical team will be responsible to keep the `team` pages updated.
+The CCA exco structure changes every year. As a result, the technical team will be responsible to keep the `team` pages updated.
 
 To update the `team` pages:
 
-1. Update the `src/routes/team/[slug].json.js` file by adding the new team structure in json format.
+1. Update the `src/routes/team/[slug].json.js` file by adding the new exco in json format. For each exco member, it will require the following fields:
+    - `position`: Representing the member's position.
+    - `name`: Representing the member's full name.
+    - `img` [Optional]: Representing the member's profile picture name as located inside `static/team/{corresponding_year}` folder. Suggested image ratio is 1:1. If no image is provided, a placeholder will be used instead.
 2. Update the `current_year` value inside `src/routes/team/_constants.js` file
 
 # sapper-template

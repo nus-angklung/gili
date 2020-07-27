@@ -8,7 +8,6 @@
         if (res.status === 200) {
             return {
                 team: data.team,
-                secondLast: data.secondLast,
                 year: data.year,
             };
         } else {
@@ -22,6 +21,17 @@
     export let team = [];
     export let year;
     export let secondLast;
+
+    const default_picture = 'client/team/default-picture.svg';
+
+    // convert image slug (if any) into image source or return a default source.
+    function get_image_source(image_slug) {
+        if (!image_slug) {
+            return default_picture;
+        }
+
+        return 'client/team/' + year + '/' + image_slug;
+    }
 </script>
 
 <style>
@@ -51,6 +61,8 @@
         margin-left: auto;
         margin-right: auto;
         display: block;
+        width: 200px;
+        height: 200px;
     }
 
     .navigation {
@@ -97,7 +109,7 @@
 <ul class="container">
     {#each team as member}
         <li class="profile">
-            <img src="client/team/default-picture.svg" width="100px" />
+            <img src={get_image_source(member.img)} />
             <p>{member.name}</p>
             <p>{member.position}</p>
         </li>

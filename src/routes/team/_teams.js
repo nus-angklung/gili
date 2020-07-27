@@ -9,9 +9,21 @@
 
 const teams = {
     2020: [
-        { position: 'President', name: 'Archangel Quinterra' },
-        { position: 'Vice President', name: 'Christian Drake Martin' },
-        { position: 'General Secretary', name: 'Alyssa Harijanto' },
+        {
+            position: 'President',
+            name: 'Archangel Quinterra',
+            img: 'angel.jpg',
+        },
+        {
+            position: 'Vice President',
+            name: 'Christian Drake Martin',
+            img: 'drake.jpg',
+        },
+        {
+            position: 'General Secretary',
+            name: 'Alyssa Harijanto',
+            img: 'alyssa.jpg',
+        },
         { position: 'Financial Secretary', name: 'Jeff Ivanos Gana' },
         { position: 'Student Conductor', name: 'Peter Sidajaya' },
         { position: 'Student Conductor', name: 'James Arista Yaputra' },
