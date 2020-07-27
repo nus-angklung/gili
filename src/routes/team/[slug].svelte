@@ -52,6 +52,35 @@
         margin-right: auto;
         display: block;
     }
+
+    .navigation {
+        margin: 3rem 2rem 0;
+    }
+
+    .navigation .left {
+        float: left;
+    }
+
+    .navigation .right {
+        float: right;
+    }
+
+    .navigation-button {
+        border: solid 2px white;
+        padding: 10px;
+        margin: 0 4px 4px 4px;
+        border-radius: 10px;
+        background-color: black;
+        color: white;
+        text-decoration: none;
+        font-size: 1.5rem;
+    }
+
+    .navigation::after {
+        content: '';
+        display: block;
+        clear: both;
+    }
 </style>
 
 <svelte:head>
@@ -75,10 +104,16 @@
     {/each}
 </ul>
 
-{#if Number(year) > constants.first_year}
-    <a href="team/{Number(year) - 1}">Previous year</a>
-{/if}
+<div class="navigation">
+    {#if Number(year) > constants.first_year}
+        <a class="navigation-button left" href="team/{Number(year) - 1}">
+            Previous year
+        </a>
+    {/if}
 
-{#if Number(year) < constants.current_year}
-    <a href="team/{Number(year) + 1}">Next year</a>
-{/if}
+    {#if Number(year) < constants.current_year}
+        <a class="navigation-button right" href="team/{Number(year) + 1}">
+            Next year
+        </a>
+    {/if}
+</div>
