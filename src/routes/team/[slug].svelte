@@ -78,7 +78,7 @@
     }
 
     .profile p {
-        color: tomato;
+        color: beige;
         margin: 0.5rem 0;
         font-size: 0.75em;
     }
