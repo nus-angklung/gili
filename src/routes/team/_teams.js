@@ -60,12 +60,12 @@ const teams = {
             img: 'alvin.jpg',
         },
         {
-            position: 'Tech Director',
+            position: 'Technology Director',
             name: 'Bennett Clement',
-            img: 'benett.jpg',
+            img: 'bennett.jpg',
         },
         {
-            position: 'Tech Director',
+            position: 'Technology Director',
             name: 'Yehezkiel Raymundo Theodoroes',
             img: 'yehezkiel.jpg',
         },
