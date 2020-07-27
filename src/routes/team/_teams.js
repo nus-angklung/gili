@@ -109,7 +109,11 @@ const teams = {
         { position: 'General Secretary', name: 'Nicholas Alexander' },
         { position: 'Financial Secretary', name: 'Davin Leo' },
         { position: 'Student Conductor', name: 'Jonathan Mulyawan Woenardi' },
-        { position: 'Asst. Student Conductor', name: 'James Arista Yaputra' },
+        {
+            position: 'Asst. Student Conductor',
+            name: 'James Arista Yaputra',
+            img: 'james.jpg',
+        },
         { position: 'Publicity Director', name: 'Jonathan Simon' },
         { position: 'Logistics Director', name: 'Christian Chandra' },
     ],
