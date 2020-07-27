@@ -77,6 +77,16 @@
         float: right;
     }
 
+    @media (max-width: 576px) {
+        .navigation .left,
+        .navigation .right {
+            float: none;
+            display: block;
+            text-align: center;
+            margin: 1rem;
+        }
+    }
+
     .navigation-button {
         border: solid 2px white;
         padding: 10px;
