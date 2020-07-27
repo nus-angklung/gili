@@ -18,6 +18,7 @@
 </script>
 
 <script>
+    import * as constants from './_constants.js';
     export let team = [];
     export let year;
     export let secondLast;
@@ -67,7 +68,7 @@
     {/each}
 </ul>
 
-{#if Number(year) > 2007}
+{#if Number(year) > constants.first_year}
     <a href="team/{Number(year) - 1}">Previous year</a>
 {/if}
 <a href="team/{!secondLast ? Number(year) + 1 : ''}">Next year</a>
