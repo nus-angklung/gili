@@ -18,7 +18,7 @@
 </script>
 
 <script>
-    import * as constants from './_constants.js';
+    import { current_year, first_year } from './_constants.js';
     export let team = [];
     export let year;
     export let secondLast;
@@ -87,7 +87,7 @@
     <title>Team</title>
 </svelte:head>
 
-{#if Number(year) == constants.current_year}
+{#if Number(year) == current_year}
     <h1>Current Ensemble</h1>
 {:else}
     <h1>Past Ensemble ({year} / {Number(year) + 1})</h1>
@@ -105,13 +105,13 @@
 </ul>
 
 <div class="navigation">
-    {#if Number(year) > constants.first_year}
+    {#if Number(year) > first_year}
         <a class="navigation-button left" href="team/{Number(year) - 1}">
             Previous year
         </a>
     {/if}
 
-    {#if Number(year) < constants.current_year}
+    {#if Number(year) < current_year}
         <a class="navigation-button right" href="team/{Number(year) + 1}">
             Next year
         </a>
