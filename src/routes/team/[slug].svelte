@@ -18,15 +18,68 @@
 </script>
 
 <script>
+    import { current_year, first_year } from './_constants.js';
     export let team = [];
     export let year;
     export let secondLast;
 </script>
 
 <style>
-    ul {
-        margin: 0 0 1em 0;
+    .container {
         line-height: 1.5;
+        list-style-type: none;
+
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+    }
+
+    .container p {
+        text-align: center;
+    }
+
+    .profile {
+        padding: 1rem;
+        margin: 1rem;
+        width: 250px;
+        font-size: 1.5rem;
+        border: 1px solid gray;
+    }
+
+    .profile img {
+        border-radius: 50%;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
+    .navigation {
+        margin: 3rem 2rem 0;
+    }
+
+    .navigation .left {
+        float: left;
+    }
+
+    .navigation .right {
+        float: right;
+    }
+
+    .navigation-button {
+        border: solid 2px white;
+        padding: 10px;
+        margin: 0 4px 4px 4px;
+        border-radius: 10px;
+        background-color: black;
+        color: white;
+        text-decoration: none;
+        font-size: 1.5rem;
+    }
+
+    .navigation::after {
+        content: '';
+        display: block;
+        clear: both;
     }
 </style>
 
@@ -34,15 +87,33 @@
     <title>Team</title>
 </svelte:head>
 
-<h1>Past Ensemble ({year} / {Number(year) + 1})</h1>
+{#if Number(year) == current_year}
+    <h1>Current Ensemble</h1>
+{:else}
+    <h1>Past Ensemble ({year} / {Number(year) + 1})</h1>
+{/if}
+
 <h3>Executive Committee</h3>
-<ul>
+<ul class="container">
     {#each team as member}
-        <li>{member.position} : {member.name}</li>
+        <li class="profile">
+            <img src="client/team/default-picture.svg" width="100px" />
+            <p>{member.name}</p>
+            <p>{member.position}</p>
+        </li>
     {/each}
 </ul>
 
-{#if Number(year) > 2007}
-    <a href="team/{Number(year) - 1}">Previous year</a>
-{/if}
-<a href="team/{!secondLast ? Number(year) + 1 : ''}">Next year</a>
+<div class="navigation">
+    {#if Number(year) > first_year}
+        <a class="navigation-button left" href="team/{Number(year) - 1}">
+            Previous year
+        </a>
+    {/if}
+
+    {#if Number(year) < current_year}
+        <a class="navigation-button right" href="team/{Number(year) + 1}">
+            Next year
+        </a>
+    {/if}
+</div>
