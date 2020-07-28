@@ -29,6 +29,10 @@
         grid-column: 2 / 4;
     }
 
+    .banner {
+        width: 100%;
+    }
+
     .photo--text h3 {
         line-height: 56px;
     }
@@ -41,11 +45,15 @@
         display: block;
     }
 
-    .photo--text p {
+    p {
         opacity: 0.8;
     }
     .photo img {
         width: 100%;
+    }
+
+    a:hover {
+        color: tomato;
     }
 
     @media (max-width: 992px) {
@@ -96,8 +104,11 @@
     performance. That is why everybody plays a pivotal role in an angklung
     ensemble.
 </p>
-
 <h2>About the ensemble</h2>
+<img
+    src="client/about/angklung-banner.jpg"
+    class="banner"
+    alt="angklung stage performance banner" />
 
 <p>
     Established in 2007, NUS Angklung Ensemble has reached a greater height as a
@@ -113,7 +124,7 @@
 
 <div class="grid">
     <div class="photo">
-        <img src="about/perform.jpg" alt="Our Performance" />
+        <img src="client/about/perform.jpg" alt="Our Performance" />
     </div>
     <div class="photo--text">
         <h3>Our Performance</h3>
@@ -130,7 +141,7 @@
         </p>
     </div>
     <div class="photo">
-        <img src="about/perform.jpg" alt="Our Weekly Practice" />
+        <img src="client/about/weekly-prac.jpg" alt="Our Weekly Practice" />
     </div>
     <div class="photo--text">
         <h3>Our Weekly Practice</h3>
@@ -148,18 +159,16 @@
         </p>
     </div>
     <div class="photo">
-        <img src="about/perform.jpg" alt="Our Workshops" />
+        <img src="client/about/workshop.jpg" alt="Our Workshops" />
     </div>
     <div class="photo--text">
         <h3>Our Workshops</h3>
         <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi,
-            obcaecati! Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Iure, molestias. Lorem, ipsum dolor sit amet consectetur adipisicing
-            elit. Fuga, nobis. Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Facere ullam corrupti minus fuga placeat
-            reiciendis quo? Iste veniam quae, deserunt unde rem a mollitia
-            ullam. Nemo incidunt quaerat nostrum quidem.
+            We conduct annual workshops for external parties keen on learning
+            more about angklung. If you’re interested in collaborating with us
+            for a workshop, feel free to drop us an
+            <a href="mailto:nus.angklung@gmail.com">email</a>
+            or contact us using the form below!
         </p>
     </div>
 </div>
