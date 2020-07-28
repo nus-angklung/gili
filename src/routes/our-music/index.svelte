@@ -1,11 +1,16 @@
 <script>
-
+    let ytLinks = [
+        { year: 2019, link: 'https://www.youtube.com/embed/8JgN5XLcVa8' },
+        { year: 2018, link: 'https://www.youtube.com/embed/qVii0353tGo' },
+        { year: 2017, link: 'https://www.youtube.com/embed/meyriKmJnU0' },
+    ];
 </script>
 
 <style>
     .iframe-container {
         overflow: hidden;
         position: relative;
+        margin-bottom: 2em;
     }
 
     .iframe-container iframe {
@@ -29,14 +34,16 @@
 
 <!-- <h4>Our Music</h4> -->
 
-<div class="iframe-container iframe-container-16x9">
-    <iframe
-        title="Angklung latest stage performance"
-        src="https://www.youtube.com/embed/8JgN5XLcVa8?rel=0"
-        class=""
-        frameborder="0"
-        allow="accelerometer; autoplay; encrypted-media; gyroscope;
-        picture-in-picture"
-        allowfullscreen />
-</div>
-<div class="caption">Angklung Performance (2019)</div>
+{#each ytLinks as link}
+    <div class="caption">Angklung Performance ({link.year})</div>
+    <div class="iframe-container iframe-container-16x9">
+        <iframe
+            title="Angklung latest stage performance"
+            src="{link.link}?rel=0"
+            class=""
+            frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope;
+            picture-in-picture"
+            allowfullscreen />
+    </div>
+{/each}
