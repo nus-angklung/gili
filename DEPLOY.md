@@ -7,10 +7,12 @@ To deploy, do the following
     git checkout dev
     git pull
     git checkout -b pre-deploy
-    git merge master # resolving merge conflicts as you go
+    git merge master # resolving merge conflicts as you go, you can use '--strategy-options'
     git push origin pre-deploy
     git tag -a vX.X # to tag a specific version
     ```
-3.  Make a PR from `pre-deploy` branch to `master`
-4.  Squash and merge PR.
-5.  Delete up branch in github and local
+3.  Make a PR from `pre-deploy` branch to `dev`
+4.  Merge PR using `Create a merge commit` option.
+5.  Make another PR from `dev` branch to `master`. There won't be any conflict at this point.
+6.  Merge PR using `Squash and merge` option.
+7.  Delete up `pre-deploy` branch in github and local
