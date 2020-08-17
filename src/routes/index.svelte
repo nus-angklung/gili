@@ -173,7 +173,7 @@
 <a
     target="_blank"
     rel="noopener noreferrer"
-    href="https://nus.campuslabs.com/engage/submitter/form/start/424829"
+    href="https://nus.campuslabs.com/engage/submitter/form/start/424831"
     class="navigation-button">
     Join Us Now
 </a>
