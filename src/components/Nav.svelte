@@ -148,6 +148,13 @@
         </li>
         <li>
             <a
+                aria-current={segment === 'news' ? 'page' : undefined}
+                href="news_3.svelte">
+                News
+            </a>
+        </li>
+        <li>
+            <a
                 aria-current={segment === 'contact' ? 'page' : undefined}
                 href="contact">
                 Contact Us
