@@ -66,7 +66,7 @@
 				###########
 			</p>
 			<br class="svelte-u1musi">
-			<img alt="Kolintang" class="svelte-u1musi" "center" src="client/News/kolintang.jpg">
+			<img src="client/News/kolintang.jpg" class="svelte-u1musi" alt="Kolintang" width="50%">
 			<p>
 				Date: dd/mm/yyyy
 			</p>
