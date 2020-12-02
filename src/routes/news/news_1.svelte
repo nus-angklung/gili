@@ -66,7 +66,7 @@
 				###########
 			</p>
 			<br class="svelte-u1musi">
-			<img alt="Angklung" class="svelte-u1musi", "center" src="client/News/angklung.jpg">
+			<img src="client/News/angklung.jpg" class="svelte-u1musi" alt="Angklung" width="50%">
 			<p>
 				Date: dd/mm/yyyy
 			</p>
