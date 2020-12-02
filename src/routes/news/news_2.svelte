@@ -42,7 +42,7 @@
 							</a>
 						 </li>
 						<li class="svelte-15h10pp">
-							<a class="svelte-15h10pp" href="CCA_News">
+							<a class="svelte-15h10pp" href="news_3.svelte">
 								CCA News
 							</a> 
 						</li>
