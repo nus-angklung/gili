@@ -111,13 +111,13 @@
 
 
 <div class="navigation">
-    {#if Number(date) > first_date}
+    {#if Number(code) > first_code}
         <a class="navigation-button" href="team/{Number(code) - 1}">
             Previous News
         </a>
     {/if}
 
-    {#if Number(date) < current_date}
+    {#if Number(code) < current_code}
         <a class="navigation-button" href="team/{Number(code) + 1}">
             Next News
         </a>
