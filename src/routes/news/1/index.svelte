@@ -4,7 +4,7 @@
     }
     h2 {
         color: #f5eccf;
-        position: center;
+        text-align: center;
     }
     .banner {
         width: 100%;
@@ -63,6 +63,7 @@
 </svelte:head>
 
 <h2>GHI</h2>
+<br>
 <img
     src="client/news/1/kolintang.jpg"
     class="banner"
@@ -70,7 +71,6 @@
 <p>
     Date: 7 February 2020
 </p>
-<br>
 <br>
 <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur convallis neque ac ante lacinia vestibulum. Suspendisse ligula tortor, egestas ac tincidunt nec, finibus vel orci. Maecenas gravida commodo felis ut tincidunt. 
