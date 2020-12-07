@@ -7,7 +7,7 @@
         if (res.status === 200) {
             return {
                 new: data.new,
-                date: data.date,
+                code: data.code,
             };
         } else {
             this.error(res.status, data.message);
@@ -16,8 +16,9 @@
 </script>
 
 <script>
-    import { current_date, first_date } from './_constants.js';
-    export let date;
+    import { current_code, first_code } from './_constants.js';
+    export let code;
+    export let new = [];
     const default_picture = 'client/team/default-picture.svg';
     // convert image slug (if any) into image source or return a default source.
     function get_image_source(image_slug) {
@@ -92,7 +93,7 @@
     <title>News</title>
 </svelte:head>
 
-{#if Number(date) == current_date}
+{#if Number(code) == current_code}
     <h1>Current News ({date})</h1>
 {:else}
     <h1>Past News ({date})</h1>
@@ -111,13 +112,13 @@
 
 <div class="navigation">
     {#if Number(date) > first_date}
-        <a class="navigation-button" href="team/{Number(date) - 1}">
+        <a class="navigation-button" href="team/{Number(code) - 1}">
             Previous News
         </a>
     {/if}
 
     {#if Number(date) < current_date}
-        <a class="navigation-button" href="team/{Number(date) + 1}">
+        <a class="navigation-button" href="team/{Number(code) + 1}">
             Next News
         </a>
     {/if}
