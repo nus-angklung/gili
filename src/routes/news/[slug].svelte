@@ -25,7 +25,7 @@
         if (!image_slug) {
             return default_picture;
         }
-        return 'client/news/' + date + '/' + image_slug;
+        return 'client/news/' + image_slug;
     }
 </script>
 
