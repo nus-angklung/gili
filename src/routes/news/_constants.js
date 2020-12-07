@@ -1,6 +1,6 @@
 /* This file contains constants value specific to the team pages */
 
-export const first_date = Date(2020, 11, 13);
+export const first_code = 1;
 
 // Reminder to keep the current_year value updated every year
-export const current_date = Date(2020, 9, 7);
+export const current_code = 3;
