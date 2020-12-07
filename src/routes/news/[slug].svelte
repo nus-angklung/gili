@@ -18,7 +18,6 @@
 <script>
     import { current_code, first_code } from './_constants.js';
     export let code;
-    export let new = [];
     const default_picture = 'client/team/default-picture.svg';
     // convert image slug (if any) into image source or return a default source.
     function get_image_source(image_slug) {
