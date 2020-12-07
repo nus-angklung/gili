@@ -18,7 +18,6 @@
 <script>
     import { current_date, first_date } from './_constants.js';
     export let date;
-    export let new = [];
     const default_picture = 'client/team/default-picture.svg';
     // convert image slug (if any) into image source or return a default source.
     function get_image_source(image_slug) {
