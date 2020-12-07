@@ -28,4 +28,4 @@ const news = {
     }
 };
 
-export default teams;
+export default news;
