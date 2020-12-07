@@ -1,6 +1,6 @@
 import news from './_news.js';
 
-const dates = Object.keys(news);
+const codes = Object.keys(news);
 
 export function get(req, res, next) {
     // the `slug` parameter is available because
@@ -13,8 +13,7 @@ export function get(req, res, next) {
         });
 
         res.json({
-            date: dates[dates.indexOf(slug)],
-            new: news[slug],
+            new: news[slug]
         });
     } else {
         res.status(404).json({
