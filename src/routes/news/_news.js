@@ -8,19 +8,19 @@
 // underscore tells Sapper not to do that.
 
 const news = {
-    '13-11-2020': {
+    3: {
 	title: 'ABC',
 	date: Date(2020, 11, 13),
 	img: 'angklung.jpg',
 	body: '##############################################################'
     },
-    '25-10-2020': {
+    2: {
 	title: 'DEF',
 	date: Date(2020, 10, 25),
 	img: 'sasando.jpg',
 	body: '##############################################################'
     },
-    '7-9-2020': {
+    1: {
 	title: 'GHI',
 	date: Date(2020, 9, 7),
 	img: 'kolintang.jpg',
