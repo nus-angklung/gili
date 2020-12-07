@@ -8,7 +8,7 @@ export function get(req, res) {
     });
 
     res.json({
-        team: currentNews,
+        new: currentNews,
         code: Object.keys(news)[Object.keys(news).length - 1],
     });
 }
