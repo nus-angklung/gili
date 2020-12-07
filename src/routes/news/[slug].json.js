@@ -7,7 +7,7 @@ export function get(req, res, next) {
     // this file is called [slug].json.js
     const { slug } = req.params;
 
-    if (dates.includes(slug)) {
+    if (codes.includes(slug)) {
         res.set({
             'Content-Type': 'application/json',
         });
