@@ -1,11 +1,9 @@
 <script>
     export let segment;
-
     const ensembleSubmenu = [
         { resource_path: 'about', display: 'About Us' },
         { resource_path: 'team', display: 'Team' },
     ];
-
     $: isInsideEnsembleSubmenu = ensembleSubmenu.some(
         (submenu) => submenu.resource_path === segment
     );
@@ -15,20 +13,17 @@
     :root {
         --highlight: #c4c4c4;
     }
-
     nav {
         font-size: 16px;
         font-weight: 500;
         z-index: 1;
     }
-
     .container {
         max-width: 80%;
         padding: 0 2em 2em;
         margin: 0 auto;
         box-sizing: border-box;
     }
-
     ul {
         display: flex;
         flex-direction: row;
@@ -37,22 +32,18 @@
         list-style-type: none;
         padding-inline-start: unset;
     }
-
     li {
         display: block;
         text-align: center;
         padding: 5px;
     }
-
     li > * {
         box-sizing: border-box;
     }
-
     [aria-current] {
         position: relative;
         display: inline-block;
     }
-
     [aria-current]::after {
         position: absolute;
         content: '';
@@ -62,7 +53,6 @@
         display: block;
         bottom: -1px;
     }
-
     a,
     span {
         text-decoration: none;
@@ -70,16 +60,13 @@
         display: block;
         width: 100%;
     }
-
     ul li > *:hover {
         opacity: 0.5;
     }
-
     .dropdown {
         display: flex;
         flex-direction: column;
     }
-
     .dropdown ul {
         transition: all 0.5s ease;
         margin-top: 1rem 5px 5px;
@@ -90,24 +77,20 @@
         align-items: center;
         justify-content: center;
     }
-
     .dropdown:hover > ul,
     .dropdown:hover > ul:hover {
         display: flex;
         opacity: 1;
         transform: translateY(calc(100% + 36px));
     }
-
     .dropdown ul li {
         clear: both;
         width: 100%;
     }
-
     .dropdown ul li a {
         box-sizing: border-box;
         text-align: center;
     }
-
     @media (max-width: 576px) {
         nav {
             font-size: 14px;
@@ -144,6 +127,13 @@
                 aria-current={segment === 'our-music' ? 'page' : undefined}
                 href="our-music">
                 Our Music
+            </a>
+        </li>
+        <li>
+            <a
+                aria-current={segment === 'news' ? 'page' : undefined}
+                href="news/3">
+                News
             </a>
         </li>
         <li>
