@@ -27,6 +27,23 @@
         text-align: center;
         padding-top: 2em;
     }
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 2rem;
+        row-gap: 2rem;
+    }
+    .photo {
+        padding: 1rem 0;
+        margin: auto;
+        grid-column: 1 / 2;
+        width: 50%;
+        height: 50%;
+    }
+    .photo--text {
+        position: relative;
+        grid-column: 2 / 4;
+    }
 </style>
 
 <!-- <h4>Our Music</h4> -->
@@ -44,19 +61,6 @@
             allowfullscreen />
     </div>
 {/each}
-
-<center>
-    <h2>Our Playlist</h2>
-</center>
-<div class="iframe-container iframe-container-16x9">
-    <iframe
-        src="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-        class=""
-        frameborder="0"
-        allow="accelerometer; autoplay; encrypted-media; gyroscope;
-        picture-in-picture"
-        allowfullscreen />
-</div>
 
 <center>
     <h2>Our Instruments</h2>
