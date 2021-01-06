@@ -91,7 +91,11 @@
 </center>
 <div class="grid">
     <div class="photo">
-        <img src="client/home/angklung-mid.svg" alt="GAMBAR ANGKLUNG" />
+        <img
+            src="client/home/angklung-mid.svg"
+            alt="Gambar angklung"
+            width="50%"
+            height="50%" />
     </div>
     <div class="photo--text">
         <h3>Angklung.</h3>
