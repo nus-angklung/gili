@@ -7,6 +7,48 @@
 </script>
 
 <style>
+    :root {
+        text-align: justify;
+    }
+    h2 {
+        color: #f5eccf;
+    }
+    h2:not(:first-child) {
+        margin-top: 3rem;
+    }
+    @media (min-width: 704px) {
+        .container {
+            display: flex;
+            border: 3px;
+            padding: 10px;
+            margin: 5px;
+            align-content: space-between;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .special-container {
+            display: flex;
+            position: relative;
+            border: 3px;
+            padding: 15px;
+            margin: 20px;
+            align-content: space-between;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+    }
+    .box {
+        flex: 1;
+        flex-basis: 20%;
+        margin: 20px;
+    }
+    .box-small-margin {
+        flex: 1;
+        flex-basis: 20%;
+        margin: 5px;
+    }
     .iframe-container {
         overflow: hidden;
         position: relative;
@@ -27,50 +69,23 @@
         text-align: center;
         padding-top: 2em;
     }
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        column-gap: 2rem;
-        row-gap: 2rem;
-    }
-    .photo {
-        padding: 1rem 0;
-        margin: auto;
-        grid-column: 1 / 2;
-    }
-    .photo--text {
-        position: relative;
-        grid-column: 2 / 4;
-    }
-    .photo--text h3 {
-        line-height: 56px;
-    }
-    .photo--text h3::after {
-        position: absolute;
-        content: '';
-        width: calc(100% - 1em);
-        height: 2px;
-        background-color: var(--highlight);
-        display: block;
-    }
     p {
-        opacity: 0.8;
+        font-size: 15px;
     }
-    .photo img {
-        width: 100%;
-    }
-    a:hover {
-        color: tomato;
-    }
-    @media (max-width: 992px) {
-        .photo,
-        .photo--text {
-            grid-column: 1 / -1;
-        }
+    img {
+        width: 30%;
+        height: 30%;
+        object-fit: contain;
     }
 </style>
 
 <!-- <h4>Our Music</h4> -->
+
+<center>
+    <h2>
+        <b>Our Performances</b>
+    </h2>
+</center>
 
 {#each ytLinks as link}
     <div class="caption">Angklung Performance ({link.year})</div>
@@ -87,76 +102,117 @@
 {/each}
 
 <center>
-    <h2>Our Instruments</h2>
+    <h2>
+        <b>Our Playlist</b>
+    </h2>
 </center>
-<div class="grid">
-    <div class="photo">
-        <img
-            src="client/home/angklung-mid.svg"
-            alt="Gambar angklung"
-            width="50%"
-            height="50%" />
+<br />
+<div class="iframe-container iframe-container-16x9">
+    <iframe
+        title="Placeholder video for Spotify Playlist"
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+        gyroscope; picture-in-picture"
+        allowfullscreen />
+</div>
+
+<center>
+    <h2>
+        <b>Our Instruments</b>
+    </h2>
+</center>
+
+<div class="special-container">
+    <div class="box">
+        <center>
+            <img src="client/home/angklung-mid.svg" alt="Gambar angklung" />
+        </center>
     </div>
-    <div class="photo--text">
-        <h3>Angklung.</h3>
-        <p>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-            nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
-            volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
-            ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-            consequat.
-        </p>
+    <div class="box">
+        <center>
+            <h3>
+                <b>ANGKLUNG</b>
+            </h3>
+            <p style="text-align:justify">
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
+                diam nonummy nibh euismod tincidunt ut laoreet dolore magna
+                aliquam erat volutpat. Ut wisi enim ad minim veniam, quis
+                nostrud exerci tation ullamcorper suscipit lobortis nisl ut
+                aliquip ex ea commodo consequat.
+            </p>
+        </center>
     </div>
 </div>
 
-<table border="0" cellpadding="20" cellspacing="0">
+<div class="container">
+    <div class="box">
+        <div class="box-small-margin">
+            <center>
+                <img
+                    src="client/home/angklung-mid.svg"
+                    alt="Gambar kolintang" />
+            </center>
+        </div>
+        <div class="box-small-margin">
+            <center>
+                <h3>
+                    <b>KOLINTANG</b>
+                </h3>
+                <p style="text-align:justify">
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+                    sed diam nonummy nibh euismod tincidunt ut laoreet dolore
+                    magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
+                    quis nostrud exerci tation ullamcorper suscipit lobortis
+                    nisl ut aliquip ex ea commodo consequat.
+                </p>
+            </center>
+        </div>
+    </div>
 
-    <tr>
-        <td>
-            <img src="client/home/angklung-mid.svg" alt="GAMBAR KOLINTANG" />
-        </td>
-        <td>
-            <img src="client/home/angklung-mid.svg" alt="GAMBAR GENDANG" />
-        </td>
-        <td>
-            <img src="client/home/angklung-mid.svg" alt="GAMBAR GITAR" />
-        </td>
-    </tr>
+    <div class="box">
+        <div class="box-small-margin">
+            <center>
+                <img src="client/home/angklung-mid.svg" alt="Gambar gendang" />
+            </center>
+        </div>
+        <div class="box-small-margin">
+            <center>
+                <h3>
+                    <b>GENDANG</b>
+                </h3>
+                <p style="text-align:justify">
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+                    sed diam nonummy nibh euismod tincidunt ut laoreet dolore
+                    magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
+                    quis nostrud exerci tation ullamcorper suscipit lobortis
+                    nisl ut aliquip ex ea commodo consequat.
+                </p>
+            </center>
+        </div>
+    </div>
 
-    <tr>
-        <td>
-            <h2>KOLINTANG</h2>
-        </td>
-        <td>
-            <h2>GENDANG</h2>
-        </td>
-        <td>
-            <h2>GITAR</h2>
-        </td>
-    </tr>
-
-    <tr>
-        <td>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-            nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
-            volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
-            ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-            consequat.
-        </td>
-        <td>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-            nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
-            volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
-            ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-            consequat.
-        </td>
-        <td>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-            nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
-            volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
-            ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-            consequat.
-        </td>
-    </tr>
-
-</table>
+    <div class="box">
+        <div class="box-small-margin">
+            <center>
+                <img src="client/home/angklung-mid.svg" alt="Gambar gitar" />
+            </center>
+        </div>
+        <div class="box-small-margin">
+            <center>
+                <h3>
+                    <b>GITAR</b>
+                </h3>
+                <p style="text-align:justify">
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+                    sed diam nonummy nibh euismod tincidunt ut laoreet dolore
+                    magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
+                    quis nostrud exerci tation ullamcorper suscipit lobortis
+                    nisl ut aliquip ex ea commodo consequat.
+                </p>
+            </center>
+        </div>
+    </div>
+</div>
