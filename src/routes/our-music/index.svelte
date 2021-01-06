@@ -37,12 +37,36 @@
         padding: 1rem 0;
         margin: auto;
         grid-column: 1 / 2;
-        width: 50%;
-        height: 50%;
     }
     .photo--text {
         position: relative;
         grid-column: 2 / 4;
+    }
+    .photo--text h3 {
+        line-height: 56px;
+    }
+    .photo--text h3::after {
+        position: absolute;
+        content: '';
+        width: calc(100% - 1em);
+        height: 2px;
+        background-color: var(--highlight);
+        display: block;
+    }
+    p {
+        opacity: 0.8;
+    }
+    .photo img {
+        width: 100%;
+    }
+    a:hover {
+        color: tomato;
+    }
+    @media (max-width: 992px) {
+        .photo,
+        .photo--text {
+            grid-column: 1 / -1;
+        }
     }
 </style>
 
