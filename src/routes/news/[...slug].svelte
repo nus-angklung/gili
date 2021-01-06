@@ -2,12 +2,17 @@
     export async function preload({ params, query }) {
         // the `slug` parameter is available because
         // this file is called [slug].svelte
-        const res = await this.fetch(`news/${params.slug}.json`);
+        const [slug, title] = params.slug;
+        const res = await this.fetch(`news/${slug}.json`);
         const data = await res.json();
 
         if (res.status === 200) {
             return {
-                breaking_news: data.breaking_news,
+                // if title exists, try to find news with matching title. if not found, get the first one
+                // TODO: current support for multiple articles with same date is still hacky
+                news:
+                    (title && data.news.find((news) => news.title == title)) ||
+                    data.news[0],
                 number: data.number,
             };
         } else {
@@ -17,15 +22,14 @@
 </script>
 
 <script>
-    import { first_number, current_number } from './constants.js';
-    import news from './news.js';
-    const dates = Object.keys(news);
+    import { dates } from './_news.js';
     export let number;
-    export let breaking_news = {};
+    export let news = {};
     const default_picture = 'client/news/default-picture.svg';
 
     // convert image slug (if any) into image source or return a default source.
     function get_image_source(image_slug) {
+        console.log('image slug', image_slug);
         if (!image_slug) {
             return default_picture;
         }
@@ -41,19 +45,19 @@
         return 'client/news/' + dates[number] + '/' + text_slug;
     }
 
-    function readTextFile(file) {
-        var rawFile = new XMLHttpRequest();
-        rawFile.open('GET', file, false);
-        rawFile.onreadystatechange = function () {
-            if (rawFile.readyState === 4) {
-                if (rawFile.status === 200 || rawFile.status == 0) {
-                    var allText = rawFile.responseText;
-                    alert(allText);
-                }
-            }
-        };
-        rawFile.send(null);
-    }
+    // function readTextFile(file) {
+    //     var rawFile = new XMLHttpRequest();
+    //     rawFile.open('GET', file, false);
+    //     rawFile.onreadystatechange = function () {
+    //         if (rawFile.readyState === 4) {
+    //             if (rawFile.status === 200 || rawFile.status == 0) {
+    //                 var allText = rawFile.responseText;
+    //                 alert(allText);
+    //             }
+    //         }
+    //     };
+    //     rawFile.send(null);
+    // }
 </script>
 
 <style>
@@ -133,30 +137,30 @@
 </style>
 
 <svelte:head>
-    <title>{breaking_news.title}</title>
+    <title>{news.title}</title>
 </svelte:head>
 
-<h1 style="text-align: center">{breaking_news.title}</h1>
+<h1 style="text-align: center">{news.title}</h1>
 <br />
 <img
-    src={get_image_source(breaking_news.img)}
-    alt="{breaking_news.img_name} photo"
+    src={get_image_source(news.img)}
+    alt="{news.img_name} photo"
     class="center_image" />
-<p>Date: {breaking_news.date}</p>
+<p>Date: {news.displayDate}</p>
 <br />
 
-<p>{breaking_news.file}</p>
+<p>{news.file}</p>
 
 <br />
 
 <div class="navigation">
-    {#if Number(number) > first_number}
+    {#if Number(number) > 0}
         <a class="navigation-button" href="news/{dates[Number(number) - 1]}">
             Previous news
         </a>
     {/if}
 
-    {#if Number(number) < current_number}
+    {#if Number(number) < dates.length - 1}
         <a class="navigation-button" href="news/{dates[Number(number) + 1]}">
             Next news
         </a>

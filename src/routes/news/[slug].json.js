@@ -1,6 +1,4 @@
-import news from './news.js';
-
-const dates = Object.keys(news);
+import { news, dates } from './_news.js';
 
 export function get(req, res, next) {
     // the `slug` parameter is available because
@@ -13,7 +11,7 @@ export function get(req, res, next) {
         });
 
         res.json({
-            breaking_news: news[slug],
+            news: news[slug],
             number: dates.indexOf(slug),
         });
     } else {
