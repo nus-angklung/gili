@@ -132,7 +132,7 @@
         <li>
             <a
                 aria-current={segment === 'news' ? 'page' : undefined}
-                href="news/3">
+                href="news">
                 News
             </a>
         </li>
