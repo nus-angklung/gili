@@ -1,4 +1,6 @@
 <script context="module">
+    import newsTargets from 'news-targets';
+
     export async function preload({ params, query }) {
         // the `slug` parameter is available because
         // this file is called [slug].svelte
@@ -6,13 +8,18 @@
         const res = await this.fetch(`news/${slug}.json`);
         const data = await res.json();
 
+        // https://github.com/rollup/rollup/issues/2463#issuecomment-455957865
+        let news =
+            (title && data.news.find((news) => news.title == title)) ||
+            data.news[0];
+        console.log(news.file);
+        news.file = await newsTargets[news.file]().then((x) => x.default);
+
         if (res.status === 200) {
             return {
                 // if title exists, try to find news with matching title. if not found, get the first one
                 // TODO: current support for multiple articles with same date is still hacky
-                news:
-                    (title && data.news.find((news) => news.title == title)) ||
-                    data.news[0],
+                news,
                 number: data.number,
             };
         } else {
@@ -29,35 +36,12 @@
 
     // convert image slug (if any) into image source or return a default source.
     function get_image_source(image_slug) {
-        console.log('image slug', image_slug);
         if (!image_slug) {
             return default_picture;
         }
 
         return 'client/news/' + dates[number] + '/' + image_slug;
     }
-
-    function get_text_source(text_slug) {
-        if (!text_slug) {
-            return default_picture;
-        }
-
-        return 'client/news/' + dates[number] + '/' + text_slug;
-    }
-
-    // function readTextFile(file) {
-    //     var rawFile = new XMLHttpRequest();
-    //     rawFile.open('GET', file, false);
-    //     rawFile.onreadystatechange = function () {
-    //         if (rawFile.readyState === 4) {
-    //             if (rawFile.status === 200 || rawFile.status == 0) {
-    //                 var allText = rawFile.responseText;
-    //                 alert(allText);
-    //             }
-    //         }
-    //     };
-    //     rawFile.send(null);
-    // }
 </script>
 
 <style>

@@ -1,8 +1,12 @@
+import fs from 'fs';
+import path from 'path';
+
 import resolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import commonjs from '@rollup/plugin-commonjs';
 import svelte from 'rollup-plugin-svelte';
 import babel from '@rollup/plugin-babel';
+import { string } from 'rollup-plugin-string';
 import { terser } from 'rollup-plugin-terser';
 import config from 'sapper/config/rollup.js';
 import pkg from './package.json';
@@ -16,11 +20,34 @@ const onwarn = (warning, onwarn) =>
         /[/\\]@sapper[/\\]/.test(warning.message)) ||
     onwarn(warning);
 
+// https://github.com/rollup/rollup/issues/2463#issuecomment-455957865
+const newsTargetVirtualModule = () => ({
+    resolveId(id) {
+        return id === 'news-targets' ? id : null;
+    },
+    load(id) {
+        if (id === 'news-targets') {
+            const targetDir = path.join(__dirname, 'news');
+            const files = fs.readdirSync(targetDir);
+            const objectEntries = files.map(
+                (file) =>
+                    `  '${file}': () => import('${path.join(targetDir, file)}')`
+            );
+            return `export default {\n${objectEntries.join(',\n')}\n};`;
+        }
+        return null;
+    },
+});
+
 export default {
     client: {
         input: config.client.input(),
         output: config.client.output(),
         plugins: [
+            newsTargetVirtualModule(),
+            string({
+                include: '**/*.txt',
+            }),
             replace({
                 'process.browser': true,
                 'process.env.NODE_ENV': JSON.stringify(mode),
@@ -74,6 +101,10 @@ export default {
         input: config.server.input(),
         output: config.server.output(),
         plugins: [
+            newsTargetVirtualModule(),
+            string({
+                include: '**/*.txt',
+            }),
             replace({
                 'process.browser': false,
                 'process.env.NODE_ENV': JSON.stringify(mode),
