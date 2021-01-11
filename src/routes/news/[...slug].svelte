@@ -8,17 +8,17 @@
         const res = await this.fetch(`news/${slug}.json`);
         const data = await res.json();
 
-        // https://github.com/rollup/rollup/issues/2463#issuecomment-455957865
+        // if title exists, try to find news with matching title. if not found, get the first one
+        // TODO: current support for multiple articles with same date is still hacky
         let news =
             (title && data.news.find((news) => news.title == title)) ||
             data.news[0];
-        console.log(news.file);
+
+        // https://github.com/rollup/rollup/issues/2463#issuecomment-455957865
         news.file = await newsTargets[news.file]().then((x) => x.default);
 
         if (res.status === 200) {
             return {
-                // if title exists, try to find news with matching title. if not found, get the first one
-                // TODO: current support for multiple articles with same date is still hacky
                 news,
                 number: data.number,
             };
