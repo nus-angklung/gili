@@ -1,11 +1,3 @@
-<script>
-    let ytLinks = [
-        { year: 2019, link: 'https://www.youtube.com/embed/8JgN5XLcVa8' },
-        { year: 2018, link: 'https://www.youtube.com/embed/qVii0353tGo' },
-        { year: 2017, link: 'https://www.youtube.com/embed/meyriKmJnU0' },
-    ];
-</script>
-
 <style>
     :root {
         text-align: justify;
@@ -65,10 +57,6 @@
     .iframe-container-16x9 {
         padding-bottom: calc(9 / 16 * 100%);
     }
-    /* .caption {
-        text-align: center;
-        padding-top: 2em;
-    } */
     p {
         font-size: 15px;
     }
@@ -86,27 +74,6 @@
         <b>Our Performances</b>
     </h2>
 </center>
-<!-- 
-{#each ytLinks as link}
-    <div class="caption">Angklung Performance ({link.year})</div>
-    <div class="iframe-container iframe-container-16x9">
-        <iframe
-            title="Angklung latest stage performance"
-            src="{link.link}?rel=0"
-            class=""
-            frameborder="0"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope;
-            picture-in-picture"
-            allowfullscreen />
-    </div>
-{/each}
-
-<center>
-    <h2>
-        <b>Our Playlists</b>
-    </h2>
-</center>
--->
 
 <br />
 
@@ -127,7 +94,7 @@
 </div>
 
 <center>
-    <h3>Spotify Playlist</h3>
+    <h3>Other Playlist</h3>
 </center>
 
 <div class="iframe-container iframe-container-16x9">
