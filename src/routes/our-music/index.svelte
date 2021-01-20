@@ -65,10 +65,10 @@
     .iframe-container-16x9 {
         padding-bottom: calc(9 / 16 * 100%);
     }
-    .caption {
+    /* .caption {
         text-align: center;
         padding-top: 2em;
-    }
+    } */
     p {
         font-size: 15px;
     }
@@ -86,7 +86,7 @@
         <b>Our Performances</b>
     </h2>
 </center>
-
+<!-- 
 {#each ytLinks as link}
     <div class="caption">Angklung Performance ({link.year})</div>
     <div class="iframe-container iframe-container-16x9">
@@ -103,10 +103,33 @@
 
 <center>
     <h2>
-        <b>Our Playlist</b>
+        <b>Our Playlists</b>
     </h2>
 </center>
+-->
+
 <br />
+
+<center>
+    <h3>CAC+US Performances</h3>
+</center>
+
+<div class="iframe-container iframe-container-16x9">
+    <iframe
+        title="CAC+US Youtube Playlist"
+        width="560"
+        height="315"
+        src="https://youtube.com/embed/playlist?list=PLac9vFnrjsKMgSrV3XdcHyMKeyX17BP8M"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+        gyroscope; picture-in-picture"
+        allowfullscreen />
+</div>
+
+<center>
+    <h3>Spotify Playlist</h3>
+</center>
+
 <div class="iframe-container iframe-container-16x9">
     <iframe
         title="Placeholder video for Spotify Playlist"
