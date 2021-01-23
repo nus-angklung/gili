@@ -246,7 +246,12 @@
     p {
         font-size: 15px;
     }
-    .instrument-pic {
+    .instrument-angklung {
+        width: 30%;
+        height: 30%;
+        object-fit: contain;
+    }
+    .instrument-guitar {
         width: 30%;
         height: 30%;
         object-fit: contain;
@@ -338,7 +343,7 @@
     <div class="box">
         <center>
             <img
-                class="instrument-pic"
+                class="instrument-angklung"
                 src="client/home/angklung-mid.svg"
                 alt="Gambar angklung" />
         </center>
@@ -364,7 +369,7 @@
         <div class="box-small-margin">
             <center>
                 <img
-                    class="instrument-pic"
+                    class="instrument-angklung"
                     src="client/home/angklung-mid.svg"
                     alt="Gambar kolintang" />
             </center>
@@ -389,7 +394,7 @@
         <div class="box-small-margin">
             <center>
                 <img
-                    class="instrument-pic"
+                    class="instrument-angklung"
                     src="client/home/angklung-mid.svg"
                     alt="Gambar gendang" />
             </center>
@@ -414,8 +419,8 @@
         <div class="box-small-margin">
             <center>
                 <img
-                    class="instrument-pic"
-                    src="client/home/angklung-mid.svg"
+                    class="instrument-guitar"
+                    src="client/home/gitar.svg"
                     alt="Gambar gitar" />
             </center>
         </div>
