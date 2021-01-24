@@ -21,6 +21,9 @@ const onwarn = (warning, onwarn) =>
     onwarn(warning);
 
 // https://github.com/rollup/rollup/issues/2463#issuecomment-455957865
+
+// Basically, the function 'newsTargetVirtualModule' helps to import 'news-target'.
+// 'news-target' is crucial for exporting all file names that are contained in the directory /news.
 const newsTargetVirtualModule = () => ({
     resolveId(id) {
         return id === 'news-targets' ? id : null;
