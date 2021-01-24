@@ -2,18 +2,12 @@
     import newsTargets from 'news-targets';
     export async function preload({ params, query }) {
         // the `slug` parameter is available because
-        // this file is called [slug].svelte
+        // slug is meant to be unique.
         const [slug, title] = params.slug;
         const res = await this.fetch(`news/${slug}.json`);
         const data = await res.json();
-        // if title exists, try to find news with matching title. if not found, get the first one
-        // TODO: current support for multiple articles with same date is still hacky
-        let news =
-            (title && data.news.find((news) => news.title == title)) ||
-            data.news[0];
-        // https://github.com/rollup/rollup/issues/2463#issuecomment-455957865
-        news.file = await newsTargets[news.file]().then((x) => x.default);
-        // This if-else statement is used to make sure that the web page can be displayed (redirect status of 200). 
+        // This if-else statement is used to make sure that 
+        // the web page can be displayed (redirect status of 200). 
         // Otherwise, an error message will be displayed.
         if (res.status === 200) {
             return {
@@ -23,11 +17,19 @@
         } else {
             this.error(res.status, data.message);
         }
+        // if title exists, try to find news with matching title. 
+        // Otherwise, the first title will be used.
+        // TODO: current support for multiple articles with same date is still hacky
+        let news =
+            (title && data.news.find((news) => news.title == title)) ||
+            data.news[0];
+        // https://github.com/rollup/rollup/issues/2463#issuecomment-455957865
+        news.file = await newsTargets[news.file]().then((x) => x.default);
     }
 </script>
 <script>
     import { dates } from './_news.js';
-    export let number;
+    export let newsIndex;
     export let news = {};
     const default_picture = 'client/news/default-picture.svg';
     // convert image slug (if any) into image source or return a default source.
@@ -76,14 +78,14 @@
 <p>{news.file}</p>
 <br />
 <div class="navigation">
-    {#if Number(number) > 0}
-        <a class="navigation-button" href="news/{dates[Number(number) - 1]}">
+    {#if Number(newsIndex) > 0}
+        <a class="navigation-button" href="news/{dates[Number(newsIndex) - 1]}">
             Previous news
         </a>
     {/if}
 
-    {#if Number(number) < dates.length - 1}
-        <a class="navigation-button" href="news/{dates[Number(number) + 1]}">
+    {#if Number(newsIndex) < dates.length - 1}
+        <a class="navigation-button" href="news/{dates[Number(newsIndex) + 1]}">
             Next news
         </a>
     {/if}
