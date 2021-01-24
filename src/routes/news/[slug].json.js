@@ -12,7 +12,7 @@ export function get(req, res, next) {
 
         res.json({
             news: news[slug],
-            number: dates.indexOf(slug),
+            newsIndex: dates.indexOf(slug),
         });
     } else {
         res.status(404).json({
