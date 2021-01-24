@@ -41,14 +41,14 @@
     }
 </script>
 <style>
-    // This is used for positioning the buttons in the web page.
+    /* This is used for positioning the buttons in the web page.*/
     .navigation {
         display: flex;
         justify-content: center;
         align-items: baseline;
         flex-flow: row wrap;
     }
-    // This is used to provide the design of the buttons.
+    /* This is used to provide the design of the buttons. */
     .navigation-button {
         border: solid 1px white;
         padding: 0.5rem 1rem;
@@ -56,7 +56,7 @@
         border-radius: 5px;
         text-decoration: none;
     }
-    // This is used to make sure that the image is centered in the web page.
+    /* This is used to make sure that the image is centered in the web page. */
     .center_image {
         display: block;
         margin-left: auto;
