@@ -1,3 +1,129 @@
+<script>
+    import { audioData } from './audioData.js';
+
+    import TrackHeading from './TrackHeading.svelte';
+    import ProgressBarTime from './ProgressBarTime.svelte';
+    import AudioControls from './AudioControls.svelte';
+    import VolumeSlider from './VolumeSlider.svelte';
+    import Playlist from './Playlist.svelte';
+
+    // Get Audio track
+    let trackIndex = 0;
+    // $: console.log(trackIndex)
+    let audioFile = new Audio(audioData[trackIndex].link);
+    audioFile.pause();
+    let trackTitle = audioData[trackIndex].name;
+    let trackNo = trackIndex + 1;
+
+    const loadTrack = () => {
+        audioFile = new Audio(audioData[trackIndex].link);
+        audioFile.onloadedmetadata = () => {
+            totalTrackTime = audioFile.duration;
+            updateTime();
+        };
+        trackTitle = audioData[trackIndex].name;
+        trackNo = trackIndex + 1;
+    };
+
+    const autoPlayNextTrack = () => {
+        if (trackIndex <= audioData.length - 1) {
+            trackIndex += 1;
+            loadTrack();
+            isPlaying = true;
+            audioFile.play();
+        } else {
+            trackIndex = 0;
+            loadTrack();
+            isPlaying = true;
+            audioFile.play();
+        }
+    };
+
+    // Track Duration and Progress Bar
+    let totalTrackTime;
+    $: console.log(totalTrackTime);
+    audioFile.onloadedmetadata = () => {
+        totalTrackTime = audioFile.duration;
+        updateTime();
+    };
+
+    let totalTimeDisplay = 'loading...';
+    let currTimeDisplay = '0:00';
+    let progress = 0;
+    let trackTimer;
+
+    function updateTime() {
+        progress = audioFile.currentTime * (100 / totalTrackTime);
+
+        let currMins = Math.floor(audioFile.currentTime / 60);
+        let currSecs = Math.floor(audioFile.currentTime - currMins * 60);
+
+        let durMins = Math.floor(totalTrackTime / 60);
+        let durSecs = Math.floor(totalTrackTime - durMins * 60);
+
+        if (currSecs < 10) currSecs = `0${currSecs}`;
+        if (durSecs < 10) durSecs = `0${durSecs}`;
+        if (currMins < 10) currMins = `0${currMins}`;
+        if (durMins < 10) durMins = `0${durMins}`;
+
+        currTimeDisplay = `⏱ ${currMins}:${currSecs}`;
+        totalTimeDisplay = `${durMins}:${durSecs} ⏱`;
+
+        if (audioFile.ended) {
+            toggleTimeRunning();
+            autoPlayNextTrack();
+        }
+    }
+
+    const toggleTimeRunning = () => {
+        if (audioFile.ended) {
+            isPlaying = false;
+            clearInterval(trackTimer);
+            console.log(`Ended = ${audioFile.ended}`);
+        } else {
+            trackTimer = setInterval(updateTime, 100);
+        }
+    };
+
+    // Controls
+    let isPlaying = false;
+    $: console.log(`isPlaying = ${isPlaying}`);
+
+    const playPauseAudio = () => {
+        if (audioFile.paused) {
+            toggleTimeRunning();
+            audioFile.play();
+            isPlaying = true;
+        } else {
+            toggleTimeRunning();
+            audioFile.pause();
+            isPlaying = false;
+        }
+    };
+
+    const rewindAudio = () => (audioFile.currentTime -= 10);
+    const forwardAudio = () => (audioFile.currentTime += 10);
+
+    // Volume Slider
+    let vol = 50;
+    const adjustVol = () => (audioFile.volume = vol / 100);
+
+    // Playlist
+    const handleTrack = (e) => {
+        if (!isPlaying) {
+            trackIndex = Number(e.target.dataset.trackId);
+            loadTrack();
+            playPauseAudio(); // auto play
+        } else {
+            isPlaying = false;
+            audioFile.pause();
+            trackIndex = Number(e.target.dataset.trackId);
+            loadTrack();
+            playPauseAudio(); // auto play
+        }
+    };
+</script>
+
 <style>
     :root {
         text-align: justify;
@@ -9,7 +135,7 @@
         margin-top: 3rem;
     }
     @media (min-width: 704px) {
-        .container {
+        .pl-header-container {
             display: flex;
             border: 3px;
             padding: 10px;
@@ -19,27 +145,47 @@
             align-items: center;
             flex-wrap: wrap;
         }
+        .instrument-container {
+            display: flex;
+            border: 3px;
+            padding: 10px;
+            margin: 5px;
+            align-content: space-between;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
         .special-container {
             display: flex;
             position: relative;
             border: 3px;
-            padding: 15px;
-            margin: 20px;
+            padding: 8px;
+            margin: 7px;
             align-content: space-between;
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
         }
+        .box {
+            flex: 1;
+            margin: 18px;
+        }
+        .box-small-margin {
+            flex: 1;
+            margin: 5px;
+        }
     }
-    .box {
-        flex: 1;
-        flex-basis: 20%;
-        margin: 20px;
-    }
-    .box-small-margin {
-        flex: 1;
-        flex-basis: 20%;
+    .box-profile-picture {
+        flex: 2;
         margin: 5px;
+    }
+    .box-audio-player {
+        flex: 5;
+        margin: 5px;
+        justify-content: flex-start;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     .iframe-container {
         overflow: hidden;
@@ -60,9 +206,29 @@
     p {
         font-size: 15px;
     }
-    img {
+    .instrument-angklung {
         width: 30%;
         height: 30%;
+        object-fit: contain;
+    }
+    .instrument-kolintang {
+        width: 89%;
+        height: 89%;
+        object-fit: contain;
+    }
+    .instrument-guitar {
+        width: 50%;
+        height: 50%;
+        object-fit: contain;
+    }
+    .instrument-gendang {
+        width: 41%;
+        height: 41%;
+        object-fit: contain;
+    }
+    .profile {
+        width: 70%;
+        height: 70%;
         object-fit: contain;
     }
 </style>
@@ -97,17 +263,42 @@
     <h3>Other Playlist</h3>
 </center>
 
-<div class="iframe-container iframe-container-16x9">
-    <iframe
-        title="Placeholder video for Spotify Playlist"
-        width="560"
-        height="315"
-        src="https://youtube.com/embed/playlist?list=PLac9vFnrjsKMJqs_HuwKg7EbwU9uFTsDR"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media;
-        gyroscope; picture-in-picture"
-        allowfullscreen />
+<div style="background-color:#333333;padding:30px;">
+    <div class="pl-header-container">
+        <div class="box-profile-picture">
+            <center>
+                <img
+                    class="profile"
+                    src="client/team/2020/drake.jpg"
+                    alt="PP Playlist" />
+            </center>
+        </div>
+
+        <div class="box-audio-player">
+            <TrackHeading {trackNo} {trackTitle} />
+            <center>
+                <ProgressBarTime
+                    {currTimeDisplay}
+                    {totalTimeDisplay}
+                    {progress} />
+
+                <AudioControls
+                    {isPlaying}
+                    on:rewind={rewindAudio}
+                    on:playPause={playPauseAudio}
+                    on:forward={forwardAudio} />
+
+                <VolumeSlider bind:vol on:input={adjustVol} />
+            </center>
+            <br />
+        </div>
+    </div>
+
+    <Playlist on:click={handleTrack} />
 </div>
+
+<br />
+<br />
 
 <center>
     <h2>
@@ -115,10 +306,15 @@
     </h2>
 </center>
 
+<br />
+
 <div class="special-container">
     <div class="box">
         <center>
-            <img src="client/home/angklung-mid.svg" alt="Gambar angklung" />
+            <img
+                class="instrument-angklung"
+                src="client/home/angklung-mid.svg"
+                alt="Angklung" />
         </center>
     </div>
     <div class="box">
@@ -137,13 +333,14 @@
     </div>
 </div>
 
-<div class="container">
+<div class="instrument-container">
     <div class="box">
         <div class="box-small-margin">
             <center>
                 <img
-                    src="client/home/angklung-mid.svg"
-                    alt="Gambar kolintang" />
+                    class="instrument-kolintang"
+                    src="client/our-music/kolintang.svg"
+                    alt="Kolintang" />
             </center>
         </div>
         <div class="box-small-margin">
@@ -165,7 +362,10 @@
     <div class="box">
         <div class="box-small-margin">
             <center>
-                <img src="client/home/angklung-mid.svg" alt="Gambar gendang" />
+                <img
+                    class="instrument-gendang"
+                    src="client/our-music/gendang.svg"
+                    alt="Gendang" />
             </center>
         </div>
         <div class="box-small-margin">
@@ -187,7 +387,10 @@
     <div class="box">
         <div class="box-small-margin">
             <center>
-                <img src="client/home/angklung-mid.svg" alt="Gambar gitar" />
+                <img
+                    class="instrument-guitar"
+                    src="client/our-music/gitar.svg"
+                    alt="Gitar" />
             </center>
         </div>
         <div class="box-small-margin">
