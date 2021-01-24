@@ -61,7 +61,7 @@ const transform = (newsList) => {
 
         news.displayDate = `${date} ${monthList[month - 1]} ${year}`;
         let datesWithoutSeparator = news.date.replace(/-/g, '');
-        // create key datesWoSep with value [] if not exist, then push a copy of the news
+        // create key datesWithoutSeparator with value [] if not exist, then push a copy of the news
         adaptedNewsList[datesWithoutSeparator] = adaptedNewsList[datesWithoutSeparator] || [];
         adaptedNewsList[datesWithoutSeparator].push({ ...news });
     }
