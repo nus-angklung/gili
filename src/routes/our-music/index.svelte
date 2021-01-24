@@ -251,9 +251,19 @@
         height: 30%;
         object-fit: contain;
     }
+    .instrument-kolintang {
+        width: 89%;
+        height: 89%;
+        object-fit: contain;
+    }
     .instrument-guitar {
-        width: 30%;
-        height: 30%;
+        width: 50%;
+        height: 50%;
+        object-fit: contain;
+    }
+    .instrument-gendang {
+        width: 41%;
+        height: 41%;
         object-fit: contain;
     }
     .profile {
@@ -345,7 +355,7 @@
             <img
                 class="instrument-angklung"
                 src="client/home/angklung-mid.svg"
-                alt="Gambar angklung" />
+                alt="Angklung" />
         </center>
     </div>
     <div class="box">
@@ -369,9 +379,9 @@
         <div class="box-small-margin">
             <center>
                 <img
-                    class="instrument-angklung"
-                    src="client/home/angklung-mid.svg"
-                    alt="Gambar kolintang" />
+                    class="instrument-kolintang"
+                    src="client/our-music/kolintang.svg"
+                    alt="Kolintang" />
             </center>
         </div>
         <div class="box-small-margin">
@@ -394,9 +404,9 @@
         <div class="box-small-margin">
             <center>
                 <img
-                    class="instrument-angklung"
-                    src="client/home/angklung-mid.svg"
-                    alt="Gambar gendang" />
+                    class="instrument-gendang"
+                    src="client/our-music/gendang.svg"
+                    alt="Gendang" />
             </center>
         </div>
         <div class="box-small-margin">
@@ -420,8 +430,8 @@
             <center>
                 <img
                     class="instrument-guitar"
-                    src="client/home/gitar.svg"
-                    alt="Gambar gitar" />
+                    src="client/our-music/gitar.svg"
+                    alt="Gitar" />
             </center>
         </div>
         <div class="box-small-margin">
