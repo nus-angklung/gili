@@ -2,11 +2,10 @@
     import { audioData } from './audioData.js';
 
     import TrackHeading from './TrackHeading.svelte';
-    import TrackHeader from './TrackHeader.svelte';
     import ProgressBarTime from './ProgressBarTime.svelte';
-    import Controls from './Controls.svelte';
+    import AudioControls from './AudioControls.svelte';
     import VolumeSlider from './VolumeSlider.svelte';
-    import PlayList from './PlayList.svelte';
+    import Playlist from './Playlist.svelte';
 
     // Get Audio track
     let trackIndex = 0;
@@ -188,45 +187,6 @@
         overflow: hidden;
         text-overflow: ellipsis;
     }
-    /*.song-container-header {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: stretch;
-        align-content: center;
-        font-size: 16px;
-        flex-wrap: nowrap;
-    }
-    .song-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: stretch;
-        align-content: center;
-        font-size: 14px;
-        flex-wrap: nowrap;
-        border-bottom-style: solid;
-        border-width: 1px;
-    }
-    .song-box-small {
-        flex: 1;
-        padding: 6px;
-        min-width: 0;
-        overflow: hidden;
-        white-space: nowrap;
-    }
-    .song-box-med {
-        flex: 5;
-        padding: 6px;
-        min-width: 0;
-        overflow: hidden;
-        white-space: nowrap;
-    }
-    .song-box {
-        flex: 11;
-        padding: 6px;
-        overflow: hidden;
-    } */
     .iframe-container {
         overflow: hidden;
         position: relative;
@@ -315,15 +275,14 @@
         </div>
 
         <div class="box-audio-player">
-            <TrackHeader {trackNo} />
-            <TrackHeading {trackTitle} />
+            <TrackHeading {trackNo} {trackTitle} />
             <center>
                 <ProgressBarTime
                     {currTimeDisplay}
                     {totalTimeDisplay}
                     {progress} />
 
-                <Controls
+                <AudioControls
                     {isPlaying}
                     on:rewind={rewindAudio}
                     on:playPause={playPauseAudio}
@@ -335,7 +294,7 @@
         </div>
     </div>
 
-    <PlayList on:click={handleTrack} />
+    <Playlist on:click={handleTrack} />
 </div>
 
 <br />

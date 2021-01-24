@@ -3,7 +3,7 @@
 
     let listIsShowing = false;
 
-    const showPlayList = () => (listIsShowing = !listIsShowing);
+    const togglePlaylistDisplay = () => (listIsShowing = !listIsShowing);
 </script>
 
 <style>
@@ -67,7 +67,7 @@
     <button
         class="accordion"
         class:active={listIsShowing}
-        on:click={showPlayList}>
+        on:click={togglePlaylistDisplay}>
         &#9776;
         <b>Playlist</b>
     </button>

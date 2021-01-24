@@ -1,4 +1,5 @@
 <script>
+    export let trackNo;
     export let trackTitle;
 </script>
 
@@ -10,6 +11,10 @@
 </style>
 
 <div>
+    <h2>
+        <b>Track {trackNo}</b>
+    </h2>
+    <h5>NUS Angklung Ensemble</h5>
     <h4>
         <b>{trackTitle}</b>
     </h4>
