@@ -25,8 +25,7 @@ const newsList = [
     },
 ];
 
-const transform = (newsList) => {
-    const monthList = [
+const monthList = [
         'January',
         'February',
         'March',
@@ -40,6 +39,11 @@ const transform = (newsList) => {
         'November',
         'December',
     ];
+
+// The transform function below is useful to sort all of the news 
+// from the newest to the oldest by their dates.
+
+const transform = (newsList) => {
     const adaptedNewsList = {};
 
     for (let news of newsList) {
@@ -56,10 +60,10 @@ const transform = (newsList) => {
         }
 
         news.displayDate = `${date} ${monthList[month - 1]} ${year}`;
-        let datesWoSep = news.date.replace(/-/g, '');
+        let datesWithoutSeparator = news.date.replace(/-/g, '');
         // create key datesWoSep with value [] if not exist, then push a copy of the news
-        adaptedNewsList[datesWoSep] = adaptedNewsList[datesWoSep] || [];
-        adaptedNewsList[datesWoSep].push({ ...news });
+        adaptedNewsList[datesWithoutSeparator] = adaptedNewsList[datesWithoutSeparator] || [];
+        adaptedNewsList[datesWithoutSeparator].push({ ...news });
     }
 
     // take the dates then sort from newest to oldest
