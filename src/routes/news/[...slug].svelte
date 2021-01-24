@@ -12,7 +12,7 @@
         if (res.status === 200) {
             return {
                 news,
-                number: data.number,
+                newsIndex: data.newsIndex,
             };
         } else {
             this.error(res.status, data.message);
