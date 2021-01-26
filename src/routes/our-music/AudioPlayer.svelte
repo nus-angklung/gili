@@ -1,127 +1,198 @@
+<script context="module">
+    let current;
+</script>
+
 <script>
+    // The console log lines are commented on purpose and not removed for easier debugging matters.
+
     export let audioData;
 
     import TrackHeading from './TrackHeading.svelte';
     import ProgressBarTime from './ProgressBarTime.svelte';
+    import ProgressBarSlider from './ProgressBarSlider.svelte';
     import AudioControls from './AudioControls.svelte';
     import VolumeSlider from './VolumeSlider.svelte';
     import Playlist from './Playlist.svelte';
+    import KeyboardShortcut from './KeyboardShortcut.js';
+    import { onMount } from 'svelte';
+
+    let duration;
+    let currentTime = 0;
+    let isPaused = true;
+    let ended;
+    let volume = 0.5;
+    $: muted = volume == 0;
+    let audio;
+
+    const shortcut = {
+        ArrowLeft: (e) => (currentTime -= 4), // actually shifts for 5 seconds but we got 1 extra from the default setting
+        ArrowRight: (e) => (currentTime += 4),
+    };
+
+    function stopOthers() {
+        if (current && current !== audio) current.pause();
+        current = audio;
+    }
 
     // Get Audio track
     let trackIndex = 0;
     // $: console.log(trackIndex)
-    let audioFile = new Audio(audioData[trackIndex].link);
-    audioFile.pause();
+    let currentAudioLink = audioData[trackIndex].link;
     let trackTitle = audioData[trackIndex].name;
     let trackNo = trackIndex + 1;
 
     const loadTrack = () => {
-        audioFile = new Audio(audioData[trackIndex].link);
-        audioFile.onloadedmetadata = () => {
-            totalTrackTime = audioFile.duration;
-            updateTime();
-        };
+        // $: console.log(`loaded = ${trackIndex}`);
+        // $: console.log(`ct = ${audio.currentTime}`);
+        currentAudioLink = audioData[trackIndex].link;
         trackTitle = audioData[trackIndex].name;
         trackNo = trackIndex + 1;
     };
 
-    const autoPlayNextTrack = () => {
-        if (trackIndex <= audioData.length - 1) {
+    const playNextTrack = () => {
+        if (trackIndex < audioData.length - 1) {
             trackIndex += 1;
             loadTrack();
-            isPlaying = true;
-            audioFile.play();
-        } else {
-            trackIndex = 0;
-            loadTrack();
-            isPlaying = true;
-            audioFile.play();
+            audio.src = currentAudioLink;
+            // $: console.log(`audio = ${audio.src}`);
+            // $: console.log(`dataset = ${trackIndex}`);
+            audio.play();
+            isPaused = false;
+        } else if (trackIndex == audioData.length - 1) {
+            audio.pause();
+            isPaused = true;
+            ended = true;
         }
     };
 
     // Track Duration and Progress Bar
-    let totalTrackTime;
-    $: console.log(totalTrackTime);
-    audioFile.onloadedmetadata = () => {
-        totalTrackTime = audioFile.duration;
-        updateTime();
-    };
-
-    let totalTimeDisplay = 'loading...';
-    let currTimeDisplay = '0:00';
-    let progress = 0;
+    let totalTimeDisplay = 'waiting...';
+    let currTimeDisplay = '⏱ 00:00';
     let trackTimer;
+    updateTime();
 
     function updateTime() {
-        progress = audioFile.currentTime * (100 / totalTrackTime);
+        let currMins = Math.floor(currentTime / 60);
+        let currSecs = Math.floor(currentTime - currMins * 60);
+        let currHours = Math.floor(currentTime / 3600);
 
-        let currMins = Math.floor(audioFile.currentTime / 60);
-        let currSecs = Math.floor(audioFile.currentTime - currMins * 60);
-
-        let durMins = Math.floor(totalTrackTime / 60);
-        let durSecs = Math.floor(totalTrackTime - durMins * 60);
+        let durMins = Math.floor(duration / 60);
+        let durSecs = Math.floor(duration - durMins * 60);
+        let durHours = Math.floor(duration / 3600);
 
         if (currSecs < 10) currSecs = `0${currSecs}`;
         if (durSecs < 10) durSecs = `0${durSecs}`;
         if (currMins < 10) currMins = `0${currMins}`;
         if (durMins < 10) durMins = `0${durMins}`;
 
-        currTimeDisplay = `⏱ ${currMins}:${currSecs}`;
-        totalTimeDisplay = `${durMins}:${durSecs} ⏱`;
+        if (currHours == 0) currTimeDisplay = `⏱ ${currMins}:${currSecs}`;
+        if (durHours == 0) totalTimeDisplay = `${durMins}:${durSecs} ⏱`;
 
-        if (audioFile.ended) {
+        if (currHours > 0)
+            currTimeDisplay = `⏱ ${currHours}:${currMins}:${currSecs}`;
+        if (durHours > 0)
+            totalTimeDisplay = `${durHours}:${durMins}:${durSecs} ⏱`;
+
+        if (ended) {
             toggleTimeRunning();
-            autoPlayNextTrack();
+            playNextTrack();
+            updateTimeV2();
         }
     }
 
+    function updateTimeV2() {
+        let currMins = Math.floor(audio.currentTime / 60);
+        let currSecs = Math.floor(audio.currentTime - currMins * 60);
+        let currHours = Math.floor(audio.currentTime / 3600);
+
+        let durMins = Math.floor(audio.duration / 60);
+        let durSecs = Math.floor(audio.duration - durMins * 60);
+        let durHours = Math.floor(audio.duration / 3600);
+
+        if (currSecs < 10) currSecs = `0${currSecs}`;
+        if (durSecs < 10) durSecs = `0${durSecs}`;
+        if (currMins < 10) currMins = `0${currMins}`;
+        if (durMins < 10) durMins = `0${durMins}`;
+
+        if (currHours == 0) currTimeDisplay = `⏱ ${currMins}:${currSecs}`;
+        if (durHours == 0) totalTimeDisplay = `${durMins}:${durSecs} ⏱`;
+
+        if (currHours > 0)
+            currTimeDisplay = `⏱ ${currHours}:${currMins}:${currSecs}`;
+        if (durHours > 0)
+            totalTimeDisplay = `${durHours}:${durMins}:${durSecs} ⏱`;
+    }
+
     const toggleTimeRunning = () => {
-        if (audioFile.ended) {
-            isPlaying = false;
+        if (ended && trackIndex < audioData.length - 1) {
+            isPaused = true;
             clearInterval(trackTimer);
-            console.log(`Ended = ${audioFile.ended}`);
+            // $: console.log(`Ended = ${ended}`);
+        } else if (ended) {
+            // this separation somehow works on handling end of playlist, so we just keep it that way
+            isPaused = true;
+            clearInterval(trackTimer);
+            // $: console.log(`Ended = ${ended}`);
         } else {
             trackTimer = setInterval(updateTime, 100);
         }
     };
 
     // Controls
-    let isPlaying = false;
-    $: console.log(`isPlaying = ${isPlaying}`);
+    // $: console.log(`isPaused = ${isPaused}`);
 
     const playPauseAudio = () => {
-        if (audioFile.paused) {
+        if (audio.paused) {
             toggleTimeRunning();
-            audioFile.play();
-            isPlaying = true;
+            audio.play();
+            isPaused = false;
         } else {
             toggleTimeRunning();
-            audioFile.pause();
-            isPlaying = false;
+            audio.pause();
+            isPaused = true;
         }
     };
 
-    const rewindAudio = () => (audioFile.currentTime -= 10);
-    const forwardAudio = () => (audioFile.currentTime += 10);
+    const rewindAudio = () => (currentTime -= 10);
+    const forwardAudio = () => (currentTime += 10);
 
     // Volume Slider
-    let vol = 50;
-    const adjustVol = () => (audioFile.volume = vol / 100);
+    const muteUnmuteAudio = () => {
+        if (muted) {
+            // I just reassign both to ensure safety :-)
+            volume = 0.1;
+            audio.volume = 0.1;
+        } else {
+            volume = 0;
+        }
+    };
+
+    // $: console.log(`muted = ${muted}`);
 
     // Playlist
     const handleTrack = (e) => {
-        if (!isPlaying) {
+        if (isPaused) {
             trackIndex = Number(e.target.dataset.trackId);
             loadTrack();
-            playPauseAudio(); // auto play
+            audio.src = currentAudioLink;
+            // $: console.log(`audio = ${audio.src}`);
+            // $: console.log(`dataset = ${trackIndex}`);
+            playPauseAudio();
         } else {
-            isPlaying = false;
-            audioFile.pause();
+            isPaused = true;
             trackIndex = Number(e.target.dataset.trackId);
             loadTrack();
-            playPauseAudio(); // auto play
+            audio.src = currentAudioLink;
+            // $: console.log(`audio = ${audio.src}`);
+            // $: console.log(`dataset = ${trackIndex}`);
+            playPauseAudio();
         }
     };
+
+    onMount(() => {
+        updateTimeV2();
+        toggleTimeRunning();
+    });
 </script>
 
 <style>
@@ -156,13 +227,22 @@
     }
 </style>
 
+<audio
+    id="songPlaying"
+    src={currentAudioLink}
+    bind:duration
+    bind:currentTime
+    bind:ended
+    bind:volume
+    bind:this={audio} />
+
 <div style="background-color:#333333;padding:30px;">
     <div class="pl-header-container">
         <div class="box-profile-picture">
             <center>
                 <img
                     class="profile"
-                    src="client/team/2020/drake.jpg"
+                    src="client/team/2020/yehezkiel.jpg"
                     alt="PP Playlist" />
             </center>
         </div>
@@ -170,18 +250,34 @@
         <div class="box-audio-player">
             <TrackHeading {trackNo} {trackTitle} />
             <center>
-                <ProgressBarTime
-                    {currTimeDisplay}
-                    {totalTimeDisplay}
-                    {progress} />
+                <ProgressBarTime {currTimeDisplay} {totalTimeDisplay} />
+
+                {#if duration}
+                    <div use:KeyboardShortcut={{ shortcut }}>
+                        <ProgressBarSlider
+                            max={duration}
+                            min={0}
+                            step={duration / 250}
+                            current={currentTime}
+                            on:change={(e) => (currentTime = e.detail.value)}
+                            on:input={toggleTimeRunning} />
+                    </div>
+                {/if}
 
                 <AudioControls
-                    {isPlaying}
+                    {isPaused}
                     on:rewind={rewindAudio}
                     on:playPause={playPauseAudio}
                     on:forward={forwardAudio} />
 
-                <VolumeSlider bind:vol on:input={adjustVol} />
+                <VolumeSlider
+                    max={1}
+                    min={0}
+                    step={0.01}
+                    current={volume}
+                    {muted}
+                    on:muteUnmute={muteUnmuteAudio}
+                    on:change={(e) => (volume = e.detail.value)} />
             </center>
             <br />
         </div>
