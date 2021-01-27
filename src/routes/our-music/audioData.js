@@ -1,5 +1,9 @@
 export const audioData = [
     {
+        link: 'client/our-music/audio/sample-1hour',
+        name: 'A 1-hour Song',
+    },
+    {
         link: 'client/our-music/audio/sample-colorblind.mp3',
         name: 'Math by Kevin Christian',
     },
