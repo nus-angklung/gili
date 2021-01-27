@@ -4,7 +4,7 @@
     const dispatch = createEventDispatcher();
     export let min = 0;
     export let max = 100;
-    export let step = 1;
+    export let step = 5;
     export let current = 0;
     let sliding = false;
     let slider;

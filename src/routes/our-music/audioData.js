@@ -1,6 +1,6 @@
 export const audioData = [
     {
-        link: 'client/our-music/audio/sample-1hour',
+        link: 'client/our-music/audio/sample-1hour.mp3',
         name: 'A 1-hour Song',
     },
     {

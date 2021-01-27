@@ -70,7 +70,6 @@
         &#9776;
         <b>Playlist</b>
     </button>
-    <br />
     <ul class:show-list={listIsShowing}>
         {#each audioData as { name, link }, i}
             <li data-track-id={i} on:click>▶️ Track {i + 1} : {name}</li>

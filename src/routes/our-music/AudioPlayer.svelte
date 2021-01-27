@@ -25,8 +25,8 @@
     let audio;
 
     const shortcut = {
-        ArrowLeft: (e) => (currentTime -= 4), // actually shifts for 5 seconds but we got 1 extra from the default setting
-        ArrowRight: (e) => (currentTime += 4),
+        ArrowLeft: (e) => (currentTime -= 5),
+        ArrowRight: (e) => (currentTime += 5),
     };
 
     function stopOthers() {
@@ -58,10 +58,14 @@
             // $: console.log(`dataset = ${trackIndex}`);
             audio.play();
             isPaused = false;
-        } else if (trackIndex == audioData.length - 1) {
-            audio.pause();
-            isPaused = true;
-            ended = true;
+        } else {
+            trackIndex = 0;
+            loadTrack();
+            audio.src = currentAudioLink;
+            // $: console.log(`audio = ${audio.src}`);
+            // $: console.log(`dataset = ${trackIndex}`);
+            audio.play();
+            isPaused = false;
         }
     };
 
@@ -79,6 +83,9 @@
         let durMins = Math.floor(duration / 60);
         let durSecs = Math.floor(duration - durMins * 60);
         let durHours = Math.floor(duration / 3600);
+
+        if (currHours > 0) currMins -= currHours * 60;
+        if (durHours > 0) durMins -= durHours * 60;
 
         if (currSecs < 10) currSecs = `0${currSecs}`;
         if (durSecs < 10) durSecs = `0${durSecs}`;
@@ -108,6 +115,9 @@
         let durMins = Math.floor(audio.duration / 60);
         let durSecs = Math.floor(audio.duration - durMins * 60);
         let durHours = Math.floor(audio.duration / 3600);
+
+        if (currHours > 0) currMins -= currHours * 60;
+        if (durHours > 0) durMins -= durHours * 60;
 
         if (currSecs < 10) currSecs = `0${currSecs}`;
         if (durSecs < 10) durSecs = `0${durSecs}`;
@@ -257,7 +267,7 @@
                         <ProgressBarSlider
                             max={duration}
                             min={0}
-                            step={duration / 250}
+                            step={duration / 10000}
                             current={currentTime}
                             on:change={(e) => (currentTime = e.detail.value)}
                             on:input={toggleTimeRunning} />
@@ -279,7 +289,6 @@
                     on:muteUnmute={muteUnmuteAudio}
                     on:change={(e) => (volume = e.detail.value)} />
             </center>
-            <br />
         </div>
     </div>
 

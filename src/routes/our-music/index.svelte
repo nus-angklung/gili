@@ -9,9 +9,13 @@
     }
     h2 {
         color: #f5eccf;
+        margin-bottom: 25px;
     }
     h2:not(:first-child) {
         margin-top: 3rem;
+    }
+    h3 {
+        margin: 15px;
     }
     @media (min-width: 704px) {
         .instrument-container {
@@ -93,8 +97,6 @@
     </h2>
 </center>
 
-<br />
-
 <center>
     <h3>CAC+US Performances</h3>
 </center>
@@ -115,18 +117,15 @@
     <h3>Other Playlist</h3>
 </center>
 
-<AudioPlayer {audioData} />
-
-<br />
-<br />
+<div style="margin-bottom:50px">
+    <AudioPlayer {audioData} />
+</div>
 
 <center>
     <h2>
         <b>Our Instruments</b>
     </h2>
 </center>
-
-<br />
 
 <div class="special-container">
     <div class="box">
