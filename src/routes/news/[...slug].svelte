@@ -3,19 +3,15 @@
     export async function preload({ params, query }) {
         // the `slug` parameter is available because
         // slug is meant to be the part of a URL which identifies a particular page on a website.
-        const [slug, title] = params.slug;
+        const [slug] = params.slug;
         const res = await this.fetch(`news/${slug}.json`);
         const data = await res.json();
         // This if-else statement is used to make sure that 
         // the web page can be displayed (redirect status of 200). 
         // Otherwise, an error message will be displayed.
-        if (res.status === 200) {
-            return {
-                news,
-                newsIndex: data.newsIndex,
-            };
-        } else {
+        if (res.status != 200) {
             this.error(res.status, data.message);
+            return; // we stop the function immediately
         }
         // if title exists, try to find news with matching title. 
         // Otherwise, the first title will be used.
@@ -25,6 +21,10 @@
             data.news[0];
         // https://github.com/rollup/rollup/issues/2463#issuecomment-455957865
         news.file = await newsTargets[news.file]().then((x) => x.default);
+        return {
+            news,
+            newsIndex: data.newsIndex,
+        };
     }
 </script>
 <script>
