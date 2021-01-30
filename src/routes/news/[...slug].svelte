@@ -3,7 +3,7 @@
     export async function preload({ params, query }) {
         // the `slug` parameter is available because
         // slug is meant to be the part of a URL which identifies a particular page on a website.
-        const [slug] = params.slug;
+        const [slug, title] = params.slug;
         const res = await this.fetch(`news/${slug}.json`);
         const data = await res.json();
         // This if-else statement is used to make sure that 
