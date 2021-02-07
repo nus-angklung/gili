@@ -3,8 +3,6 @@
 </script>
 
 <script>
-    // The console log lines are commented on purpose and not removed for easier debugging matters.
-
     export let audioData;
 
     import TrackHeading from './TrackHeading.svelte';
@@ -29,11 +27,6 @@
         ArrowRight: (e) => (currentTime += 5),
     };
 
-    function stopOthers() {
-        if (current && current !== audio) current.pause();
-        current = audio;
-    }
-
     // Get Audio track
     let trackIndex = 0;
     // $: console.log(trackIndex)
@@ -42,8 +35,6 @@
     let trackNo = trackIndex + 1;
 
     const loadTrack = () => {
-        // $: console.log(`loaded = ${trackIndex}`);
-        // $: console.log(`ct = ${audio.currentTime}`);
         currentAudioLink = audioData[trackIndex].link;
         trackTitle = audioData[trackIndex].name;
         trackNo = trackIndex + 1;
@@ -52,30 +43,25 @@
     const playNextTrack = () => {
         if (trackIndex < audioData.length - 1) {
             trackIndex += 1;
-            loadTrack();
-            audio.src = currentAudioLink;
-            // $: console.log(`audio = ${audio.src}`);
-            // $: console.log(`dataset = ${trackIndex}`);
-            audio.play();
-            isPaused = false;
         } else {
             trackIndex = 0;
-            loadTrack();
-            audio.src = currentAudioLink;
-            // $: console.log(`audio = ${audio.src}`);
-            // $: console.log(`dataset = ${trackIndex}`);
-            audio.play();
-            isPaused = false;
         }
+        loadTrack();
+        audio.src = currentAudioLink;
+        audio.play();
+        isPaused = false;
     };
 
     // Track Duration and Progress Bar
     let totalTimeDisplay = 'waiting...';
     let currTimeDisplay = '⏱ 00:00';
-    let trackTimer;
+    let trackTimer; // a variable to store the interval from setInterval methods
+
+    // Once loaded, update the time display into the correct parsed form
+    // To ensure safety, do updateTime instead of parseTime only
     updateTime();
 
-    function updateTime() {
+    function parseTime() {
         let currMins = Math.floor(currentTime / 60);
         let currSecs = Math.floor(currentTime - currMins * 60);
         let currHours = Math.floor(currentTime / 3600);
@@ -99,58 +85,30 @@
             currTimeDisplay = `⏱ ${currHours}:${currMins}:${currSecs}`;
         if (durHours > 0)
             totalTimeDisplay = `${durHours}:${durMins}:${durSecs} ⏱`;
+    }
+
+    function updateTime() {
+        // this function handles the end of audio, hence different from parseTime itself
+        parseTime();
 
         if (ended) {
             toggleTimeRunning();
             playNextTrack();
-            updateTimeV2();
+            parseTime();
         }
     }
 
-    function updateTimeV2() {
-        let currMins = Math.floor(audio.currentTime / 60);
-        let currSecs = Math.floor(audio.currentTime - currMins * 60);
-        let currHours = Math.floor(audio.currentTime / 3600);
-
-        let durMins = Math.floor(audio.duration / 60);
-        let durSecs = Math.floor(audio.duration - durMins * 60);
-        let durHours = Math.floor(audio.duration / 3600);
-
-        if (currHours > 0) currMins -= currHours * 60;
-        if (durHours > 0) durMins -= durHours * 60;
-
-        if (currSecs < 10) currSecs = `0${currSecs}`;
-        if (durSecs < 10) durSecs = `0${durSecs}`;
-        if (currMins < 10) currMins = `0${currMins}`;
-        if (durMins < 10) durMins = `0${durMins}`;
-
-        if (currHours == 0) currTimeDisplay = `⏱ ${currMins}:${currSecs}`;
-        if (durHours == 0) totalTimeDisplay = `${durMins}:${durSecs} ⏱`;
-
-        if (currHours > 0)
-            currTimeDisplay = `⏱ ${currHours}:${currMins}:${currSecs}`;
-        if (durHours > 0)
-            totalTimeDisplay = `${durHours}:${durMins}:${durSecs} ⏱`;
-    }
-
     const toggleTimeRunning = () => {
-        if (ended && trackIndex < audioData.length - 1) {
+        if (ended) {
             isPaused = true;
             clearInterval(trackTimer);
-            // $: console.log(`Ended = ${ended}`);
-        } else if (ended) {
-            // this separation somehow works on handling end of playlist, so we just keep it that way
-            isPaused = true;
-            clearInterval(trackTimer);
-            // $: console.log(`Ended = ${ended}`);
         } else {
+            // update time (check for end of audio too) every 0.1 s = 100 ms
             trackTimer = setInterval(updateTime, 100);
         }
     };
 
-    // Controls
-    // $: console.log(`isPaused = ${isPaused}`);
-
+    // Audio Controls
     const playPauseAudio = () => {
         if (audio.paused) {
             toggleTimeRunning();
@@ -169,7 +127,7 @@
     // Volume Slider
     const muteUnmuteAudio = () => {
         if (muted) {
-            // I just reassign both to ensure safety :-)
+            // Reassign both to ensure safety
             volume = 0.1;
             audio.volume = 0.1;
         } else {
@@ -177,30 +135,19 @@
         }
     };
 
-    // $: console.log(`muted = ${muted}`);
-
     // Playlist
     const handleTrack = (e) => {
-        if (isPaused) {
-            trackIndex = Number(e.target.dataset.trackId);
-            loadTrack();
-            audio.src = currentAudioLink;
-            // $: console.log(`audio = ${audio.src}`);
-            // $: console.log(`dataset = ${trackIndex}`);
-            playPauseAudio();
-        } else {
+        if (!isPaused) {
             isPaused = true;
-            trackIndex = Number(e.target.dataset.trackId);
-            loadTrack();
-            audio.src = currentAudioLink;
-            // $: console.log(`audio = ${audio.src}`);
-            // $: console.log(`dataset = ${trackIndex}`);
-            playPauseAudio();
         }
+        trackIndex = Number(e.target.dataset.trackId);
+        loadTrack();
+        audio.src = currentAudioLink;
+        playPauseAudio();
     };
 
     onMount(() => {
-        updateTimeV2();
+        parseTime();
         toggleTimeRunning();
     });
 </script>

@@ -1,5 +1,4 @@
 export default function KeyboardShortcut(node, params) {
-    // params.shortcut
     function handleKeyDown(e) {
         Object.keys(params.shortcut).forEach((key) => {
             if (e.code === key) {
