@@ -3,8 +3,10 @@
 </script>
 
 <script>
+    // Export audio data for index.svelte
     export let audioData;
 
+    // Import all the svelte files of the player components
     import TrackHeading from './TrackHeading.svelte';
     import ProgressBarTime from './ProgressBarTime.svelte';
     import ProgressBarSlider from './ProgressBarSlider.svelte';
@@ -14,36 +16,45 @@
     import KeyboardShortcut from './KeyboardShortcut.js';
     import { onMount } from 'svelte';
 
+    // Set all variables (including muted as a bound variable)
     let duration;
     let currentTime = 0;
     let isPaused = true;
-    let ended;
+    let ended = false;
     let volume = 0.5;
+    let prevVolume = volume;
     $: muted = volume == 0;
     let audio;
 
+    /*
+    Keyboard shortcut
+    Left arrow rewinds by 5 seconds
+    Right arrow forwards by 5 seconds
+    */
     const shortcut = {
         ArrowLeft: (e) => (currentTime -= 5),
         ArrowRight: (e) => (currentTime += 5),
     };
 
-    // Get Audio track
+    // Get audio track
     let trackIndex = 0;
-    // $: console.log(trackIndex)
     let currentAudioLink = audioData[trackIndex].link;
     let trackTitle = audioData[trackIndex].name;
     let trackNo = trackIndex + 1;
 
+    // Update the variables related to audio track
     const loadTrack = () => {
         currentAudioLink = audioData[trackIndex].link;
         trackTitle = audioData[trackIndex].name;
         trackNo = trackIndex + 1;
     };
 
+    // Trigger auto play for the next track
     const playNextTrack = () => {
         if (trackIndex < audioData.length - 1) {
             trackIndex += 1;
         } else {
+            // Enable circular autoplay
             trackIndex = 0;
         }
         loadTrack();
@@ -57,27 +68,39 @@
     let currTimeDisplay = '⏱ 00:00';
     let trackTimer; // a variable to store the interval from setInterval methods
 
-    // Once loaded, update the time display into the correct parsed form
-    // To ensure safety, do updateTime instead of parseTime only
+    /*
+    Once loaded, update the time display into the correct parsed form
+    To ensure safety, do updateTime instead of just parseTime
+    */
     updateTime();
 
     function parseTime() {
+        /*
+        Expected display :
+        MM:SS       if the audio length is less than one hour
+        {H}:MM:SS   if the audio length is 1-hour long or more
+        H has the same digits as the literal hour duration
+        */
+
         let currMins = Math.floor(currentTime / 60);
-        let currSecs = Math.floor(currentTime - currMins * 60);
+        let currSecs = Math.floor(currentTime % 60);
         let currHours = Math.floor(currentTime / 3600);
 
         let durMins = Math.floor(duration / 60);
-        let durSecs = Math.floor(duration - durMins * 60);
+        let durSecs = Math.floor(duration % 60);
         let durHours = Math.floor(duration / 3600);
 
+        // Handle case if at least 1-hour long
         if (currHours > 0) currMins -= currHours * 60;
         if (durHours > 0) durMins -= durHours * 60;
 
+        // Retain 2-digit display for seconds and minutes display
         if (currSecs < 10) currSecs = `0${currSecs}`;
         if (durSecs < 10) durSecs = `0${durSecs}`;
         if (currMins < 10) currMins = `0${currMins}`;
         if (durMins < 10) durMins = `0${durMins}`;
 
+        // Handle final display
         if (currHours == 0) currTimeDisplay = `⏱ ${currMins}:${currSecs}`;
         if (durHours == 0) totalTimeDisplay = `${durMins}:${durSecs} ⏱`;
 
@@ -88,67 +111,104 @@
     }
 
     function updateTime() {
-        // this function handles the end of audio, hence different from parseTime itself
+        /*
+        This function mainly focuses on handling the end of audio
+        Hence, it's different from just parseTime()
+        */
         parseTime();
 
+        // Handles the smooth timer transition from one ended song to another new song
         if (ended) {
-            toggleTimeRunning();
+            handleTimer();
             playNextTrack();
             parseTime();
         }
     }
 
-    const toggleTimeRunning = () => {
+    /*
+    Handles the timer for the currently playing audio
+    Stops timer if the audio has ended
+    Keeps updating timer otherwise
+    */
+    const handleTimer = () => {
+        // Wrapper function
         if (ended) {
-            isPaused = true;
-            clearInterval(trackTimer);
+            stopTimer();
         } else {
-            // update time (check for end of audio too) every 0.1 s = 100 ms
-            trackTimer = setInterval(updateTime, 100);
+            resumeTimer();
         }
     };
 
-    // Audio Controls
-    const playPauseAudio = () => {
+    const stopTimer = () => {
+        isPaused = true;
+        clearInterval(trackTimer);
+    };
+
+    const resumeTimer = () => {
+        // Update time (check for end of audio too) every 0.1 s = 100 ms
+        trackTimer = setInterval(updateTime, 100);
+    };
+
+    // Audio Controls, manages the play-pause-resume audio workflow
+    const handleAudioControls = () => {
+        // Wrapper function
+        handleTimer();
         if (audio.paused) {
-            toggleTimeRunning();
-            audio.play();
-            isPaused = false;
+            playAudio();
         } else {
-            toggleTimeRunning();
-            audio.pause();
-            isPaused = true;
+            pauseAudio();
         }
     };
 
+    const playAudio = () => {
+        audio.play();
+        isPaused = false;
+    };
+
+    const pauseAudio = () => {
+        audio.pause();
+        isPaused = true;
+    };
+
+    // Provides two rewind and forward buttons, each by 10 seconds
     const rewindAudio = () => (currentTime -= 10);
     const forwardAudio = () => (currentTime += 10);
 
-    // Volume Slider
+    // Volume Slider, handles volume control of the audio
     const muteUnmuteAudio = () => {
+        // Wrapper function
         if (muted) {
-            // Reassign both to ensure safety
-            volume = 0.1;
-            audio.volume = 0.1;
+            unmuteAudio();
         } else {
-            volume = 0;
+            muteAudio();
         }
     };
 
+    const unmuteAudio = () => {
+        // Brings back the volume to the point before it was muted
+        volume = prevVolume;
+    };
+
+    const muteAudio = () => {
+        // Saves the current volume for unmute later then mutes the audio
+        prevVolume = volume;
+        volume = 0;
+    };
+
     // Playlist
-    const handleTrack = (e) => {
+    const handlePlaylistTrack = (e) => {
         if (!isPaused) {
             isPaused = true;
         }
         trackIndex = Number(e.target.dataset.trackId);
         loadTrack();
         audio.src = currentAudioLink;
-        playPauseAudio();
+        handleAudioControls();
     };
 
     onMount(() => {
         parseTime();
-        toggleTimeRunning();
+        handleTimer();
     });
 </script>
 
@@ -217,14 +277,14 @@
                             step={duration / 10000}
                             current={currentTime}
                             on:change={(e) => (currentTime = e.detail.value)}
-                            on:input={toggleTimeRunning} />
+                            on:input={handleTimer} />
                     </div>
                 {/if}
 
                 <AudioControls
                     {isPaused}
                     on:rewind={rewindAudio}
-                    on:playPause={playPauseAudio}
+                    on:handleControls={handleAudioControls}
                     on:forward={forwardAudio} />
 
                 <VolumeSlider
@@ -239,5 +299,5 @@
         </div>
     </div>
 
-    <Playlist on:click={handleTrack} />
+    <Playlist on:click={handlePlaylistTrack} />
 </div>

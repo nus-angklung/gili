@@ -41,7 +41,7 @@
     <button id="rewind" on:click={() => dispatch('rewind')}>
         <img src={icons.rewind} alt="rewind" />
     </button>
-    <button id="play" on:click={() => dispatch('playPause')}>
+    <button id="play" on:click={() => dispatch('handleControls')}>
         <img src={isPaused ? icons.play : icons.pause} alt="play" />
     </button>
     <button id="forward" on:click={() => dispatch('forward')}>
