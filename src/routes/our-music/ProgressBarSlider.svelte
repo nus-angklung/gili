@@ -2,10 +2,10 @@
     import { onMount, tick } from 'svelte';
     import { createEventDispatcher } from 'svelte';
     const dispatch = createEventDispatcher();
-    export let min = 0;
-    export let max = 100;
-    export let step = 5;
-    export let current = 0;
+    export let min;
+    export let max;
+    export let step;
+    export let current;
     let sliding = false;
     let slider;
     let scale;

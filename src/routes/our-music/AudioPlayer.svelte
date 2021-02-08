@@ -13,7 +13,7 @@
     import AudioControls from './AudioControls.svelte';
     import VolumeSlider from './VolumeSlider.svelte';
     import Playlist from './Playlist.svelte';
-    import KeyboardShortcut from './KeyboardShortcut.js';
+    import keyboardShortcut from './keyboardShortcut.js';
     import { onMount } from 'svelte';
 
     // Set all variables (including muted as a bound variable)
@@ -191,7 +191,7 @@
 
     const muteAudio = () => {
         // Saves the current volume for unmute later then mutes the audio
-        prevVolume = volume;
+        prevVolume = Math.min(volume, 0.5);
         volume = 0;
     };
 
@@ -270,7 +270,7 @@
                 <ProgressBarTime {currTimeDisplay} {totalTimeDisplay} />
 
                 {#if duration}
-                    <div use:KeyboardShortcut={{ shortcut }}>
+                    <div use:keyboardShortcut={{ shortcut }}>
                         <ProgressBarSlider
                             max={duration}
                             min={0}

@@ -7,10 +7,10 @@
     import { onMount, tick } from 'svelte';
     import { createEventDispatcher } from 'svelte';
     const dispatch = createEventDispatcher();
-    export let min = 0;
-    export let max = 1;
-    export let step = 0.01;
-    export let current = 0.5;
+    export let min;
+    export let max;
+    export let step;
+    export let current;
     export let muted;
     let sliding = false;
     let slider;
@@ -94,7 +94,7 @@
     .fill {
         width: 100%;
         height: 8px;
-        background-color: #ffffff;
+        background-color: #d6d9c7;
         transform-origin: left;
         transform: scaleX(0);
     }
