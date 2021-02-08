@@ -261,9 +261,7 @@
         </div>
 
         <div class="box-audio-player">
-            <div>
-                <TrackHeading {trackNo} {trackTitle} />
-            </div>
+            <TrackHeading {trackNo} {trackTitle} />
             <center>
                 <ProgressBarTime {currTimeDisplay} {totalTimeDisplay} />
 

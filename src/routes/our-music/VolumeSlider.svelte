@@ -60,6 +60,6 @@
         {fillColor} />
 
     <label for="vol-slider" style="text-align:right">
-        <div>{Math.floor(current * 100)}</div>
+        {Math.floor(current * 100)}
     </label>
 </div>
