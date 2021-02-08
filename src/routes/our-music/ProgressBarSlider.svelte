@@ -2,13 +2,16 @@
     import { onMount, tick } from 'svelte';
     import { createEventDispatcher } from 'svelte';
     const dispatch = createEventDispatcher();
+
     export let min;
     export let max;
     export let step;
     export let current;
+
     let sliding = false;
     let slider;
     let scale;
+
     onMount(() => {
         scale = slider.clientWidth / (max / step);
         function handleResize() {
@@ -36,7 +39,7 @@
         current = value;
     }
 
-    function handleKeydown(e) {
+    function handleKeyDown(e) {
         if (e.keyCode === 37) {
             e.preventDefault();
             const nextValue = current - step;
@@ -48,7 +51,7 @@
         }
     }
 
-    function handleMouseup(e) {
+    function handleMouseUp(e) {
         sliding = false;
     }
 </script>
@@ -95,8 +98,8 @@
 
 <svelte:body
     on:mousemove={handleMouseMove}
-    on:mouseup={handleMouseup}
-    on:mouseleave={handleMouseup} />
+    on:mouseup={handleMouseUp}
+    on:mouseleave={handleMouseUp} />
 
 <div
     tabindex="0"
@@ -108,7 +111,7 @@
     bind:this={slider}
     class="slider"
     on:mousedown={handleMouseDown}
-    on:keydown={handleKeydown}>
+    on:keydown={handleKeyDown}>
     <div class="rail">
         <div
             class="ball"
