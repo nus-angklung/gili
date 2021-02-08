@@ -1,9 +1,4 @@
 <script>
-    const logo = {
-        mute: 'client/our-music/mute.svg',
-        unmute: 'client/our-music/unmute.svg',
-    };
-
     import { onMount, tick } from 'svelte';
     import { createEventDispatcher } from 'svelte';
     const dispatch = createEventDispatcher();
@@ -11,7 +6,6 @@
     export let max;
     export let step;
     export let current;
-    export let muted;
     let sliding = false;
     let slider;
     let scale;
@@ -57,6 +51,12 @@
     function handleMouseup(e) {
         sliding = false;
     }
+
+    export let muted;
+    const logo = {
+        mute: 'client/our-music/mute.svg',
+        unmute: 'client/our-music/unmute.svg',
+    };
 </script>
 
 <style>
