@@ -7,9 +7,6 @@
     let sliderWidth = 90;
     let fillColor = '#ffffff';
 
-    import { createEventDispatcher } from 'svelte';
-    const dispatch = createEventDispatcher();
-
     import Slider from './Slider.svelte';
 </script>
 

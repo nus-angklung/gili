@@ -24,7 +24,7 @@
         return () => window.removeEventListener('resize', handleResize);
     });
 
-    $: dispatch('changeTime', { value: current });
+    $: dispatch('change', { value: current });
 
     export function handleMouseMove(e) {
         if (sliding) {

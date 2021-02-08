@@ -7,6 +7,7 @@
     let sliderWidth = 85;
     let fillColor = '#d6d9c7';
 
+    // Create dispatcher for the mute-unmute button
     import { createEventDispatcher } from 'svelte';
     const dispatch = createEventDispatcher();
 
