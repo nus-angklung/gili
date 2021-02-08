@@ -103,7 +103,7 @@
     role="slider"
     bind:this={slider}
     class="slider"
-    style="width: {sliderWidth}%"
+    style="width:{sliderWidth}%"
     on:mousedown={handleMouseDown}
     on:keydown={handleKeyDown}>
     <div class="rail">
@@ -117,3 +117,9 @@
             style="transform: scaleX({current / max}); background-color: {fillColor}" />
     </div>
 </div>
+
+<!-- Smooth dragging -->
+<svelte:body
+    on:mousemove={handleMouseMove}
+    on:mouseup={handleMouseUp}
+    on:mouseleave={handleMouseUp} />
