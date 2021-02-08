@@ -1,7 +1,3 @@
-<script context="module">
-    let current;
-</script>
-
 <script>
     // Export audio data for index.svelte
     export let audioData;
@@ -265,7 +261,9 @@
         </div>
 
         <div class="box-audio-player">
-            <TrackHeading {trackNo} {trackTitle} />
+            <div>
+                <TrackHeading {trackNo} {trackTitle} />
+            </div>
             <center>
                 <ProgressBarTime {currTimeDisplay} {totalTimeDisplay} />
 
@@ -275,7 +273,7 @@
                             max={duration}
                             min={0}
                             step={duration / 10000}
-                            current={currentTime}
+                            bind:current={currentTime}
                             on:change={(e) => (currentTime = e.detail.value)}
                             on:input={handleTimer} />
                     </div>
@@ -291,7 +289,7 @@
                     max={1}
                     min={0}
                     step={0.01}
-                    current={volume}
+                    bind:current={volume}
                     {muted}
                     on:muteUnmute={muteUnmuteAudio}
                     on:change={(e) => (volume = e.detail.value)} />
