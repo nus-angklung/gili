@@ -10,7 +10,7 @@
         fwd: 'client/our-music/forward.svg',
     };
 
-    export let isPlaying;
+    export let isPaused;
 </script>
 
 <style>
@@ -22,7 +22,6 @@
     button {
         width: 37px;
         border: none;
-        font-size: 2.3rem;
         padding: 0;
         cursor: pointer;
         margin: 0;
@@ -30,7 +29,6 @@
     }
 
     button:active {
-        font-size: 2.2rem;
         background-color: transparent;
     }
 
@@ -43,8 +41,8 @@
     <button id="rewind" on:click={() => dispatch('rewind')}>
         <img src={icons.rewind} alt="rewind" />
     </button>
-    <button id="play" on:click={() => dispatch('playPause')}>
-        <img src={isPlaying ? icons.pause : icons.play} alt="play" />
+    <button id="play" on:click={() => dispatch('handleControls')}>
+        <img src={isPaused ? icons.play : icons.pause} alt="play" />
     </button>
     <button id="forward" on:click={() => dispatch('forward')}>
         <img src={icons.fwd} alt="forward" />

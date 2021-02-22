@@ -42,7 +42,7 @@
         border-radius: 0 0 5px 5px;
         height: 0;
         overflow: auto;
-        transition: height 0.3s;
+        transition: height 0.4s;
     }
 
     li {
@@ -53,7 +53,6 @@
         font-size: 14px;
     }
 
-    li:active,
     li:hover {
         background-color: #444;
     }
@@ -71,7 +70,6 @@
         &#9776;
         <b>Playlist</b>
     </button>
-    <br />
     <ul class:show-list={listIsShowing}>
         {#each audioData as { name, link }, i}
             <li data-track-id={i} on:click>▶️ Track {i + 1} : {name}</li>
