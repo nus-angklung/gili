@@ -37,7 +37,7 @@ To update the `team` pages:
     - `img` [Optional]: Representing the member's profile picture name as located inside `static/team/{corresponding_year}` folder. Suggested image ratio is 1:1. If no image is provided, a placeholder will be used instead.
 2. Update the `current_year` value inside `src/routes/team/_constants.js` file
 
-## Note to the contributor
+## Note to the contributors
 
 As a precaution, do not push too often when you are debugging your code as a continuous deployment workflow has been setup with netlify. There is a small chance that we might hit our limit.
 
