@@ -45,7 +45,7 @@ To update the `team` pages:
 
 To add new cover to our playlist, do the following steps:
 
-1. **Prepare the audio in mp3 format**: Trim the audio and consider normalizing the volume, so that users do not need to adjust the playlist volume many times. Commonly, we are using mp3 format as it works in most modern browsers.
+1. **Prepare the audio in mp3 format**: Trim the audio and consider normalizing the volume, so that users do not need to adjust the playlist volume many times. Commonly, we are using mp3 format as it works in most modern browsers. You may use this [online converter](https://online-audio-converter.com/) for converting audio format.
 2. **Upload to dropbox**: This is the most convenient way of hosting audio files.
 3. Copy sharing link and replace dl=0 with dl=1 in the link
 4. Insert the link into [audioData.js](https://github.com/nus-angklung/gili/blob/dev/src/routes/our-music/audioData.js) file following other track format.
