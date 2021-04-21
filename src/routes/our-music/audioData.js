@@ -14,4 +14,9 @@ export const audioData = [
             'https://www.dropbox.com/s/4se81g4hwfrbuy6/You%27ll%20Be%20in%20My%20Heart%20-%20OST%20Tarzan%20%28Cover%20by%20NUSAE%202015%29.mp3?dl=1',
         name: "You'll Be in My Heart - OST Tarzan (Cover by NUSAE 2015)",
     },
+    {
+        link:
+            'https://www.dropbox.com/s/udm7gqi0taof3iu/Let%20It%20Go%20-%20OST%20Frozen%20%28Cover%20by%20NUSAE%202014%29.mp3?dl=1',
+        name: 'Let It Go - OST Frozen (Cover by NUSAE 2014)',
+    },
 ];
