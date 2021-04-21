@@ -19,4 +19,9 @@ export const audioData = [
             'https://www.dropbox.com/s/udm7gqi0taof3iu/Let%20It%20Go%20-%20OST%20Frozen%20%28Cover%20by%20NUSAE%202014%29.mp3?dl=1',
         name: 'Let It Go - OST Frozen (Cover by NUSAE 2014)',
     },
+    {
+        link:
+            'https://www.dropbox.com/s/htfti89dn6yh491/Viva%20la%20Vida%20-%20Coldplay%20%28Cover%20by%20NUSAE%202014%29.mp3?dl=1',
+        name: 'Viva la Vida - Coldplay (Cover by NUSAE 2014)',
+    },
 ];
