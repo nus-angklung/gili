@@ -1,40 +1,33 @@
 export const audioData = [
     {
-        link: 'client/our-music/audio/sample-1hour.mp3',
-        name: 'A 1-hour Song',
+        link:
+            'https://www.dropbox.com/s/euaxf8vcb2j3r9w/Rolling%20in%20the%20Deep%20-%20Adele%20%28Cover%20by%20NUSAE%202016%29.mp3?dl=1',
+        name: 'Rolling in the Deep - Adele (Cover by NUSAE 2016)',
     },
     {
-        link: 'client/our-music/audio/sample-colorblind.mp3',
-        name: 'Math by Kevin Christian',
+        link:
+            'https://www.dropbox.com/s/0j0mva1vh5xkopl/Uptown%20Girl%20-%20Westlife%20%28Cover%20by%20NUSAE%202015%29.mp3?dl=1',
+        name: 'Uptown Girl - Westlife (Cover by NUSAE 2015)',
     },
     {
-        link: 'client/our-music/audio/sample-nova.mp3',
-        name: 'How to Win Indonesian Idol by Yehezkiel Theodores',
+        link:
+            'https://www.dropbox.com/s/4se81g4hwfrbuy6/You%27ll%20Be%20in%20My%20Heart%20-%20OST%20Tarzan%20%28Cover%20by%20NUSAE%202015%29.mp3?dl=1',
+        name: "You'll Be in My Heart - OST Tarzan (Cover by NUSAE 2015)",
     },
     {
-        link: 'client/our-music/audio/sample-faceless.mp3',
-        name: 'Introduction to Git by Bennetti Clementi',
+        link:
+            'https://www.dropbox.com/s/udm7gqi0taof3iu/Let%20It%20Go%20-%20OST%20Frozen%20%28Cover%20by%20NUSAE%202014%29.mp3?dl=1',
+        name: 'Let It Go - OST Frozen (Cover by NUSAE 2014)',
     },
     {
-        link: 'https://sveltejs.github.io/assets/music/strauss.mp3',
-        name: 'Literally The Blue Danube Waltz',
+        link:
+            'https://www.dropbox.com/s/ujmalmpy8e8vtqg/Viva%20la%20Vida%20-%20Coldplay%20%28Cover%20by%20NUSAE%202014%29.mp3?dl=1',
+        name: 'Viva la Vida - Coldplay (Cover by NUSAE 2014)',
     },
     {
-        link: 'https://sveltejs.github.io/assets/music/satie.mp3',
-        name: 'Literally Gymnopédie no. 1',
-    },
-    {
-        link: 'https://sveltejs.github.io/assets/music/beethoven.mp3',
-        name: 'Literally Symphony no. 5 in Cm, Op. 67 - I. Allegro con brio',
-    },
-    {
-        link: 'https://sveltejs.github.io/assets/music/mozart.mp3',
+        link:
+            'https://www.dropbox.com/s/e1xrvw4susfysio/Es%20Lilin%20-%20Sundanese%20Traditional%20Song%20by%20Nining%20Meida%20%28Cover%20by%20NUSAE%202014%29.mp3?dl=1',
         name:
-            'Literally Requiem in D minor, K. 626 - III. Sequence - Lacrymosa',
-    },
-    {
-        link: 'https://sveltejs.github.io/assets/music/holst.mp3',
-        name:
-            'The Best End Credit Music : Mars, the Bringer of War by Gustav Holst',
+            'Es Lilin - Sundanese Traditional Song by Nining Meida (Cover by NUSAE 2014)',
     },
 ];

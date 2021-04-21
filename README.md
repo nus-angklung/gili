@@ -25,6 +25,10 @@ npm run dev
 
 Consult [sapper.svelte.dev](https://sapper.svelte.dev) for help getting started.
 
+## Note to the contributors
+
+As a precaution, do not push too often when you are debugging your code as a continuous deployment workflow has been setup with netlify. There is a small chance that we might hit our limit.
+
 ## Updating the team
 
 The CCA exco structure changes every year. As a result, the technical team will be responsible to keep the `team` pages updated.
@@ -37,9 +41,14 @@ To update the `team` pages:
     - `img` [Optional]: Representing the member's profile picture name as located inside `static/team/{corresponding_year}` folder. Suggested image ratio is 1:1. If no image is provided, a placeholder will be used instead.
 2. Update the `current_year` value inside `src/routes/team/_constants.js` file
 
-## Note to the contributors
+## Uploading to playlist
 
-As a precaution, do not push too often when you are debugging your code as a continuous deployment workflow has been setup with netlify. There is a small chance that we might hit our limit.
+To add new cover to our playlist, do the following steps:
+
+1. **Prepare the audio in mp3 format**: Trim the audio and consider normalizing the volume, so that users do not need to adjust the playlist volume many times. Commonly, we are using mp3 format as it works in most modern browsers. You may use this [online converter](https://online-audio-converter.com/) for converting audio format.
+2. **Upload to dropbox**: This is the most convenient way of hosting audio files.
+3. Copy sharing link and replace dl=0 with dl=1 in the link
+4. Insert the link into [audioData.js](https://github.com/nus-angklung/gili/blob/dev/src/routes/our-music/audioData.js) file following other track format.
 
 # sapper-template
 
