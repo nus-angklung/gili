@@ -50,6 +50,16 @@ To add new cover to our playlist, do the following steps:
 3. Copy sharing link and replace dl=0 with dl=1 in the link
 4. Insert the link into [audioData.js](https://github.com/nus-angklung/gili/blob/dev/src/routes/our-music/audioData.js) file following other track format.
 
+## Creating news
+
+To create a new article for our news page, do the following steps:
+
+1. **Uploading the article text**: Write the article in plain text, save it as .txt file, and put it under our [news](https://github.com/nus-angklung/gili/tree/dev/news) folder. Note: For file naming, you may want to follow the other news format.
+2. **Uploading the image**: Create an image folder under the static news folder [here](https://github.com/nus-angklung/gili/tree/dev/static/client/news). Named it according to the dates before putting the image file inside that folder.
+3. **Add the news to the list**: Go to [\_news.js](https://github.com/nus-angklung/gili/blob/dev/src/routes/news/_news.js) file to update the newsList array. Note that the order does not matter as the news will be sorted based on dates with the latest comes first.
+
+P.S. Currently, our news page only support plain text (not even an enter unfortunately) with a single image.
+
 # sapper-template
 
 The default [Sapper](https://github.com/sveltejs/sapper) template, available for Rollup and webpack.
