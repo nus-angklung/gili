@@ -142,11 +142,13 @@
                 <b>ANGKLUNG</b>
             </h3>
             <p style="text-align:justify">
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
-                diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-                aliquam erat volutpat. Ut wisi enim ad minim veniam, quis
-                nostrud exerci tation ullamcorper suscipit lobortis nisl ut
-                aliquip ex ea commodo consequat.
+                As stated in our Ensemble name, Angklung is the main instrument
+                of the NUS Angklung Ensemble (a.k.a NUSAE). In a single
+                performance, there are usually around 10 to 20 people playing
+                Angklung, with each holding up to 3 Angklungs. The number of
+                players performing usually influences the complexity of our
+                Song's arrangement. To put it simply, the more players we have,
+                the more harmonies we can add on.
             </p>
         </center>
     </div>
@@ -168,11 +170,11 @@
                     <b>KOLINTANG</b>
                 </h3>
                 <p style="text-align:justify">
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                    sed diam nonummy nibh euismod tincidunt ut laoreet dolore
-                    magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
-                    quis nostrud exerci tation ullamcorper suscipit lobortis
-                    nisl ut aliquip ex ea commodo consequat.
+                    Kolintang is another traditional instrument from Indonesia
+                    that compliments Angklung Ensemble performance. During our
+                    practice session, listening to the Kolintang melodies will
+                    help the Angklung players to understand the flow of the
+                    songs.
                 </p>
             </center>
         </div>
@@ -193,11 +195,11 @@
                     <b>GENDANG</b>
                 </h3>
                 <p style="text-align:justify">
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                    sed diam nonummy nibh euismod tincidunt ut laoreet dolore
-                    magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
-                    quis nostrud exerci tation ullamcorper suscipit lobortis
-                    nisl ut aliquip ex ea commodo consequat.
+                    Gendang is a rhythmic instrument that determines the beat of
+                    a performance. Usually, the Gendang player takes the role of
+                    an initiator by playing the rhythm for the first 2 bars.
+                    That way, the Angklung players can easily remember the
+                    song's tempo.
                 </p>
             </center>
         </div>
@@ -208,21 +210,20 @@
             <center>
                 <img
                     class="instrument-guitar"
-                    src="client/our-music/gitar.svg"
-                    alt="Gitar" />
+                    src="client/our-music/guitar.svg"
+                    alt="Guitar" />
             </center>
         </div>
         <div class="box-small-margin">
             <center>
                 <h3>
-                    <b>GITAR</b>
+                    <b>GUITAR</b>
                 </h3>
                 <p style="text-align:justify">
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                    sed diam nonummy nibh euismod tincidunt ut laoreet dolore
-                    magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
-                    quis nostrud exerci tation ullamcorper suscipit lobortis
-                    nisl ut aliquip ex ea commodo consequat.
+                    Guitar is a modern instrument that is included in our
+                    Ensemble to tone up the performance. Similar to Kolintang,
+                    the Guitarists practice alongside our Angklung players to
+                    guide us with the song flow in our early practice sessions.
                 </p>
             </center>
         </div>
