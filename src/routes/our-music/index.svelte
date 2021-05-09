@@ -210,14 +210,14 @@
             <center>
                 <img
                     class="instrument-guitar"
-                    src="client/our-music/gitar.svg"
-                    alt="Gitar" />
+                    src="client/our-music/guitar.svg"
+                    alt="Guitar" />
             </center>
         </div>
         <div class="box-small-margin">
             <center>
                 <h3>
-                    <b>GITAR</b>
+                    <b>GUITAR</b>
                 </h3>
                 <p style="text-align:justify">
                     Guitar is a modern instrument that is included in our
