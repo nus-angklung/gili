@@ -3,44 +3,32 @@
 
 const newsList = [
     {
-        title: 'ABC',
-        file: '20200207-a.txt',
-        img: 'kolintang.jpg',
-        img_name: 'kolintang',
-        date: '2020-02-07',
-    },
-    {
-        title: 'DEF',
-        file: '20200811.txt',
-        img: 'sasando.jpg',
-        img_name: 'sasando',
-        date: '2020-08-11',
-    },
-    {
-        title: 'GHI',
-        file: '20201113.txt',
-        img: 'angklung.jpg',
-        img_name: 'angklung',
-        date: '2020-11-13',
+        title:
+            'COVID-19 restriction: NUSAE 2020/2021 always seeks for the alternatives',
+        file:
+            'covid-19-arrangement-nusae-always-seeks-for-the-alternatives.txt',
+        img: 'imagined_concert.png',
+        img_name: 'Imagined concert',
+        date: '2021-05-09',
     },
 ];
 
 const monthList = [
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'December',
-    ];
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+];
 
-// The transform function below is useful to sort all of the news 
+// The transform function below is useful to sort all of the news
 // from the newest to the oldest by their dates.
 
 const transform = (newsList) => {
@@ -62,7 +50,8 @@ const transform = (newsList) => {
         news.displayDate = `${date} ${monthList[month - 1]} ${year}`;
         let datesWithoutSeparator = news.date.replace(/-/g, '');
         // create key datesWithoutSeparator with value [] if not exist, then push a copy of the news
-        adaptedNewsList[datesWithoutSeparator] = adaptedNewsList[datesWithoutSeparator] || [];
+        adaptedNewsList[datesWithoutSeparator] =
+            adaptedNewsList[datesWithoutSeparator] || [];
         adaptedNewsList[datesWithoutSeparator].push({ ...news });
     }
 
