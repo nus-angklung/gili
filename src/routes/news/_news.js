@@ -3,27 +3,6 @@
 
 const newsList = [
     {
-        title: 'ABC',
-        file: '20200207-a.txt',
-        img: 'kolintang.jpg',
-        img_name: 'kolintang',
-        date: '2020-02-07',
-    },
-    {
-        title: 'DEF',
-        file: '20200811.txt',
-        img: 'sasando.jpg',
-        img_name: 'sasando',
-        date: '2020-08-11',
-    },
-    {
-        title: 'GHI',
-        file: '20201113.txt',
-        img: 'angklung.jpg',
-        img_name: 'angklung',
-        date: '2020-11-13',
-    },
-    {
         title:
             'COVID-19 restriction: NUSAE 2020/2021 always seeks for the alternatives',
         file:
