@@ -42,12 +42,31 @@ const newsTargetVirtualModule = () => ({
     },
 });
 
+const contentTargetVirtualModule = () => ({
+    resolveId(id) {
+        return id === 'content-targets' ? id : null;
+    },
+    load(id) {
+        if (id === 'content-targets') {
+            const targetDir = path.join(__dirname, 'activities');
+            const files = fs.readdirSync(targetDir);
+            const objectEntries = files.map(
+                (file) =>
+                    `  '${file}': () => import('${path.join(targetDir, file)}')`
+            );
+            return `export default {\n${objectEntries.join(',\n')}\n};`;
+        }
+        return null;
+    },
+});
+
 export default {
     client: {
         input: config.client.input(),
         output: config.client.output(),
         plugins: [
             newsTargetVirtualModule(),
+            contentTargetVirtualModule(),
             string({
                 include: '**/*.txt',
             }),
@@ -105,6 +124,7 @@ export default {
         output: config.server.output(),
         plugins: [
             newsTargetVirtualModule(),
+            contentTargetVirtualModule(),
             string({
                 include: '**/*.txt',
             }),
@@ -134,6 +154,8 @@ export default {
         input: config.serviceworker.input(),
         output: config.serviceworker.output(),
         plugins: [
+            newsTargetVirtualModule(),
+            contentTargetVirtualModule(),
             resolve(),
             replace({
                 'process.browser': true,
