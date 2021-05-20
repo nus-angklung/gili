@@ -1,6 +1,5 @@
 <script>
     export let segment;
-    console.log(segment)
     const ensembleSubmenu = [
         { resource_path: 'about', display: 'About Us' },
         { resource_path: 'team', display: 'Team' },
@@ -107,7 +106,7 @@
     <ul>
         <li>
             <a
-                aria-current={segment === undefined ? 'page' : undefined}
+                aria-current={segment === "" ? 'page' : undefined}
                 href="/">
                 Home
             </a>

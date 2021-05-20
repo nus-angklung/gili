@@ -1,5 +1,5 @@
 <script context="module">
-    import {parseSlug} from '$lib/util'
+    import { parseSlug } from '$lib/util'
     /**
      * @type {import('@sveltejs/kit').Load}
      */
