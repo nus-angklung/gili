@@ -1,7 +1,6 @@
 <script>
-    import { stores } from '@sapper/app';
+    import { page } from '$app/stores';
     import { onMount } from 'svelte';
-    const { page } = stores();
 
     // set this up so the form can go back to original after submission
     let formInitialHTML;

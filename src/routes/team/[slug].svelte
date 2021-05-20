@@ -1,17 +1,23 @@
 <script context="module">
-    export async function preload({ params, query }) {
+    export async function load({ page }) {
         // the `slug` parameter is available because
         // this file is called [slug].svelte
-        const res = await this.fetch(`team/${params.slug}.json`);
-        const data = await res.json();
+        const url = `team/${page.params.slug}.json`
+        const data = await fetch(url).then(res => res.json());
 
         if (res.status === 200) {
             return {
-                team: data.team,
-                year: data.year,
+                status: 200,
+                props: {
+                    team: data.team,
+                    year: data.year,
+                }
             };
         } else {
-            this.error(res.status, data.message);
+            return {
+                status: res.status,
+                error: new Error(`Could not load: ${url}. Got: ${data?.message}`)
+            };
         }
     }
 </script>

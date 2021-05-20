@@ -1,17 +1,23 @@
 <script context="module">
+    /**
+	 * @type {import('@sveltejs/kit').Load}
+	 */
     import newsTargets from 'news-targets';
-    export async function preload({ params, query }) {
+    export async function load({ page }) {
+        const { params } = page;
         // the `slug` parameter is available because
         // slug is meant to be the part of a URL which identifies a particular page on a website.
         const [slug, title] = params.slug;
-        const res = await this.fetch(`news/${slug}.json`);
-        const data = await res.json();
+        const url = `news/${slug}.json`
+        const data = await fetch(url).then(res => res.json())
         // This if-else statement is used to make sure that 
         // the web page can be displayed (redirect status of 200). 
         // Otherwise, an error message will be displayed.
         if (res.status != 200) {
-            this.error(res.status, data.message);
-            return; // we stop the function immediately
+            return {
+                status: res.status,
+                error: new Error(`Could not load: ${url}. Got: ${data?.message}`)
+            };
         }
         // if title exists, try to find news with matching title. 
         // Otherwise, the first title will be used.
@@ -22,8 +28,11 @@
         // https://github.com/rollup/rollup/issues/2463#issuecomment-455957865
         news.file = await newsTargets[news.file]().then((x) => x.default);
         return {
-            news,
-            newsIndex: data.newsIndex,
+            status: 200,
+            props: {
+                news,
+                newsIndex: data.newsIndex,
+            }
         };
     }
 </script>
