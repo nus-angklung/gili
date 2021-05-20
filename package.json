@@ -12,11 +12,6 @@
         "cy:open": "cypress open",
         "test": "run-p --race dev cy:run"
     },
-    "husky": {
-        "hooks": {
-            "pre-commit": "pretty-quick --staged"
-        }
-    },
     "dependencies": {
         "@sendgrid/mail": "^7.2.1",
         "compression": "^1.7.1",
