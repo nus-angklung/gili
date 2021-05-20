@@ -2,12 +2,7 @@ import netlify from "@sveltejs/adapter-netlify"
 import fs from 'fs';
 import path from 'path';
 
-// import resolve from '@rollup/plugin-node-resolve';
-// import commonjs from '@rollup/plugin-commonjs';
-// import svelte from 'rollup-plugin-svelte';
-// import babel from '@rollup/plugin-babel';
 import { string } from 'rollup-plugin-string';
-// import { terser } from 'rollup-plugin-terser';
 
 const dev = process.env.NODE_ENV === 'development'
 // https://github.com/rollup/rollup/issues/2463#issuecomment-455957865
@@ -36,11 +31,11 @@ const newsTargetVirtualModule = () => ({
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	// options passed to svelte.compile (https://svelte.dev/docs#svelte_compile)
-	// compilerOptions: {
-    //     css: false,
-    //     hydratable: true,
-    //     dev,
-    // },
+	compilerOptions: {
+        css: false,
+        hydratable: true,
+        dev,
+    },
 
 	// an array of file extensions that should be treated as Svelte components
 	extensions: ['.svelte'],
