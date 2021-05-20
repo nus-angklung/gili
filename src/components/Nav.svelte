@@ -1,9 +1,10 @@
 <script>
     export let segment;
+    console.log(segment)
     const ensembleSubmenu = [
         { resource_path: 'about', display: 'About Us' },
         { resource_path: 'team', display: 'Team' },
-        // { resource_path: 'news', display: 'News'}
+        { resource_path: 'news', display: 'News'}
     ];
     $: isInsideEnsembleSubmenu = ensembleSubmenu.some(
         (submenu) => submenu.resource_path === segment

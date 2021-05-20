@@ -1,3 +1,5 @@
+// @ts-ignore
+import { parseSlug } from '$lib/util';
 import teams from './_teams.js';
 
 const years = Object.keys(teams);
@@ -8,7 +10,7 @@ const years = Object.keys(teams);
 export function get({ params }) {
     // the `slug` parameter is available because
     // this file is called [slug].json.js
-    const { slug } = params;
+    const slug = parseSlug(params.slug)
 
     if (years.includes(slug)) {
         return {

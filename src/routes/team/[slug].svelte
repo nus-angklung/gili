@@ -1,11 +1,13 @@
 <script context="module">
+    import {parseSlug} from '$lib/util'
     /**
      * @type {import('@sveltejs/kit').Load}
      */
     export async function load({ page, fetch }) {
         // the `slug` parameter is available because
         // this file is called [slug].svelte
-        const url = `${page.params.slug}.json`;
+        const slug = parseSlug(page.params.slug)
+        const url = `${slug}.json`;
         const res = await fetch(url);
         const data = await res.json();
 
@@ -140,13 +142,13 @@
 
 <div class="navigation">
     {#if Number(year) > first_year}
-        <a class="navigation-button" href="team/{Number(year) - 1}">
+        <a class="navigation-button" href="{Number(year) - 1}">
             Previous year
         </a>
     {/if}
 
     {#if Number(year) < current_year}
-        <a class="navigation-button" href="team/{Number(year) + 1}">
+        <a class="navigation-button" href="{Number(year) + 1}">
             Next year
         </a>
     {/if}
