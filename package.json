@@ -7,8 +7,7 @@
         "dev": "svelte-kit dev",
         "build": "svelte-kit build",
         "export": "svelte-kit build",
-        "export:netlify": "npm run export && mv export public",
-        "start": "node build",
+        "preview": "svelte-kit preview",
         "cy:run": "cypress run",
         "cy:open": "cypress open",
         "test": "run-p --race dev cy:run"

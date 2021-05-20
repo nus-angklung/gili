@@ -7,6 +7,9 @@ yarn-error.log
 # Local dev files
 .svelte-kit
 
+# built files
+build/
+
 # Local Netlify folder
 .netlify
 
