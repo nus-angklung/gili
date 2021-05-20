@@ -5,7 +5,7 @@
 
 // This file is called `_teams.js` rather than `teams.js`, because
 // we don't want to create an `/blog/teams` route — the leading
-// underscore tells Sapper not to do that.
+// underscore tells svelte not to do that.
 
 const teams = {
     2020: [

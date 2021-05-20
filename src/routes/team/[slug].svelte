@@ -1,24 +1,27 @@
 <script context="module">
-    export async function load({ page }) {
+    /**
+     * @type {import('@sveltejs/kit').Load}
+     */
+    export async function load({ page, fetch }) {
         // the `slug` parameter is available because
         // this file is called [slug].svelte
-        const url = `team/${page.params.slug}.json`
-        const data = await fetch(url).then(res => res.json());
+        const url = `${page.params.slug}.json`;
+        const res = await fetch(url);
+        const data = await res.json();
 
-        if (res.status === 200) {
-            return {
-                status: 200,
-                props: {
-                    team: data.team,
-                    year: data.year,
-                }
-            };
-        } else {
+        if (res.status !== 200) {
             return {
                 status: res.status,
-                error: new Error(`Could not load: ${url}. Got: ${data?.message}`)
+                error: new Error(`Could not load ${url}`)
             };
         }
+
+        return {
+            props: {
+                team: data.team,
+                year: data.year,
+            }
+        };
     }
 </script>
 
@@ -27,7 +30,7 @@
     export let team = [];
     export let year;
 
-    const default_picture = 'client/team/default-picture.svg';
+    const default_picture = '/client/team/default-picture.svg';
 
     // convert image slug (if any) into image source or return a default source.
     function get_image_source(image_slug) {
@@ -35,7 +38,7 @@
             return default_picture;
         }
 
-        return 'client/team/' + year + '/' + image_slug;
+        return '/client/team/' + year + '/' + image_slug;
     }
 </script>
 
