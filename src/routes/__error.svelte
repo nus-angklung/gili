@@ -1,41 +1,47 @@
-<script>
-    export let status;
-    export let error;
-
-    const dev = process.env.NODE_ENV === 'development';
+<script context="module">
+	export function load({ error, status }) {
+		return {
+			props: { error, status }
+		};
+	}
 </script>
 
-<style>
-    h1,
-    p {
-        margin: 0 auto;
-    }
-
-    h1 {
-        font-size: 2.8em;
-        font-weight: 700;
-        margin: 0 0 0.5em 0;
-    }
-
-    p {
-        margin: 1em auto;
-    }
-
-    @media (min-width: 480px) {
-        h1 {
-            font-size: 4em;
-        }
-    }
-</style>
+<script>
+	import { dev } from '$app/env';
+	export let status;
+	export let error;
+	const offline = typeof navigator !== 'undefined' && navigator.onLine === false;
+	const title = offline ? 'Offline' : status;
+	const message = offline ? 'Find the internet and try again' : error.message;
+</script>
 
 <svelte:head>
-    <title>{status}</title>
+	<title>{title}</title>
 </svelte:head>
 
-<h1>{status}</h1>
+<h1>{title}</h1>
 
-<p>{error.message}</p>
+<p>{message}</p>
 
 {#if dev && error.stack}
-    <pre>{error.stack}</pre>
+	<pre>{error.stack}</pre>
 {/if}
+
+<style>
+	h1, p {
+		margin: 0 auto;
+	}
+	h1 {
+		font-size: 2.8em;
+		font-weight: 700;
+		margin: 0 0 0.5em 0;
+	}
+	p {
+		margin: 1em auto;
+	}
+	@media (min-width: 480px) {
+		h1 {
+			font-size: 4em;
+		}
+	}
+</style>
