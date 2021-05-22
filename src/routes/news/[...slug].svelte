@@ -82,9 +82,12 @@
     src={get_image_source(news.img)}
     alt="{news.img_name} photo"
     class="center_image" />
+<br />
 <p>Date: {news.displayDate}</p>
 <br />
-<p>{news.file}</p>
+{#each news.file.split("\n\n") as paragraph}
+<p>{paragraph}</p>
+{/each}
 <br />
 <div class="navigation">
     {#if Number(newsIndex) > 0}
