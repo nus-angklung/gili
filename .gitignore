@@ -3,7 +3,12 @@
 /src/node_modules/@sapper/
 yarn-error.log
 /cypress/screenshots/
-/__sapper__/
+
+# Local dev files
+.svelte-kit
+
+# built files
+build/
 
 # Local Netlify folder
 .netlify

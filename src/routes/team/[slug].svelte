@@ -1,18 +1,29 @@
 <script context="module">
-    export async function preload({ params, query }) {
+    import { parseSlug } from '$lib/util'
+    /**
+     * @type {import('@sveltejs/kit').Load}
+     */
+    export async function load({ page, fetch }) {
         // the `slug` parameter is available because
         // this file is called [slug].svelte
-        const res = await this.fetch(`team/${params.slug}.json`);
+        const slug = parseSlug(page.params.slug)
+        const url = `${slug}.json`;
+        const res = await fetch(url);
         const data = await res.json();
 
-        if (res.status === 200) {
+        if (res.status !== 200) {
             return {
+                status: res.status,
+                error: new Error(`Could not load ${url}`)
+            };
+        }
+
+        return {
+            props: {
                 team: data.team,
                 year: data.year,
-            };
-        } else {
-            this.error(res.status, data.message);
-        }
+            }
+        };
     }
 </script>
 
@@ -21,7 +32,7 @@
     export let team = [];
     export let year;
 
-    const default_picture = 'client/team/default-picture.svg';
+    const default_picture = '/client/team/default-picture.svg';
 
     // convert image slug (if any) into image source or return a default source.
     function get_image_source(image_slug) {
@@ -29,7 +40,7 @@
             return default_picture;
         }
 
-        return 'client/team/' + year + '/' + image_slug;
+        return '/client/team/' + year + '/' + image_slug;
     }
 </script>
 
@@ -131,13 +142,13 @@
 
 <div class="navigation">
     {#if Number(year) > first_year}
-        <a class="navigation-button" href="team/{Number(year) - 1}">
+        <a class="navigation-button" href="{Number(year) - 1}">
             Previous year
         </a>
     {/if}
 
     {#if Number(year) < current_year}
-        <a class="navigation-button" href="team/{Number(year) + 1}">
+        <a class="navigation-button" href="{Number(year) + 1}">
             Next year
         </a>
     {/if}

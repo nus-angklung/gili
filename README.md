@@ -23,7 +23,7 @@ npm run dev
 
 4. Open up [localhost:3000](http://localhost:3000) and start clicking around.
 
-Consult [sapper.svelte.dev](https://sapper.svelte.dev) for help getting started.
+Consult [kit.svelte.dev](https://kit.svelte.dev) for help getting started.
 
 ## Note to the contributors
 
@@ -35,10 +35,10 @@ The CCA exco structure changes every year. As a result, the technical team will 
 
 To update the `team` pages:
 
-1. Update the `src/routes/team/[slug].json.js` file by adding the new exco in json format. For each exco member, it will require the following fields:
+1. Update the `src/routes/team/_teams.js` file by adding the new exco in json format. For each exco member, it will require the following fields:
     - `position`: Representing the member's position.
     - `name`: Representing the member's full name.
-    - `img` [Optional]: Representing the member's profile picture name as located inside `static/team/{corresponding_year}` folder. Suggested image ratio is 1:1. If no image is provided, a placeholder will be used instead.
+    - `img` [Optional]: Representing the member's profile picture name as located inside `static/client/team/{corresponding_year}` folder. Suggested image ratio is 1:1. If no image is provided, a placeholder will be used instead.
 2. Update the `current_year` value inside `src/routes/team/_constants.js` file
 
 ## Uploading to playlist
@@ -56,10 +56,6 @@ To create a new article for our news page, do the following steps:
 
 1. **Uploading the article text**: Write the article in plain text, save it as .txt file, and put it under our [news](https://github.com/nus-angklung/gili/tree/dev/news) folder. Note: For file naming, you may want to follow the other news format.
 2. **Uploading the image**: Create an image folder under the static news folder [here](https://github.com/nus-angklung/gili/tree/dev/static/client/news). Named it according to the dates before putting the image file inside that folder.
-3. **Add the news to the list**: Go to [\_news.js](https://github.com/nus-angklung/gili/blob/dev/src/routes/news/_news.js) file to update the newsList array. Note that the order does not matter as the news will be sorted based on dates with the latest comes first.
+3. **Add the news to the list**: Go to [\_news.js](https://github.com/nus-angklung/gili/blob/dev/src/routes/news/_news.js) file to update the newsList array. Note that the order does not matter as the news will be sorted based on dates with the latest comes first. Make sure that the `file` value matches the filename of the article you upload in the first step (with the file extension). The `img` value should match the filename of the image you upload in step 2 (with corresponding file extension)
 
-P.S. Currently, our news page only support plain text (not even an enter unfortunately) with a single image.
-
-# sapper-template
-
-The default [Sapper](https://github.com/sveltejs/sapper) template, available for Rollup and webpack.
+P.S. Currently, our news page only support plain text (.txt files) with a single image. To separate paragraphs, insert empty lines between two paragraphs.

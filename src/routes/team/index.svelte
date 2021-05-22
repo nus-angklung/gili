@@ -1,7 +1,12 @@
 <script context="module">
+    /**
+	 * @type {import('@sveltejs/kit').Load}
+	 */
     import { current_year } from './_constants.js';
-
-    export function preload({ params, query }) {
-        return this.redirect(302, `team/` + current_year);
+    export function load() {
+        return {
+            status: 302,
+            redirect: `team/${current_year}`
+        }
     }
 </script>

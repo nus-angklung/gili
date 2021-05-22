@@ -1,3 +1,16 @@
+<script context="module">
+    import { parseSlug } from '$lib/util'
+    /**
+     * @type {import('@sveltejs/kit').Load}
+     */
+    export async function load({ page }) {
+        return {
+            props: {
+                segment: parseSlug(page.path)
+            }
+        }
+    }
+</script>
 <script>
     import Nav from '../components/Nav.svelte';
     import Footer from '../components/Footer.svelte';

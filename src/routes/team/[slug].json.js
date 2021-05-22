@@ -1,24 +1,30 @@
+// @ts-ignore
+import { parseSlug } from '$lib/util';
 import teams from './_teams.js';
 
 const years = Object.keys(teams);
 
-export function get(req, res, next) {
+/**
+ * @type {import('@sveltejs/kit').RequestHandler}
+ */
+export function get({ params }) {
     // the `slug` parameter is available because
     // this file is called [slug].json.js
-    const { slug } = req.params;
+    const slug = parseSlug(params.slug)
 
     if (years.includes(slug)) {
-        res.set({
-            'Content-Type': 'application/json',
-        });
-
-        res.json({
-            year: years[years.indexOf(slug)],
-            team: teams[slug],
-        });
+        return {
+            body: {
+                year: years[years.indexOf(slug)],
+                team: teams[slug],
+            }
+        }
     } else {
-        res.status(404).json({
-            message: 'Not Found',
-        });
+        return {
+            status: 404, 
+            body: {
+                message: 'Not Found'
+            }
+        };
     }
 }

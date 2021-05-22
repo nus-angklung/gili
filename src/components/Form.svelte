@@ -1,7 +1,5 @@
 <script>
-    import { stores } from '@sapper/app';
     import { onMount } from 'svelte';
-    const { page } = stores();
 
     // set this up so the form can go back to original after submission
     let formInitialHTML;
@@ -33,6 +31,7 @@
 
     function processForm() {
         const data = processFormData();
+        // do not console.log data, will not show the fields. Need to see the network tab.
         fetch('/', {
             method: 'POST',
             body: data,
@@ -171,7 +170,7 @@
 
 <form
     name="contact"
-    action={$page.path}
+    action="."
     method="post"
     class="contact-form"
     netlify-honeypot="bot-field"
