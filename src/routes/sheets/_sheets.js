@@ -13,7 +13,7 @@ const sheets = [
         filename: "avengers.pdf",
         title: "Avengers Theme",
         lastPlayed: 2021
-    }
+    },
 ]
 
 export const sheetfiles = sheets.map(sheet => sheet.filename)
