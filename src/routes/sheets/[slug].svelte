@@ -3,14 +3,30 @@
     It depends on this library: https://mozilla.github.io/pdf.js/getting_started/#including-via-a-cdn
     If you want to upgrade, do change the GlobalWorkerOptions.workerSrc as well as the cdn script!
 -->
+<script context="module">
+    import { parseSlug } from '$lib/util'
+    /**
+     * @type {import('@sveltejs/kit').Load}
+     */
+    export async function load({ page }) {
+        // the `slug` parameter is available because
+        // this file is called [slug].svelte
+        const filename = parseSlug(page.params.slug)
+
+        return {
+            props: { songUrl: `/client/sheets/${filename}.pdf` }
+        }
+    }
+</script>
 <script>
     import { onMount } from 'svelte';
     let cvs;
+    export let songUrl; // songUrl (with the .pdf extension)
 
     onMount(() => {
         pdfjsLib = window['pdfjs-dist/build/pdf'];
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.8.335/pdf.worker.min.js'
-        renderPDF('client/songs/avengers.pdf', cvs) //div element
+        renderPDF(songUrl, cvs) //div element
     })
 
     function renderPDF(url, canvasContainer) {
