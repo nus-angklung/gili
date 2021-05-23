@@ -30,6 +30,7 @@
         "rollup": "^2.48.0",
         "rollup-plugin-string": "^3.0.0",
         "svelte": "^3.38.2",
+        "svelte-typeahead": "^3.0.0",
         "vite": "^2.3.3"
     }
 }

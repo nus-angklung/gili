@@ -50,7 +50,10 @@ const config = {
 				string({
 					include: '**/*.txt',
 				}),
-            ]
+            ],
+            optimizeDeps: {
+                include: ["fuzzy"],
+              },
 		}
 	},
 

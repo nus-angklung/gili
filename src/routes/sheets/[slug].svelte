@@ -14,7 +14,7 @@
         const filename = parseSlug(page.params.slug)
 
         return {
-            props: { songUrl: `/client/sheets/${filename}.pdf` }
+            props: { songUrl: `/client/sheets/${filename}` }
         }
     }
 </script>
