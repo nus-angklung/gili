@@ -4,7 +4,7 @@
 </script>
 
 <Typeahead 
-    placeholder="Search for music sheets"
+    placeholder=" 🔍 Search for music sheets"
     hideLabel
     data={sheets}
     limit={2}
@@ -46,7 +46,11 @@
   /* the search box */
   :global([data-svelte-search] input) {
     background-color: black;
+    font-size: 1.5rem;
     color: #ededed;
     border: none;
   }
+  /* :global([data-svelte-search] input::placeholder) {
+    color: rgba(255, 255, 255, 0.5);
+  } */
 </style>
