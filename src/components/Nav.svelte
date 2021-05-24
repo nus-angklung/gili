@@ -3,9 +3,17 @@
     const ensembleSubmenu = [
         { resource_path: 'about', display: 'About Us' },
         { resource_path: 'team', display: 'Team' },
-        { resource_path: 'news', display: 'News'}
+        // { resource_path: 'news', display: 'News'}
     ];
+
+    const musicSubmenu = [
+        { resource_path: 'our-music', display: 'Performance' },
+        { resource_path: 'sheets', display: 'Sheets' },
+    ]
     $: isInsideEnsembleSubmenu = ensembleSubmenu.some(
+        (submenu) => submenu.resource_path === segment
+    );
+    $: isInsideMusicSubmenu = musicSubmenu.some(
         (submenu) => submenu.resource_path === segment
     );
 </script>
@@ -123,18 +131,23 @@
                 Our Ensemble
             </span>
         </li>
-        <li>
-            <a
-                aria-current={segment === 'our-music' ? 'page' : undefined}
-                href="/our-music">
+        <li class="dropdown">
+            <ul class="dropdown-content">
+                {#each musicSubmenu as submenu}
+                    <li>
+                        <a href={"/" + submenu.resource_path}>{submenu.display}</a>
+                    </li>
+                {/each}
+            </ul>
+            <span aria-current={isInsideMusicSubmenu ? 'page' : undefined}>
                 Our Music
-            </a>
+            </span>
         </li>
         <li>
             <a
                 aria-current={segment === 'contact' ? 'page' : undefined}
                 href="/contact">
-                Contact Us
+                Contacts
             </a>
         </li>
     </ul>
