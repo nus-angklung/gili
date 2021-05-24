@@ -12,6 +12,8 @@ const notion = new Client({ auth: process.env.NOTION_API_KEY });
 const UNIQUE_CODE = '$CODE'
 const VALID_KEY = '$VALID_KEY'
 
+const NOTION_QR_CODE_PAGE_ID = process.env.NOTION_QR_CODE_PAGE_ID;
+
 async function generateQRCode(event) {
   const generatedUid = uid()
   const urlWithCode =
@@ -19,21 +21,7 @@ async function generateQRCode(event) {
   console.log(urlWithCode)
   const cells = qrcode(urlWithCode).modules
 
-  const pageId = process.env.NOTION_QR_CODE_PAGE_ID;
-  const response = await notion.pages.update({
-    page_id: pageId,
-    properties: {
-      'code': {
-        'rich_text': [
-            {
-              'text': {
-                'content': generatedUid,
-              },
-            },
-          ],
-      },
-    },
-  });
+  await updateUniqueCode(generatedUid);
 
   return {
       statusCode: 200,
@@ -150,6 +138,32 @@ const loginTemplate = () =>
 </div>
 `,
   )
+
+/**
+ * Notion functions
+ */
+
+async function updateUniqueCode(newCode) {
+    await notion.pages.update({
+        page_id: NOTION_QR_CODE_PAGE_ID,
+        properties: {
+          'code': {
+            'rich_text': [
+                {
+                  'text': {
+                    'content': newCode,
+                  },
+                },
+              ],
+          },
+        },
+      })
+}
+
+async function getUniqueCode(newCode) {
+    const response = await notion.pages.retrieve({ page_id: NOTION_QR_CODE_PAGE_ID })
+    return response.properties.code.text
+}
 
 /**
  * Util functions
