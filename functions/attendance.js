@@ -14,6 +14,40 @@ const VALID_KEY = '$VALID_KEY'
 
 const NOTION_QR_CODE_PAGE_ID = process.env.NOTION_QR_CODE_PAGE_ID;
 
+async function updateAttendance(event) {
+  try {
+    const now = new Date()
+
+    if (!process.env.DEBUG) {
+      if (!isValidTimeRange(now) || !isValidDay(now)) {
+        throw new Error('Sorry, currently this service is unavailable')
+      }
+    }
+
+    const nusnet = escapeHtml(event.queryStringParameters.nusnet.toUpperCase())
+    const name = escapeHtml(event.queryStringParameters.name)
+    const code = event.path.substring(event.path.lastIndexOf("/") + 1)
+
+    if (code !== (await getUniqueCode())) {
+      throw new Error('Invalid attempt.')
+    }
+
+    // TODO: Check if nusnet id is valid
+    
+    await markAttendance(nusnet, now)
+
+    // Redirect to /?name=${name}
+    url = event.path
+    url += '?name=' + name
+    return redirect(url)
+  } catch (err) {
+    return {
+      statusCode: 500,
+      body: err,
+    }
+  }
+}
+
 async function generateQRCode(event) {
   const generatedUid = uid()
   const urlWithCode =
@@ -21,7 +55,7 @@ async function generateQRCode(event) {
   console.log(urlWithCode)
   const cells = qrcode(urlWithCode).modules
 
-  await updateUniqueCode(generatedUid);
+  await updateUniqueCode(generatedUid)
 
   return {
       statusCode: 200,
@@ -39,16 +73,37 @@ exports.handler = async function(event, context) {
   // setting query parameter post=true as a workaround to avoid using POST
   if (event.queryStringParameters.post != undefined) {
     if (event.path.endsWith('/qr')) {
-        return generateQRCode(event)
+      return generateQRCode(event)
     }
+
+    return updateAttendance(event)
   }
 
   if (event.path.endsWith('/qr') || event.path === '/list') {
     return {
-        statusCode: 200,
-        body: loginTemplate(),
-        headers: { 'content-type': 'text/html' },
+      statusCode: 200,
+      body: loginTemplate(),
+      headers: { 'content-type': 'text/html' },
     }
+  }
+
+  const name = event.queryStringParameters.name
+  if (name) {
+    return {
+      statusCode: 200,
+      body: successTemplate(event.queryStringParameters.name),
+      headers: {
+          'content-type': 'text/html',
+      },
+    }
+  }
+
+  return {
+    statusCode: 200,
+    body: formTemplate(),
+    headers: {
+      'content-type': 'text/html'
+    },
   }
 }
 
@@ -76,6 +131,58 @@ const template = (body, script = '') => `
 ${script}
 </html>
 `
+
+const successTemplate = name =>
+  template(
+    `
+<div class="min-h-screen flex items-center justify-center bg-green-300 py-12 px-4 sm:px-6 lg:px-8">
+  <h2 class="mt-6 text-center text-xl text-gray-900">
+      Thankyou <span class="font-bold">${escapeHtml(name)}</span> for attending!
+  </h2>
+</div>
+`)
+
+const formTemplate = () =>
+  template(
+    `
+<div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+  <div>
+    <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+      Angklung Check-In
+    </h2>
+  <div>
+  <form id="form" class="mt-8 space-y-6">
+    <div>
+      <label class="sr-only">Name</label>
+      <input type="text" id="name" name="name" placeholder="Full Name" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
+    </div>
+    <div>
+      <label class="sr-only">NUSNET</label>
+      <input type="text" id="nusnet" name="nusnet" placeholder="NUSNET id" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
+    </div>
+    <input type="hidden" name="post" value="true">
+    <div>
+      <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+        Check in
+      </button>
+    </div>
+  </form>
+</div>
+`,
+    `
+<script>
+  if (window.localStorage.getItem("name")) {
+    document.querySelector("#name").value = window.localStorage.getItem("name");
+    document.querySelector("#nusnet").value = window.localStorage.getItem("nusnet");
+  }
+
+  document.querySelector("#form").addEventListener("submit", event => {
+    window.localStorage.setItem("name", document.querySelector("#name").value)
+    window.localStorage.setItem("nusnet", document.querySelector("#nusnet").value)
+  })
+</script>
+`,
+  )
 
 const qrTemplate = cells =>
   template(
@@ -162,7 +269,39 @@ async function updateUniqueCode(newCode) {
 
 async function getUniqueCode(newCode) {
     const response = await notion.pages.retrieve({ page_id: NOTION_QR_CODE_PAGE_ID })
-    return response.properties.code.text
+    return response.properties.code.rich_text[0].text.content
+}
+
+async function markAttendance(nusnet, date) {
+
+  // search for the member with given nusnet id
+  const response = await notion.databases.query({
+    database_id: process.env.NOTION_MEMBERS_DATABASE_ID,
+    filter: {
+      property: 'nusnet',
+      text: {
+        contains: nusnet 
+      },
+    },
+  })
+
+  const pageId = response.results[0].id
+
+  const currDate = date.toLocaleDateString('en-GB', {
+    timeZone: 'Asia/Singapore',
+  }) // "dd/mm/yyyy"
+
+  await notion.pages.update({
+    page_id: pageId,
+    properties: {
+      [currDate]: {
+        date: {
+          start: date.toISOString().slice(0, -1)+'+08:00',
+        },
+      },
+    },
+  })
+
 }
 
 /**
@@ -198,26 +337,10 @@ function uid() {
   )
 }
 
-function getCookie(request, name) {
-  let result = ''
-  const cookieString = request.headers.get('Cookie')
-  if (cookieString) {
-    const cookies = cookieString.split(';')
-    cookies.forEach(cookie => {
-      const cookiePair = cookie.split('=', 2)
-      const cookieName = cookiePair[0].trim()
-      if (cookieName === name) {
-        const cookieVal = cookiePair[1]
-        result = cookieVal
-      }
-    })
-  }
-  return result
-}
-
 const redirect = location => {
-  return new Response(null, {
-    status: 302,
-    headers: { location },
-  })
+  return {
+    statusCode: 302,
+    body: null,
+    headers: { 'location': location },
+  }
 }
