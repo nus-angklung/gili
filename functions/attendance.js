@@ -283,6 +283,10 @@ async function markAttendance(nusnet, date) {
     },
   })
 
+  if (response.results.length == 0) {
+    throw new Error('Invalid nusnet id!')
+  }
+
   const pageId = response.results[0].id
 
   const currDate = date.toLocaleDateString('en-GB', {
