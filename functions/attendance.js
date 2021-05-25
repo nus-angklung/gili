@@ -41,7 +41,7 @@ async function updateAttendance(event) {
   } catch (err) {
     return {
       statusCode: 500,
-      body: err,
+      body: "Error: \n" + err.message,
     }
   }
 }
