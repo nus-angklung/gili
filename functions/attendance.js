@@ -49,7 +49,7 @@ async function updateAttendance(event) {
 async function generateQRCode(event) {
   const generatedUid = uid()
   const urlWithCode =
-    'http:' + '//' + event.headers.host + '/' + generatedUid
+    'http:' + '//' + event.headers.host + event.path + generatedUid
   console.log(urlWithCode)
   const cells = qrcode(urlWithCode).modules
 
