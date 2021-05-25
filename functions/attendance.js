@@ -31,8 +31,6 @@ async function updateAttendance(event) {
     if (code !== (await getUniqueCode())) {
       throw new Error('Invalid attempt.')
     }
-
-    // TODO: Check if nusnet id is valid
     
     await markAttendance(nusnet, now)
 
@@ -280,7 +278,7 @@ async function markAttendance(nusnet, date) {
     filter: {
       property: 'nusnet',
       text: {
-        contains: nusnet 
+        equals: nusnet 
       },
     },
   })
@@ -290,13 +288,14 @@ async function markAttendance(nusnet, date) {
   const currDate = date.toLocaleDateString('en-GB', {
     timeZone: 'Asia/Singapore',
   }) // "dd/mm/yyyy"
+  date.setTime(date.getTime() + 8*60*60*1000) // fixes issues with Notion's timezone settings
 
   await notion.pages.update({
     page_id: pageId,
     properties: {
       [currDate]: {
         date: {
-          start: date.toISOString().slice(0, -1)+'+08:00',
+          start: date.toISOString().slice(0, -1) + '+08:00', // specify GMT+8 timezone
         },
       },
     },
