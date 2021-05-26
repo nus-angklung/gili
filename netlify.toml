@@ -1,4 +1,10 @@
+[dev]
+  framework = "vite"
 [build]
+  framework = "vite"
   command = "npm run build"
   publish = "build/"
   functions = "functions/"
+[[redirects]]
+  from = "/js/*"
+  to = "/.netlify/functions/:splat"
