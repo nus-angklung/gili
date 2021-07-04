@@ -46,20 +46,17 @@ async function updateAttendance(event) {
   }
 }
 
-async function generateQRCode(event) {
+async function generateQRCode() {
   const generatedUid = uid()
-  const urlWithCode =
-    'http:' + '//' + event.headers.host + event.path + generatedUid
+  // const urlWithCode =
+  //   'http:' + '//' + event.headers.host + event.path + generatedUid
+  const urlWithCode = 'test'
   console.log(urlWithCode)
   const cells = qrcode(urlWithCode).modules
 
-  await updateUniqueCode(generatedUid)
+  // await updateUniqueCode(generatedUid)
 
-  return {
-      statusCode: 200,
-      body: qrTemplate(cells),
-      headers: { 'content-type': 'text/html' },
-  }
+  return cells
 }
 
 /**
@@ -182,42 +179,6 @@ const formTemplate = () =>
 `,
   )
 
-const qrTemplate = cells =>
-  template(
-    `
-<div id="qr" class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-</div>
-`,
-    `
-<script>
-const width = 320;
-const height = 320;
-
-const canvas = document.createElement('canvas');
-canvas.width = width;
-canvas.height = height;
-
-const ctx = canvas.getContext('2d');
-
-const cells = ${JSON.stringify(cells)};
-
-const tileW = width  / cells.length;
-const tileH = height / cells.length;
-
-for (let r = 0; r < cells.length ; ++r) {
-    const row = cells[r];
-    for (let c = 0; c < row.length ; ++c) {
-        ctx.fillStyle = row[c] ? '#000' : '#fff';
-        const w = (Math.ceil((c+1)*tileW) - Math.floor(c*tileW));
-        const h = (Math.ceil((r+1)*tileH) - Math.floor(r*tileH));
-        ctx.fillRect(Math.round(c*tileW), Math.round(r*tileH), w, h);
-    }
-}
-document.querySelector("#qr").appendChild(canvas);
-</script>
-  `,
-  )
-
 const loginTemplate = () =>
   template(
     `
@@ -247,23 +208,6 @@ const loginTemplate = () =>
 /**
  * Notion functions
  */
-
-async function updateUniqueCode(newCode) {
-    await notion.pages.update({
-        page_id: NOTION_QR_CODE_PAGE_ID,
-        properties: {
-          'code': {
-            'rich_text': [
-                {
-                  'text': {
-                    'content': newCode,
-                  },
-                },
-              ],
-          },
-        },
-      })
-}
 
 async function getUniqueCode(newCode) {
     const response = await notion.pages.retrieve({ page_id: NOTION_QR_CODE_PAGE_ID })
@@ -325,19 +269,6 @@ const isValidTimeRange = datetime => {
 const isValidDay = datetime => {
   const day = datetime.getDay()
   return day == 1 || day == 3
-}
-
-// https://gist.github.com/gordonbrander/2230317#gistcomment-3404537
-function uid() {
-  return (
-    String.fromCharCode(Math.floor(Math.random() * 26) + 97) +
-    Math.random()
-      .toString(16)
-      .slice(2) +
-    Date.now()
-      .toString(16)
-      .slice(4)
-  )
 }
 
 const redirect = location => {

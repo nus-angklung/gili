@@ -1,9 +1,7 @@
-<div id="qr" class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-</div>
 <script>
     import { onMount } from 'svelte';
 
-    onMount(() => {
+    onMount(async () => {
         const width = 320;
         const height = 320;
         
@@ -13,8 +11,12 @@
         
         const ctx = canvas.getContext('2d');
         
-        // TODO: Fetch QR code
-        // const cells = ${JSON.stringify(cells)};
+
+        let cells;
+
+        await fetch('/js/generate-qr-code')
+                                .then(response=>response.json())
+                                .then(data=> cells = data.cells)
         
         const tileW = width  / cells.length;
         const tileH = height / cells.length;
@@ -28,6 +30,10 @@
                 ctx.fillRect(Math.round(c*tileW), Math.round(r*tileH), w, h);
             }
         }
+
         document.querySelector("#qr").appendChild(canvas);
     });
 </script>
+
+<div id="qr" class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+</div>
