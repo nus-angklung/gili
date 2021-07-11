@@ -5,7 +5,7 @@ const notion = new Client({ auth: process.env.NOTION_API_KEY });
 exports.handler = async function(event, context) {
     const generatedUid = uid()
     const urlWithCode =
-      'https:' + '//' + event.headers.host + '/attendance/' + generatedUid
+      'https:' + '//' + event.headers.host + '/attendance?code=' + generatedUid
     const cells = qrcode(urlWithCode).modules
   
     await updateUniqueCode(generatedUid)
