@@ -3,17 +3,28 @@ const { Client } = require('@notionhq/client');
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
 
 exports.handler = async function(event, context) {
-    const generatedUid = uid()
-    const urlWithCode =
-      'https:' + '//' + event.headers.host + '/attendance?code=' + generatedUid
-    const cells = qrcode(urlWithCode).modules
-  
-    await updateUniqueCode(generatedUid)
-  
-    return {
+    try {
+      if (event.queryStringParameters['pwd'] != process.env.ADMIN_PSWD) {
+        throw new Error('Wrong password')
+      }
+
+      const generatedUid = uid()
+      const urlWithCode =
+        'https:' + '//' + event.headers.host + '/attendance?code=' + generatedUid
+      const cells = qrcode(urlWithCode).modules
+      
+      await updateUniqueCode(generatedUid)
+
+      return {
         statusCode: 200,
         body: JSON.stringify({cells: cells}),
       }
+    } catch (err) {
+      return {
+        statusCode: 401,
+        body: err.message
+      }
+    }
   }
 
 async function updateUniqueCode(newCode) {
