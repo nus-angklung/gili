@@ -42,6 +42,13 @@ const config = {
 
     kit: {
         adapter: netlify(),
+        target: "#svelte",
+        prerender: {
+            crawl: true,
+            enabled: true,
+            force: false,
+            pages: ['*'],
+        },
         vite: {
             plugins: [
                 newsTargetVirtualModule(),
