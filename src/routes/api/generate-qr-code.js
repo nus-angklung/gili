@@ -12,6 +12,8 @@ export async function get({ query, host }) {
       throw new Error('Wrong password')
     }
 
+    const now = new Date()
+    console.log(`A new code is generated at ${now.toISOString()}`)
     const generatedUid = uid()
 
     // update code in Notion's database

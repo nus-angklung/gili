@@ -9,6 +9,8 @@ export async function get({ query, host }) {
   try {
     const now = new Date()
 
+    console.log("Time now: ", now.toISOString())
+
     if (!DEBUG) {
       if (!isValidTimeRange(now) || !isValidDay(now)) {
         throw new Error('Sorry, currently this service is unavailable')
@@ -18,6 +20,8 @@ export async function get({ query, host }) {
     const nusnet = escapeHtml(query.get('nusnet')?.toUpperCase())
     const name = escapeHtml(query.get('name'))
     const code = query.get('code')
+
+    console.log(`Attempting to log in ${name} with nusnet ${nusnet}`)
 
     if (code !== (await getUniqueCode())) {
       throw new Error('Invalid attempt.')
