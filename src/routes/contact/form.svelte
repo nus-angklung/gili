@@ -24,10 +24,7 @@
     }
 
     function processFormData() {
-        const data = new FormData();
-        data.append('name', name);
-        data.append('email', email);
-        data.append('message', message);
+        const data = new FormData(form);
         data.append('formType', 'Web Enquiry');
         // below needed by netlify. should be the same value as form name in html
         data.append('form-name', 'contact');
@@ -35,11 +32,12 @@
     }
 
     function processForm() {
-        const data = processFormData();
+        const formData = processFormData();
         // do not console.log data, will not show the fields. Need to see the network tab.
         fetch('/', {
             method: 'POST',
-            body: data,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(formData).toString(),
         })
             .then((response) => {
                 if (!response.ok) {
@@ -67,7 +65,8 @@
             .finally(() => {
                 setTimeout(() => {
                     form.innerHTML = formInitialHTML;
-                }, 2 * 60 * 1000); // 2 min
+                    handleClear();
+                }, 30 * 1000); // 30s
             });
     }
 </script>
@@ -83,6 +82,7 @@
     bind:this={form}
 >
     <input type="hidden" name="bot-field" />
+    <input type="hidden" name="form-name" value="contact" />
     <input type="hidden" name="formType" value="Web Enquiry" />
     <div class="first-row">
         <div class="name-col">
