@@ -2,9 +2,10 @@
     let password = '';
 
     const fetchAndDisplayQR = async () => {
-        let cells;
+        const url = new URL('/api/generate-qr-code', window.location.origin);
+        url.searchParams.append('password', password);
 
-        await fetch('/js/generate-qr-code?pwd=' + password)
+        const cells = await fetch(url)
             .then((response) => {
                 if (response.status == 200) {
                     return response.json();
@@ -13,7 +14,7 @@
                     return;
                 }
             })
-            .then((data) => (cells = data.cells));
+            .then((data) => data.cells);
 
         const width = 320;
         const height = 320;
