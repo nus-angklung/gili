@@ -79,6 +79,6 @@ Three environment variables are needed: `NOTION_API_KEY`, `NOTION_QR_CODE_PAGE_I
 To log attendance for a session:
 
 1. Create a new column in the attendance database with name `dd/mm/yyyy` (for example: 25/10/2021).
-2. Head to [nusangklung.netlify.app/js/attendance](https://nusangklung.netlify.app/js/attendance) to generate the QR code.
+2. Head to [nusangklung.netlify.app/api/attendance](https://nusangklung.netlify.app/api/attendance) to generate the QR code.
 
 Only check-ins via the latest generated QR code will be accepted.

@@ -1,10 +1,11 @@
 [dev]
-  framework = "vite"
+  framework="svelte-kit"
+  command="npm run dev"
 [build]
-  framework = "vite"
+  framework = "svelte-kit"
   command = "npm run build"
   publish = "build/"
   functions = "functions/"
 [[redirects]]
-  from = "/js/*"
+  from = "/api/*"
   to = "/.netlify/functions/:splat"
