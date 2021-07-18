@@ -1,0 +1,13 @@
+{
+    "include": [
+        "src/**/*.d.ts",
+        "src/**/*.js",
+        "src/**/*.svelte"
+    ],
+    "compilerOptions": {
+        "module": "es2020",
+        //   "paths": {
+        //     "$utils/*": ["src/utils/*"]
+        //   }
+    }
+}

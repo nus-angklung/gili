@@ -1,4 +1,9 @@
+[dev]
+  framework="svelte-kit"
+  command="npm run dev"
+
 [build]
-  command = "npm run build"
-  publish = "build/"
-  functions = "netlify/functions/"
+  framework="svelte-kit"
+  command="npm run build"
+  publish="build/"
+  functions="netlify/functions/"

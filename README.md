@@ -69,3 +69,16 @@ To create a new article for our news page, do the following steps:
 3. **Add the news to the list**: Go to [\_news.js](https://github.com/nus-angklung/gili/blob/dev/src/routes/news/_news.js) file to update the newsList array. Note that the order does not matter as the news will be sorted based on dates with the latest comes first. Make sure that the `file` value matches the filename of the article you upload in the first step (with the file extension). The `img` value should match the filename of the image you upload in step 2 (with corresponding file extension)
 
 P.S. Currently, our news page only support plain text (.txt files) with a single image. To separate paragraphs, insert empty lines between two paragraphs.
+
+## Attendance system
+
+The attendance system is modified from [https://github.com/benclmnt/attendsys](https://github.com/benclmnt/attendsys) and uses Notion as the database.
+
+Three environment variables are needed: `NOTION_API_KEY`, `NOTION_QR_CODE_PAGE_ID`, and `NOTION_MEMBERS_DATABASE_ID`.
+
+To log attendance for a session:
+
+1. Create a new column in the attendance database with name `dd/mm/yyyy` (for example: 25/10/2021).
+2. Head to [nusangklung.netlify.app/api/attendance](https://nusangklung.netlify.app/api/attendance) to generate the QR code.
+
+Only check-ins via the latest generated QR code will be accepted.
