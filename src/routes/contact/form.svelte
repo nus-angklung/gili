@@ -1,5 +1,5 @@
 <script context="module">
-    // Prerender the form so that Netlify Form works
+    // Prerender the form so that Netlify Form works.
     export const prerender = true;
 </script>
 
