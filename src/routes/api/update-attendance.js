@@ -1,19 +1,23 @@
-const { Client } = require('@notionhq/client');
-const notion = new Client({ auth: process.env.NOTION_API_KEY });
+import { Client } from '@notionhq/client'
+import { NOTION_API_KEY, DEBUG, NOTION_QR_CODE_PAGE_ID, NOTION_MEMBERS_DATABASE_ID } from '$lib/env';
+const notion = new Client({ auth: NOTION_API_KEY });
 
-exports.handler = async function (event, context) {
+/**
+ * @type {import('@sveltejs/kit').RequestHandler}
+ */
+export async function get({ query, host }) {
   try {
     const now = new Date()
 
-    if (!process.env.DEBUG) {
+    if (!DEBUG) {
       if (!isValidTimeRange(now) || !isValidDay(now)) {
         throw new Error('Sorry, currently this service is unavailable')
       }
     }
 
-    const nusnet = escapeHtml(event.queryStringParameters.nusnet.toUpperCase())
-    const name = escapeHtml(event.queryStringParameters.name)
-    const code = event.queryStringParameters['code']
+    const nusnet = escapeHtml(query.get('nusnet')?.toUpperCase())
+    const name = escapeHtml(query.get('name'))
+    const code = query.get('code')
 
     if (code !== (await getUniqueCode())) {
       throw new Error('Invalid attempt.')
@@ -23,12 +27,12 @@ exports.handler = async function (event, context) {
 
     // Redirect to /?name=${name}
     return {
-      statusCode: 200,
+      status: 200,
       body: "OK",
     }
   } catch (err) {
     return {
-      statusCode: 401,
+      status: 401,
       body: "Error: \n" + err.message,
     }
   }
@@ -38,7 +42,7 @@ async function markAttendance(nusnet, date) {
 
   // search for the member with given nusnet id
   const response = await notion.databases.query({
-    database_id: process.env.NOTION_MEMBERS_DATABASE_ID,
+    database_id: NOTION_MEMBERS_DATABASE_ID,
     filter: {
       property: 'nusnet',
       text: {
@@ -72,7 +76,7 @@ async function markAttendance(nusnet, date) {
 }
 
 async function getUniqueCode(newCode) {
-  const response = await notion.pages.retrieve({ page_id: process.env.NOTION_QR_CODE_PAGE_ID })
+  const response = await notion.pages.retrieve({ page_id: NOTION_QR_CODE_PAGE_ID })
   return response.properties.code.rich_text[0].text.content
 }
 

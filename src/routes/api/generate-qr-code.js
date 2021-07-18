@@ -1,11 +1,14 @@
-const qrcode = require('qr.js');
-const { Client } = require('@notionhq/client');
-const notion = new Client({ auth: process.env.NOTION_API_KEY });
+import qrcode from 'qr.js'
+import { Client } from '@notionhq/client'
+import { NOTION_API_KEY, ADMIN_PSWD, NOTION_QR_CODE_PAGE_ID } from '$lib/env';
+const notion = new Client({ auth: NOTION_API_KEY });
 
-
-exports.handler = async function (event, context) {
+/**
+ * @type {import('@sveltejs/kit').RequestHandler}
+ */
+export async function get({ query, host }) {
   try {
-    if (event.queryStringParameters['password'] != process.env.ADMIN_PSWD) {
+    if (query.get('password') != ADMIN_PSWD) {
       throw new Error('Wrong password')
     }
 
@@ -15,18 +18,18 @@ exports.handler = async function (event, context) {
     await updateUniqueCode(generatedUid)
 
     // return QR code with previously generated code
-    const url = new URL('/attendance', "https://" + event.headers.host)
+    const url = new URL('/attendance', "https://" + host)
     url.searchParams.append("code", generatedUid)
 
     const cells = qrcode(url.toString()).modules
 
     return {
-      statusCode: 200,
+      status: 200,
       body: JSON.stringify({ cells: cells }),
     }
   } catch (err) {
     return {
-      statusCode: 401,
+      status: 401,
       body: err.message
     }
   }
@@ -38,7 +41,7 @@ async function updateUniqueCode(newCode) {
   const datestring = date.toISOString().slice(0, -1) + '+08:00'
 
   await notion.pages.update({
-    page_id: process.env.NOTION_QR_CODE_PAGE_ID,
+    page_id: NOTION_QR_CODE_PAGE_ID,
     properties: {
       code: {
         rich_text: [
