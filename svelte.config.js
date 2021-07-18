@@ -10,7 +10,7 @@ const dev = process.env.NODE_ENV === 'development'
 // Basically, the function 'newsTargetVirtualModule' helps to import 'news-target'.
 // 'news-target' is crucial for exporting all file names that are contained in the directory /news.
 const newsTargetVirtualModule = () => ({
-	name: "news-targets",
+    name: "news-targets",
     resolveId(id) {
         return id === 'news-targets' ? id : null;
     },
@@ -30,35 +30,41 @@ const newsTargetVirtualModule = () => ({
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	// options passed to svelte.compile (https://svelte.dev/docs#svelte_compile)
-	compilerOptions: {
+    // options passed to svelte.compile (https://svelte.dev/docs#svelte_compile)
+    compilerOptions: {
         css: false,
         hydratable: true,
         dev,
     },
 
-	// an array of file extensions that should be treated as Svelte components
-	extensions: ['.svelte'],
+    // an array of file extensions that should be treated as Svelte components
+    extensions: ['.svelte'],
 
-	kit: {
-		adapter: netlify(),
-
-		vite: {
-			plugins: [
-				newsTargetVirtualModule(),
-				//@ts-ignore
-				string({
-					include: '**/*.txt',
-				}),
+    kit: {
+        adapter: netlify(),
+        target: "#svelte",
+        prerender: {
+            crawl: true,
+            enabled: true,
+            force: true,
+            pages: ['*'],
+        },
+        vite: {
+            plugins: [
+                newsTargetVirtualModule(),
+                //@ts-ignore
+                string({
+                    include: '**/*.txt',
+                }),
             ],
             optimizeDeps: {
                 include: ["fuzzy"],
-              },
-		}
-	},
+            },
+        }
+    },
 
-	// options passed to svelte.preprocess (https://svelte.dev/docs#svelte_preprocess)
-	preprocess: null
+    // options passed to svelte.preprocess (https://svelte.dev/docs#svelte_preprocess)
+    preprocess: null
 };
 
 export default config;

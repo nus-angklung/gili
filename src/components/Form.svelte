@@ -1,3 +1,8 @@
+<script context="module">
+    // Prerender the form so that Netlify Form works
+    export const prerender = true;
+</script>
+
 <script>
     import { onMount } from 'svelte';
 
@@ -66,6 +71,62 @@
             });
     }
 </script>
+
+<form
+    name="contact"
+    action="."
+    method="post"
+    class="contact-form"
+    netlify-honeypot="bot-field"
+    data-netlify="true"
+    on:submit|preventDefault={processForm}
+    bind:this={form}
+>
+    <input type="hidden" name="bot-field" />
+    <input type="hidden" name="formType" value="Web Enquiry" />
+    <div class="first-row">
+        <div class="name-col">
+            <label for="contact__name">First Name</label>
+            <input
+                id="contact__name"
+                type="text"
+                name="name"
+                bind:value={name}
+                required
+            />
+            <div class="text-input-border" />
+        </div>
+        <div class="spacer" />
+        <div class="email-col">
+            <label for="contact__email">Email</label>
+            <input
+                id="contact__email"
+                type="email"
+                name="email"
+                bind:value={email}
+                required
+            />
+            <div class="text-input-border" />
+        </div>
+    </div>
+    <label for="contact__message">Message:</label>
+    <textarea
+        id="contact__message"
+        name="message"
+        bind:value={message}
+        required
+    />
+    <div class="last-row">
+        <button
+            class:hidden={!name && !email && !message}
+            class="button-clear"
+            on:click={handleClear}
+        >
+            Cancel
+        </button>
+        <button type="submit">Submit</button>
+    </div>
+</form>
 
 <style>
     form {
@@ -167,54 +228,3 @@
         visibility: hidden;
     }
 </style>
-
-<form
-    name="contact"
-    action="."
-    method="post"
-    class="contact-form"
-    netlify-honeypot="bot-field"
-    data-netlify="true"
-    on:submit|preventDefault={processForm}
-    bind:this={form}>
-    <input type="hidden" name="bot-field" />
-    <input type="hidden" name="formType" value="Web Enquiry" />
-    <div class="first-row">
-        <div class="name-col">
-            <label for="contact__name">First Name</label>
-            <input
-                id="contact__name"
-                type="text"
-                name="name"
-                bind:value={name}
-                required />
-            <div class="text-input-border" />
-        </div>
-        <div class="spacer" />
-        <div class="email-col">
-            <label for="contact__email">Email</label>
-            <input
-                id="contact__email"
-                type="email"
-                name="email"
-                bind:value={email}
-                required />
-            <div class="text-input-border" />
-        </div>
-    </div>
-    <label for="contact__message">Message:</label>
-    <textarea
-        id="contact__message"
-        name="message"
-        bind:value={message}
-        required />
-    <div class="last-row">
-        <button
-            class:hidden={!name && !email && !message}
-            class="button-clear"
-            on:click={handleClear}>
-            Cancel
-        </button>
-        <button type="submit">Submit</button>
-    </div>
-</form>
