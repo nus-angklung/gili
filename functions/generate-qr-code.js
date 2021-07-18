@@ -14,10 +14,11 @@ exports.handler = async function (event, context) {
     // update code in Notion's database
     await updateUniqueCode(generatedUid)
 
-    // return QR code with the generated code
-    const urlWithCode =
-      'https:' + '//' + event.headers.host + '/attendance?code=' + generatedUid
-    const cells = qrcode(urlWithCode).modules
+    // return QR code with previously generated code
+    const url = new URL('/attendance', "https://" + event.headers.host)
+    url.searchParams.append("code", generatedUid)
+
+    const cells = qrcode(url.toString()).modules
 
     return {
       statusCode: 200,
@@ -40,8 +41,6 @@ async function updateUniqueCode(newCode) {
     page_id: process.env.NOTION_QR_CODE_PAGE_ID,
     properties: {
       code: {
-        id: "TAFp",
-        type: "rich_text",
         rich_text: [
           {
             type: "text",
@@ -52,8 +51,6 @@ async function updateUniqueCode(newCode) {
         ],
       },
       lastUpdateTime: {
-        id: "GmdG",
-        type: "date",
         date: {
           start: datestring // in SGT
         }

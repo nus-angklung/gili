@@ -27,15 +27,12 @@
         const name = document.querySelector('#name').value;
         const nusnet = document.querySelector('#nusnet').value;
 
-        await fetch(
-            '/js/update-attendance?' +
-                'code=' +
-                code +
-                '&name=' +
-                name +
-                '&nusnet=' +
-                nusnet
-        ).then((response) => {
+        const url = new URL('/api/update-attendance', window.location.origin);
+        url.searchParams.append('code', code);
+        url.searchParams.append('name', name);
+        url.searchParams.append('nusnet', nusnet);
+
+        await fetch(url).then((response) => {
             if (response.status == 200) {
                 window.location.replace('/attendance/success');
             } else {

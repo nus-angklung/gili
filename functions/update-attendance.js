@@ -1,39 +1,37 @@
 const { Client } = require('@notionhq/client');
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
 
-exports.handler = async function(event, context) {
-    try {
-      console.log('here')
+exports.handler = async function (event, context) {
+  try {
+    const now = new Date()
 
-      const now = new Date()
-
-      if (!process.env.DEBUG) {
-        if (!isValidTimeRange(now) || !isValidDay(now)) {
-          throw new Error('Sorry, currently this service is unavailable')
-        }
-      }
-      
-      const nusnet = escapeHtml(event.queryStringParameters.nusnet.toUpperCase())
-      const name = escapeHtml(event.queryStringParameters.name)
-      const code = event.queryStringParameters['code']
-
-      if (code !== (await getUniqueCode())) {
-        throw new Error('Invalid attempt.')
-      }
-
-      await markAttendance(nusnet, now)
-      
-      // Redirect to /?name=${name}
-      return {
-        statusCode: 200,
-        body: "OK",
-      }
-    } catch (err) {
-      return {
-        statusCode: 401,
-        body: "Error: \n" + err.message,
+    if (!process.env.DEBUG) {
+      if (!isValidTimeRange(now) || !isValidDay(now)) {
+        throw new Error('Sorry, currently this service is unavailable')
       }
     }
+
+    const nusnet = escapeHtml(event.queryStringParameters.nusnet.toUpperCase())
+    const name = escapeHtml(event.queryStringParameters.name)
+    const code = event.queryStringParameters['code']
+
+    if (code !== (await getUniqueCode())) {
+      throw new Error('Invalid attempt.')
+    }
+
+    await markAttendance(nusnet, now)
+
+    // Redirect to /?name=${name}
+    return {
+      statusCode: 200,
+      body: "OK",
+    }
+  } catch (err) {
+    return {
+      statusCode: 401,
+      body: "Error: \n" + err.message,
+    }
+  }
 }
 
 async function markAttendance(nusnet, date) {
@@ -44,7 +42,7 @@ async function markAttendance(nusnet, date) {
     filter: {
       property: 'nusnet',
       text: {
-        equals: nusnet 
+        equals: nusnet
       },
     },
   })
@@ -58,12 +56,13 @@ async function markAttendance(nusnet, date) {
   const currDate = date.toLocaleDateString('en-GB', {
     timeZone: 'Asia/Singapore',
   }) // "dd/mm/yyyy"
-  date.setTime(date.getTime() + 8*60*60*1000) // fixes issues with Notion's timezone settings
+  date.setTime(date.getTime() + 8 * 60 * 60 * 1000) // GMT+8. Notion only accept ISO string dates
 
   await notion.pages.update({
     page_id: pageId,
     properties: {
       [currDate]: {
+        type: "date",
         date: {
           start: date.toISOString().slice(0, -1) + '+08:00', // specify GMT+8 timezone
         },
