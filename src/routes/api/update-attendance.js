@@ -25,10 +25,13 @@ export async function get({ query, host }) {
 
     await markAttendance(nusnet, now)
 
-    // Redirect to /?name=${name}
+    // Redirect to /attendance/success?name=${name}
+    const successUrl = new URL('/attendance/success', "http://" + host)
+    successUrl.searchParams.append("name", name)
+
     return {
       status: 200,
-      body: "OK",
+      body: successUrl.toString()
     }
   } catch (err) {
     return {

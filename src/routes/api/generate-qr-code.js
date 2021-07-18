@@ -18,7 +18,7 @@ export async function get({ query, host }) {
     await updateUniqueCode(generatedUid)
 
     // return QR code with previously generated code
-    const url = new URL('/attendance', "https://" + host)
+    const url = new URL('/attendance', "http://" + host)
     url.searchParams.append("code", generatedUid)
 
     const cells = qrcode(url.toString()).modules

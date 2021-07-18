@@ -34,7 +34,9 @@
 
         await fetch(url).then((response) => {
             if (response.status == 200) {
-                window.location.replace('/attendance/success');
+                response
+                    .text()
+                    .then((location) => window.location.replace(location));
             } else {
                 response.text().then((message) => alert(message));
             }
