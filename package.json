@@ -8,9 +8,10 @@
     },
     "scripts": {
         "dev": "svelte-kit dev",
-        "build": "svelte-kit build",
+        "build": "svelte-kit build && npm run copy-serverless",
         "export": "svelte-kit build",
-        "preview": "svelte-kit preview"
+        "preview": "svelte-kit preview",
+        "copy-serverless": "cp -r ./functions ./netlify"
     },
     "dependencies": {
         "@sendgrid/mail": "^7.4.4"
