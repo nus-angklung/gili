@@ -1,11 +1,13 @@
 [dev]
   framework="svelte-kit"
   command="npm run dev"
+
 [build]
-  framework = "svelte-kit"
-  command = "npm run build"
-  publish = "build/"
-  functions = "functions/"
+  framework="svelte-kit"
+  command="npm run build"
+  publish="build/"
+  functions="netlify/functions/"
+
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"

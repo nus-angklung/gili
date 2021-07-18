@@ -62,7 +62,6 @@ async function markAttendance(nusnet, date) {
     page_id: pageId,
     properties: {
       [currDate]: {
-        type: "date",
         date: {
           start: date.toISOString().slice(0, -1) + '+08:00', // specify GMT+8 timezone
         },

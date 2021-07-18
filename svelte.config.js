@@ -42,7 +42,6 @@ const config = {
 
     kit: {
         adapter: netlify(),
-
         vite: {
             plugins: [
                 newsTargetVirtualModule(),

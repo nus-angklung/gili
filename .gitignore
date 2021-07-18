@@ -9,6 +9,7 @@ yarn-error.log
 
 # built files
 build/
+netlify/
 
 # Local Netlify folder
 .netlify
