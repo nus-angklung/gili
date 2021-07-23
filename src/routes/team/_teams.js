@@ -8,6 +8,63 @@
 // underscore tells svelte not to do that.
 
 const teams = {
+    2021: [
+        {
+            position: 'President',
+            name: 'Philip Sebastian Haryanto',
+            img: 'philip.jpeg',
+        },
+        {
+            position: 'Vice President',
+            name: 'Jonathan Kwok',
+            img: 'jonathan.jpeg',
+        },
+        {
+            position: 'General Secretary',
+            name: 'Brilly Maxel Salindeho',
+            img: 'brilly.jpeg',
+        },
+        {
+            position: 'Financial Secretary',
+            name: 'Dorothy Boyle',
+            img: 'dorothy.jpeg',
+        },
+        {
+            position: 'Lead Conductor',
+            name: 'Gede Arya Chandradhana',
+            img: 'arya.jpeg',
+        },
+        {
+            position: 'Lead Conductor',
+            name: 'Jessica Mary Listijo',
+            img: 'jessica.jpeg',
+        },
+        {
+            position: 'Communications Director',
+            name: 'Eliza Soesanto',
+            img: 'eliza.jpeg',
+        },
+        {
+            position: 'Communications Director',
+            name: 'Felicia Clarissa',
+            img: 'felicia.jpeg',
+        },
+        {
+            position: 'Resource Director',
+            name: 'Ivonne Khomas',
+            img: 'ivonne.jpeg',
+        },
+        {
+            position: 'Technology Director',
+            name: 'Bennett Clement',
+            img: 'bennett.jpeg',
+        },
+        {
+            position: 'Technology Director',
+            name: 'Francisco Chensan',
+            img: 'francisco.jpeg',
+        },
+    ],
     2020: [
         {
             position: 'President',
