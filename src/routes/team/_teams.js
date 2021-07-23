@@ -12,57 +12,57 @@ const teams = {
         {
             position: 'President',
             name: 'Philip Sebastian Haryanto',
-            img: 'philip.jpeg',
+            img: 'philip.png',
         },
         {
             position: 'Vice President',
             name: 'Jonathan Kwok',
-            img: 'jonathan.jpeg',
+            img: 'jonathan.png',
         },
         {
             position: 'General Secretary',
             name: 'Brilly Maxel Salindeho',
-            img: 'brilly.jpeg',
+            img: 'brilly.png',
         },
         {
             position: 'Financial Secretary',
             name: 'Dorothy Boyle',
-            img: 'dorothy.jpeg',
+            img: 'dorothy.png',
         },
         {
             position: 'Lead Conductor',
             name: 'Gede Arya Chandradhana',
-            img: 'arya.jpeg',
+            img: 'arya.png',
         },
         {
             position: 'Lead Conductor',
             name: 'Jessica Mary Listijo',
-            img: 'jessica.jpeg',
+            img: 'jessica.png',
         },
         {
             position: 'Communications Director',
             name: 'Eliza Soesanto',
-            img: 'eliza.jpeg',
+            img: 'eliza.png',
         },
         {
             position: 'Communications Director',
             name: 'Felicia Clarissa',
-            img: 'felicia.jpeg',
+            img: 'felicia.png',
         },
         {
             position: 'Resource Director',
             name: 'Ivonne Khomas',
-            img: 'ivonne.jpeg',
+            img: 'ivonne.png',
         },
         {
             position: 'Technology Director',
             name: 'Bennett Clement',
-            img: 'bennett.jpeg',
+            img: 'bennett.png',
         },
         {
             position: 'Technology Director',
             name: 'Francisco Chensan',
-            img: 'francisco.jpeg',
+            img: 'francisco.png',
         },
     ],
     2020: [
