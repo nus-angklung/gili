@@ -23,25 +23,17 @@
         message = '';
     }
 
-    function processFormData() {
-        const data = new FormData(form);
-        data.append('formType', 'Web Enquiry');
-        // below needed by netlify. should be the same value as form name in html
-        data.append('form-name', 'contact');
-        return data;
-    }
-
     function processForm() {
-        const formData = processFormData();
+        const formData = new FormData(form);
         // do not console.log data, will not show the fields. Need to see the network tab.
-        fetch('/', {
+        fetch('/api/contact-form', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: new URLSearchParams(formData).toString(),
         })
             .then((response) => {
                 if (!response.ok) {
-                    throw new Error(response.statusText);
+                    throw Error(response.statusText);
                 }
                 return response;
             })
@@ -53,12 +45,12 @@
                     </div>
                 `;
             })
-            .catch((error) => {
+            .catch((err) => {
                 form.innerHTML = `
                     <div>
                         <h2 style="font-size: 150%; font-weight: 700; word-spacing: -.15rem;"> 🛑 Error </h2>
                         <p>It's not your fault, we are sorry about that 🙏🙏!!</p>
-                        <p>${JSON.parse(error)}</p>
+                        <p>${err.message}</p>
                     </div>
                 `;
             })
