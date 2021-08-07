@@ -76,6 +76,14 @@
     <input type="hidden" name="bot-field" />
     <input type="hidden" name="form-name" value="contact" />
     <input type="hidden" name="formType" value="Web Enquiry" />
+    <!-- fake field -->
+    <input
+        type="text"
+        name="password"
+        style="display:none !important"
+        tabindex="-1"
+        autocomplete="off"
+    />
     <div class="first-row">
         <div class="name-col">
             <label for="contact__name">First Name</label>

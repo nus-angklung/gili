@@ -9,6 +9,15 @@ export async function post({ body }) {
     const email = body.get("email")
     const message = body.get("message")
     const formType = body.get("formType")
+    const password = body.get("password") // hidden fake field to reduce spam
+
+    if (password !== '') {
+        // spam bot. Ignore
+        return {
+            status: 403,
+            body: "Forbidden",
+        };
+    }
 
     console.log(`Received contact form submission from ${name} (${email}) : ${message}`);
 
