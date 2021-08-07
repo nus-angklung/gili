@@ -119,7 +119,7 @@ const teams = {
         {
             position: 'Technology Director',
             name: 'Bennett Clement',
-            img: 'bennett.jpg',
+            img: 'bennett.png',
         },
         {
             position: 'Technology Director',
