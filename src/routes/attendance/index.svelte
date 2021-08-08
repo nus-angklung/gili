@@ -107,7 +107,7 @@
                         class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                     />
                 </div>
-                <p class:hidden={!errorMessage} class="rounded-sm p-1 bg-red-500 text-xl text-white-1000 text-center">{errorMessage}</p>
+                <p class:hidden={!errorMessage} class="rounded p-1.5 bg-red-500 text-xl text-white text-center">{errorMessage}</p>
                 <div>
                     <button
                         class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
