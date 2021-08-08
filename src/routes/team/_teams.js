@@ -12,57 +12,57 @@ const teams = {
         {
             position: 'President',
             name: 'Philip Sebastian Haryanto',
-            img: 'philip.png',
+            img: 'philip.jpeg',
         },
         {
             position: 'Vice President',
             name: 'Jonathan Kwok',
-            img: 'jonathan.png',
+            img: 'jonathan.jpeg',
         },
         {
             position: 'General Secretary',
             name: 'Brilly Maxel Salindeho',
-            img: 'brilly.png',
+            img: 'brilly.jpeg',
         },
         {
             position: 'Financial Secretary',
             name: 'Dorothy Boyle',
-            img: 'dorothy.png',
+            img: 'dorothy.jpeg',
         },
         {
             position: 'Lead Conductor',
             name: 'Gede Arya Chandradhana',
-            img: 'arya.png',
+            img: 'arya.jpeg',
         },
         {
             position: 'Lead Conductor',
             name: 'Jessica Mary Listijo',
-            img: 'jessica.png',
+            img: 'jessica.jpeg',
         },
         {
             position: 'Communications Director',
             name: 'Eliza Soesanto',
-            img: 'eliza.png',
+            img: 'eliza.jpeg',
         },
         {
             position: 'Communications Director',
             name: 'Felicia Clarissa',
-            img: 'felicia.png',
+            img: 'felicia.jpeg',
         },
         {
             position: 'Resource Director',
             name: 'Ivonne Khomas',
-            img: 'ivonne.png',
+            img: 'ivonne.jpeg',
         },
         {
             position: 'Technology Director',
             name: 'Bennett Clement',
-            img: 'bennett.png',
+            img: 'bennett.jpeg',
         },
         {
             position: 'Technology Director',
             name: 'Francisco Chensan',
-            img: 'francisco.png',
+            img: 'francisco.jpeg',
         },
     ],
     2020: [
@@ -119,7 +119,7 @@ const teams = {
         {
             position: 'Technology Director',
             name: 'Bennett Clement',
-            img: 'bennett.png',
+            img: 'bennett.jpeg',
         },
         {
             position: 'Technology Director',
