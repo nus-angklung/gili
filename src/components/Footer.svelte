@@ -1,6 +1,62 @@
 <script>
-    import ContactForm from './Form.svelte';
+    import ContactForm from '../routes/contact/form.svelte';
 </script>
+
+<footer>
+    <div class="form container">
+        <h6 class="question">
+            Have a passion for Angklung? Have an idea for collaboration?
+        </h6>
+        <h6 class="answer">Contact us! We are happy to hear from you!</h6>
+        <div>
+            <ContactForm />
+        </div>
+    </div>
+    <div class="links">
+        <div class="container links-container">
+            <div class="links-col">
+                <div>Links</div>
+                <ul>
+                    <li>
+                        <a href=".">Home</a>
+                    </li>
+                    <li>
+                        <a href="/about">About Us</a>
+                    </li>
+                    <li>
+                        <a href="/our-music">Our Music</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="links-col">
+                <div>Social</div>
+                <ul>
+                    <li>
+                        <a href="https://www.instagram.com/nusangklung">
+                            Instagram
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.facebook.com/NUSAngklung">
+                            Facebook
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="https://www.youtube.com/channel/UC86Z1UcM82LOKvlS2HyQZSg"
+                        >
+                            Youtube
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="copyright-tag">
+        Copyright 2020 - Present. NUS Angklung Ensemble. Sub-club of NUS
+        Cultural Activities Club.
+    </div>
+</footer>
 
 <style>
     :root {
@@ -96,58 +152,3 @@
         }
     }
 </style>
-
-<footer>
-    <div class="form container">
-        <h6 class="question">
-            Have a passion for Angklung? Have an idea for collaboration?
-        </h6>
-        <h6 class="answer">Contact us! We are happy to hear from you!</h6>
-        <div>
-            <ContactForm />
-        </div>
-    </div>
-    <div class="links">
-        <div class="container links-container">
-            <div class="links-col">
-                <div>Links</div>
-                <ul>
-                    <li>
-                        <a href=".">Home</a>
-                    </li>
-                    <li>
-                        <a href="/about">About Us</a>
-                    </li>
-                    <li>
-                        <a href="/our-music">Our Music</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="links-col">
-                <div>Social</div>
-                <ul>
-                    <li>
-                        <a href="https://www.instagram.com/nusangklung">
-                            Instagram
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.facebook.com/NUSAngklung">
-                            Facebook
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            href="https://www.youtube.com/channel/UC86Z1UcM82LOKvlS2HyQZSg">
-                            Youtube
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="copyright-tag">
-        Copyright 2020 - Present. NUS Angklung Ensemble. Sub-club of NUS
-        Cultural Activities Club.
-    </div>
-</footer>
