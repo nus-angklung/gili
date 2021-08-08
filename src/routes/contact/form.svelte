@@ -1,7 +1,10 @@
+<script context="module">
+    // Prerender the form so that Netlify Form works.
+    export const prerender = true;
+</script>
+
 <script>
-    import { stores } from '@sapper/app';
     import { onMount } from 'svelte';
-    const { page } = stores();
 
     // set this up so the form can go back to original after submission
     let formInitialHTML;
@@ -20,26 +23,17 @@
         message = '';
     }
 
-    function processFormData() {
-        const data = new FormData();
-        data.append('name', name);
-        data.append('email', email);
-        data.append('message', message);
-        data.append('formType', 'Web Enquiry');
-        // below needed by netlify. should be the same value as form name in html
-        data.append('form-name', 'contact');
-        return data;
-    }
-
     function processForm() {
-        const data = processFormData();
-        fetch('/', {
+        const formData = new FormData(form);
+        // do not console.log data, will not show the fields. Need to see the network tab.
+        fetch('/api/contact-form', {
             method: 'POST',
-            body: data,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(formData).toString(),
         })
             .then((response) => {
                 if (!response.ok) {
-                    throw new Error(response.statusText);
+                    throw Error(response.statusText);
                 }
                 return response;
             })
@@ -51,22 +45,88 @@
                     </div>
                 `;
             })
-            .catch((error) => {
+            .catch((err) => {
                 form.innerHTML = `
                     <div>
                         <h2 style="font-size: 150%; font-weight: 700; word-spacing: -.15rem;"> 🛑 Error </h2>
                         <p>It's not your fault, we are sorry about that 🙏🙏!!</p>
-                        <p>${JSON.parse(error)}</p>
+                        <p>${err.message}</p>
                     </div>
                 `;
             })
             .finally(() => {
                 setTimeout(() => {
                     form.innerHTML = formInitialHTML;
-                }, 2 * 60 * 1000); // 2 min
+                    handleClear();
+                }, 30 * 1000); // 30s
             });
     }
 </script>
+
+<form
+    name="contact"
+    action="."
+    method="post"
+    class="contact-form"
+    netlify-honeypot="bot-field"
+    data-netlify="true"
+    on:submit|preventDefault={processForm}
+    bind:this={form}
+>
+    <input type="hidden" name="bot-field" />
+    <input type="hidden" name="form-name" value="contact" />
+    <input type="hidden" name="formType" value="Web Enquiry" />
+    <!-- fake field -->
+    <input
+        type="text"
+        name="password"
+        style="display:none !important"
+        tabindex="-1"
+        autocomplete="off"
+    />
+    <div class="first-row">
+        <div class="name-col">
+            <label for="contact__name">First Name</label>
+            <input
+                id="contact__name"
+                type="text"
+                name="name"
+                bind:value={name}
+                required
+            />
+            <div class="text-input-border" />
+        </div>
+        <div class="spacer" />
+        <div class="email-col">
+            <label for="contact__email">Email</label>
+            <input
+                id="contact__email"
+                type="email"
+                name="email"
+                bind:value={email}
+                required
+            />
+            <div class="text-input-border" />
+        </div>
+    </div>
+    <label for="contact__message">Message:</label>
+    <textarea
+        id="contact__message"
+        name="message"
+        bind:value={message}
+        required
+    />
+    <div class="last-row">
+        <button
+            class:hidden={!name && !email && !message}
+            class="button-clear"
+            on:click={handleClear}
+        >
+            Cancel
+        </button>
+        <button type="submit">Submit</button>
+    </div>
+</form>
 
 <style>
     form {
@@ -168,54 +228,3 @@
         visibility: hidden;
     }
 </style>
-
-<form
-    name="contact"
-    action={$page.path}
-    method="post"
-    class="contact-form"
-    netlify-honeypot="bot-field"
-    data-netlify="true"
-    on:submit|preventDefault={processForm}
-    bind:this={form}>
-    <input type="hidden" name="bot-field" />
-    <input type="hidden" name="formType" value="Web Enquiry" />
-    <div class="first-row">
-        <div class="name-col">
-            <label for="contact__name">First Name</label>
-            <input
-                id="contact__name"
-                type="text"
-                name="name"
-                bind:value={name}
-                required />
-            <div class="text-input-border" />
-        </div>
-        <div class="spacer" />
-        <div class="email-col">
-            <label for="contact__email">Email</label>
-            <input
-                id="contact__email"
-                type="email"
-                name="email"
-                bind:value={email}
-                required />
-            <div class="text-input-border" />
-        </div>
-    </div>
-    <label for="contact__message">Message:</label>
-    <textarea
-        id="contact__message"
-        name="message"
-        bind:value={message}
-        required />
-    <div class="last-row">
-        <button
-            class:hidden={!name && !email && !message}
-            class="button-clear"
-            on:click={handleClear}>
-            Cancel
-        </button>
-        <button type="submit">Submit</button>
-    </div>
-</form>

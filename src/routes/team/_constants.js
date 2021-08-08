@@ -3,4 +3,4 @@
 export const first_year = 2007;
 
 // Reminder to keep the current_year value updated every year
-export const current_year = 2020;
+export const current_year = 2021;

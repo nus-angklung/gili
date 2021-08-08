@@ -3,11 +3,66 @@
     const ensembleSubmenu = [
         { resource_path: 'about', display: 'About Us' },
         { resource_path: 'team', display: 'Team' },
+        // { resource_path: 'news', display: 'News'}
+    ];
+
+    const musicSubmenu = [
+        { resource_path: 'our-music', display: 'Performance' },
+        { resource_path: 'sheets', display: 'Sheets' },
     ];
     $: isInsideEnsembleSubmenu = ensembleSubmenu.some(
         (submenu) => submenu.resource_path === segment
     );
+    $: isInsideMusicSubmenu = musicSubmenu.some(
+        (submenu) => submenu.resource_path === segment
+    );
 </script>
+
+<nav class="container">
+    <ul>
+        <li>
+            <a aria-current={segment === '' ? 'page' : undefined} href="/">
+                Home
+            </a>
+        </li>
+        <li class="dropdown">
+            <ul class="dropdown-content">
+                {#each ensembleSubmenu as submenu}
+                    <li>
+                        <a href={'/' + submenu.resource_path}
+                            >{submenu.display}</a
+                        >
+                    </li>
+                {/each}
+            </ul>
+            <span aria-current={isInsideEnsembleSubmenu ? 'page' : undefined}>
+                Our Ensemble
+            </span>
+        </li>
+        <li class="dropdown">
+            <ul class="dropdown-content">
+                {#each musicSubmenu as submenu}
+                    <li>
+                        <a href={'/' + submenu.resource_path}
+                            >{submenu.display}</a
+                        >
+                    </li>
+                {/each}
+            </ul>
+            <span aria-current={isInsideMusicSubmenu ? 'page' : undefined}>
+                Our Music
+            </span>
+        </li>
+        <li>
+            <a
+                aria-current={segment === 'contact' ? 'page' : undefined}
+                href="/contact"
+            >
+                Contacts
+            </a>
+        </li>
+    </ul>
+</nav>
 
 <style>
     :root {
@@ -100,48 +155,3 @@
         }
     }
 </style>
-
-<nav class="container">
-    <ul>
-        <li>
-            <a
-                aria-current={segment === undefined ? 'page' : undefined}
-                href=".">
-                Home
-            </a>
-        </li>
-        <li class="dropdown">
-            <ul class="dropdown-content">
-                {#each ensembleSubmenu as submenu}
-                    <li>
-                        <a href={submenu.resource_path}>{submenu.display}</a>
-                    </li>
-                {/each}
-            </ul>
-            <span aria-current={isInsideEnsembleSubmenu ? 'page' : undefined}>
-                Our Ensemble
-            </span>
-        </li>
-        <li>
-            <a
-                aria-current={segment === 'our-music' ? 'page' : undefined}
-                href="our-music">
-                Our Music
-            </a>
-        </li>
-        <li>
-            <a
-                aria-current={segment === 'news' ? 'page' : undefined}
-                href="news">
-                News
-            </a>
-        </li>
-        <li>
-            <a
-                aria-current={segment === 'contact' ? 'page' : undefined}
-                href="contact">
-                Contact Us
-            </a>
-        </li>
-    </ul>
-</nav>

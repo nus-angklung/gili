@@ -60,4 +60,4 @@ const transform = (newsList) => {
     return { dates, news: adaptedNewsList };
 };
 
-module.exports = transform(newsList);
+export const { dates, news } = transform(newsList);
