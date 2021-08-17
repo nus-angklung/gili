@@ -140,6 +140,22 @@
         background-color: transparent;
     }
 
+    .faq {
+        padding: 2rem;
+    }
+
+    .faq h2 {
+        font-size: 1.3em;
+        font-weight: 600;
+        word-spacing: 0;
+        text-align: center;
+    }
+
+    .faq .question {
+        font-weight: 700;
+        font-style: italic;
+    }
+
     @media (max-width: 576px) {
         .message {
             width: 100%;
@@ -173,7 +189,7 @@
 <a
     target="_blank"
     rel="noopener noreferrer"
-    href="https://nus.campuslabs.com/engage/event/7154132"
+    href="https://nus.campuslabs.com/engage/submitter/form/start/424831"
     class="navigation-button">
     Join Us Now
 </a>
@@ -265,5 +281,30 @@
             </svg>
         </div>
 
+    </div>
+    <div class="faq">
+        <h2>Frequently Asked Questions</h2>
+        <p>
+            <span class="question">How do I join NUSAE?</span><br>
+            You can join NUSAE by signing up for our annual auditions that usually happen in August, so be sure to check NUSync and our social media to see when the auditions are happening. Once you pass the auditions, you’re in! Keep in mind that our auditions aren’t about musical ability but finding out more about you as an individual.
+            <br><br>
+            <span class="question">Who can join NUSAE?</span><br>
+            We welcome all interested NUS undergraduate and graduate students.
+            <br><br>
+            <span class="question">When are the practice sessions and what if my schedule does not allow me to attend the practice sessions?</span><br>
+            We have practice sessions every Monday and Wednesday from 19:00 to 21:00. You only need to attend one of these weekly sessions so you can choose which one to attend depending on your schedule.
+            <br><br>
+            <span class="question">What if I do not have any musical background or experience?</span><br>
+            No worries! Most of our members have little to no experience with angklung prior to joining the ensemble, but everyone is keeping up because angklung is a very beginner-friendly instrument!
+            <br><br>
+            <span class="question">Do I need to own an angklung?</span><br>
+            No, you don’t! Angklungs will be provided to all members.
+            <br><br>
+            <span class="question">What are some of the activities?</span><br>
+            Our highlight of the year is the annual performance for CAC+US. In addition to that, we also have our fun-filled Angklung Camp where we spend two days playing games and doing activities!
+            <br><br>
+            <span class="question">Who can I contact?</span><br>
+            You can reach us via email at nus.angklung@gmail.com. Do also check out our Instagram account: @nusangklung, Facebook page: NUS Angklung Ensemble, and Youtube channel: NUS Angklung Ensemble.
+        </p>
     </div>
 </div>
