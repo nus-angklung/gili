@@ -141,19 +141,39 @@
     }
 
     .faq {
+        display: block;
+        margin: auto;
+        margin-top: 2rem;
         padding: 2rem;
+        background-color: var(--card-bg-color);
+        max-width: min(800px, 100%);
     }
 
-    .faq h2 {
+    .faq details summary {
         font-size: 1.3em;
         font-weight: 600;
         word-spacing: 0;
-        text-align: center;
+        text-align: left;
     }
 
-    .faq .question {
+    .faq details summary:hover {
+        cursor: pointer;
+    }
+    
+    .faq details .content {
+        padding-top: 1em;
+    }
+
+    .faq details .question {
         font-weight: 700;
         font-style: italic;
+    }
+
+    /* https://codepen.io/morewry/pen/gbJvy */
+    .faq details[open] .content {
+        animation-name: invisiblyGrowFontSize, fadeIn;
+        animation-duration: 300ms, 200ms;
+        animation-delay: 0ms, 300ms;
     }
 
     @media (max-width: 576px) {
@@ -172,6 +192,27 @@
             opacity: 0.8;
         }
 
+        100% {
+            opacity: 1;
+        }
+    }
+
+    /* https://codepen.io/morewry/pen/gbJvy */
+    @keyframes invisiblyGrowFontSize {
+        0% {
+            font-size: 0;
+            opacity: 0;
+        }
+        100% {
+            font-size: 1em;
+            opacity: 0;
+        }
+    }
+
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
         100% {
             opacity: 1;
         }
@@ -282,9 +323,11 @@
         </div>
 
     </div>
-    <div class="faq">
-        <h2>Frequently Asked Questions</h2>
-        <p>
+</div>
+<div class="faq">
+    <details>
+        <summary>Frequently Asked Questions</summary>
+        <div class="content">
             <span class="question">How do I join NUSAE?</span><br>
             You can join NUSAE by signing up for our annual auditions that usually happen in August, so be sure to check NUSync and our social media to see when the auditions are happening. Once you pass the auditions, you’re in! Keep in mind that our auditions aren’t about musical ability but finding out more about you as an individual.
             <br><br>
@@ -305,6 +348,6 @@
             <br><br>
             <span class="question">Who can I contact?</span><br>
             You can reach us via email at nus.angklung@gmail.com. Do also check out our Instagram account: @nusangklung, Facebook page: NUS Angklung Ensemble, and Youtube channel: NUS Angklung Ensemble.
-        </p>
-    </div>
+        </div>
+    </details>
 </div>
