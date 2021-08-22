@@ -145,12 +145,22 @@
         margin: auto;
         margin-top: 2rem;
         padding: 2rem;
-        background-color: var(--card-bg-color);
         max-width: min(800px, 100%);
     }
 
+    .faq h2 {
+        font-weight: 600;
+        text-align: center;
+    }
+
+    .faq details {
+        margin-top: 0.7em;
+        padding: 0.5em 1em;
+        background-color: var(--card-bg-color);
+    }
+
     .faq details summary {
-        font-size: 1.3em;
+        font-size: 1.1em;
         font-weight: 600;
         word-spacing: 0;
         text-align: left;
@@ -160,20 +170,16 @@
         cursor: pointer;
     }
     
-    .faq details .content {
-        padding-top: 1em;
-    }
-
-    .faq details .question {
-        font-weight: 700;
-        font-style: italic;
+    .faq details .answer {
+        font-size: 0.95em;
+        padding-top: 0.2em;
     }
 
     /* https://codepen.io/morewry/pen/gbJvy */
-    .faq details[open] .content {
+    .faq details[open] .answer {
         animation-name: invisiblyGrowFontSize, fadeIn;
-        animation-duration: 300ms, 200ms;
-        animation-delay: 0ms, 300ms;
+        animation-duration: 500ms, 200ms;
+        animation-delay: 0ms, 500ms;
     }
 
     @media (max-width: 576px) {
@@ -325,29 +331,29 @@
     </div>
 </div>
 <div class="faq">
+    <h2>Frequently Asked Questions</h2>
     <details>
-        <summary>Frequently Asked Questions</summary>
-        <div class="content">
-            <span class="question">How do I join NUSAE?</span><br>
-            You can join NUSAE by signing up for our annual auditions that usually happen in August, so be sure to check NUSync and our social media to see when the auditions are happening. Once you pass the auditions, you’re in! Keep in mind that our auditions aren’t about musical ability but finding out more about you as an individual.
-            <br><br>
-            <span class="question">Who can join NUSAE?</span><br>
-            We welcome all interested NUS undergraduate and graduate students.
-            <br><br>
-            <span class="question">When are the practice sessions and what if my schedule does not allow me to attend the practice sessions?</span><br>
-            We have practice sessions every Monday and Wednesday from 19:00 to 21:00. You only need to attend one of these weekly sessions so you can choose which one to attend depending on your schedule.
-            <br><br>
-            <span class="question">What if I do not have any musical background or experience?</span><br>
-            No worries! Most of our members have little to no experience with angklung prior to joining the ensemble, but everyone is keeping up because angklung is a very beginner-friendly instrument!
-            <br><br>
-            <span class="question">Do I need to own an angklung?</span><br>
-            No, you don’t! Angklungs will be provided to all members.
-            <br><br>
-            <span class="question">What are some of the activities?</span><br>
-            Our highlight of the year is the annual performance for CAC+US. In addition to that, we also have our fun-filled Angklung Camp where we spend two days playing games and doing activities!
-            <br><br>
-            <span class="question">Who can I contact?</span><br>
-            You can reach us via email at nus.angklung@gmail.com. Do also check out our Instagram account: @nusangklung, Facebook page: NUS Angklung Ensemble, and Youtube channel: NUS Angklung Ensemble.
-        </div>
+        <summary>How do I join NUSAE?</summary>
+        <div class="answer">You can join NUSAE by signing up for our annual auditions that usually happen in August, so be sure to check NUSync and our social media to see when the auditions are happening. Once you pass the auditions, you’re in! Keep in mind that our auditions aren’t about musical ability but finding out more about you as an individual.</div>
+    </details>
+    <details>
+        <summary>Who can join NUSAE?</summary>
+        <div class="answer">We welcome all interested NUS undergraduate and graduate students.</div>
+    </details>
+    <details>
+        <summary>When are the practice sessions?</summary>
+        <div class="answer">We have practice sessions every Monday and Wednesday from 19:00 to 21:00. You only need to attend one of these weekly sessions so you can choose which one to attend depending on your schedule.</div>
+    </details>
+    <details>
+        <summary>What if I do not have any musical background or experience?</summary>
+        <div class="answer">No worries! Most of our members have little to no experience with angklung prior to joining the ensemble, but everyone is keeping up because angklung is a very beginner-friendly instrument!</div>
+    </details>
+    <details>
+        <summary>Do I need to own an angklung?</summary>
+        <div class="answer">No, you don’t! Angklungs will be lent to all members.</div>
+    </details>
+    <details>
+        <summary>Who can I contact?</summary>
+        <div class="answer">You can reach us via the contact form below or through our social media accounts <a href="/contact">here</a>.</div>
     </details>
 </div>
