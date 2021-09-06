@@ -19,6 +19,11 @@ const sheets = [
         title: "Ghibli Medley",
         lastPlayed: 2021
     },
+    {
+        filename: "aladdin.pdf",
+        title: "A Whole New World",
+        lastPlayed: 2021
+    },
 ]
 
 export const sheetfiles = sheets.map(sheet => sheet.filename)
