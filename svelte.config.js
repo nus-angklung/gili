@@ -1,6 +1,7 @@
 import netlify from "@sveltejs/adapter-netlify"
 import fs from 'fs';
 import path from 'path';
+import { normalizePath } from "vite";
 
 import { string } from 'rollup-plugin-string';
 
@@ -50,6 +51,7 @@ const config = {
             pages: ['*'],
         },
         vite: {
+            root: normalizePath(path.resolve('./')),
             plugins: [
                 newsTargetVirtualModule(),
                 //@ts-ignore
