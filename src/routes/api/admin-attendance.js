@@ -55,6 +55,7 @@ const notion = new Client({ auth: NOTION_API_KEY });
     const successUrl = new URL('/attendance/check', "http://" + host)
     successUrl.searchParams.append("name", "Today's date appended")
 
+    console.log(successUrl.toString())
     return {
       status: 200,
       body: successUrl.toString()
