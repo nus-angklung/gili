@@ -5,17 +5,20 @@
         let url = '/api/check-script'
         const res = await fetch(url);
         const data = await res.json();
-        //console.log(data)
 
-        names = []
-        for (page in data.results) {
-            names.push(page.properties.name.rich_text[0].plain_text)
+        let names = []
+        for (let page of data.results) {
+            const name = page.properties.name;
+            if (name.rich_text.length > 0) {
+                names.push(name.rich_text[0].plain_text)
+            }
         }
 
+        console.log(names)
         return {
             props: {
                 currDate: data.message,
-                names: names
+                names,
             }
         };
     }
@@ -23,7 +26,7 @@
 
 <script>
     export let currDate
-    export let names
+    export let names = [];
 </script>
 
 <style>
