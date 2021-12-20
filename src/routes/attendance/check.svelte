@@ -30,7 +30,7 @@
 </script>
 
 <script>
-    import Person from './_Person.svelte'
+    import Person from './_person.svelte'
     export let currDate
     export let people = []
 </script>

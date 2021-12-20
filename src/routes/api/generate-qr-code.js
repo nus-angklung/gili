@@ -1,8 +1,6 @@
 import qrcode from 'qr.js'
-import { Client } from '@notionhq/client'
-import { NOTION_API_KEY, ADMIN_PSWD, NOTION_QR_CODE_PAGE_ID } from '$lib/env';
+import { ADMIN_PSWD } from '$lib/env';
 import { updateUniqueCode, uid } from './_util';
-const notion = new Client({ auth: NOTION_API_KEY });
 
 /**
  * @type {import('@sveltejs/kit').RequestHandler}

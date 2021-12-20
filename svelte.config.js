@@ -1,17 +1,16 @@
-import netlify from "@sveltejs/adapter-netlify"
+import netlify from '@sveltejs/adapter-netlify';
 import fs from 'fs';
 import path from 'path';
-import { normalizePath } from "vite";
 
 import { string } from 'rollup-plugin-string';
 
-const dev = process.env.NODE_ENV === 'development'
+const dev = process.env.NODE_ENV === 'development';
 // https://github.com/rollup/rollup/issues/2463#issuecomment-455957865
 
 // Basically, the function 'newsTargetVirtualModule' helps to import 'news-target'.
 // 'news-target' is crucial for exporting all file names that are contained in the directory /news.
 const newsTargetVirtualModule = () => ({
-    name: "news-targets",
+    name: 'news-targets',
     resolveId(id) {
         return id === 'news-targets' ? id : null;
     },
@@ -43,7 +42,7 @@ const config = {
 
     kit: {
         adapter: netlify(),
-        target: "#svelte",
+        target: '#svelte',
         prerender: {
             crawl: true,
             enabled: true,
@@ -58,13 +57,13 @@ const config = {
                 }),
             ],
             optimizeDeps: {
-                include: ["fuzzy"],
+                include: ['fuzzy'],
             },
-        }
+        },
     },
 
     // options passed to svelte.preprocess (https://svelte.dev/docs#svelte_preprocess)
-    preprocess: null
+    preprocess: null,
 };
 
 export default config;

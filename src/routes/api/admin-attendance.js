@@ -1,12 +1,10 @@
-import { Client } from '@notionhq/client';
 import {
     NOTION_API_KEY,
     DEBUG,
     NOTION_MEMBERS_DATABASE_ID,
     ADMIN_PSWD,
 } from '$lib/env';
-import { isValidDay, isValidTimeRange, getUniqueCode } from './_util';
-const notion = new Client({ auth: NOTION_API_KEY });
+import { isValidDay, isValidTimeRange } from './_util';
 
 /**
  * @type {import('@sveltejs/kit').RequestHandler}

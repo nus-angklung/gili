@@ -1,5 +1,5 @@
 import { Client } from '@notionhq/client';
-import { NOTION_API_KEY } from '$lib/env';
+import { NOTION_API_KEY, NOTION_QR_CODE_PAGE_ID } from '$lib/env';
 const notion = new Client({ auth: NOTION_API_KEY });
 
 let uniqueCode = undefined;
