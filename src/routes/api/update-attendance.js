@@ -5,6 +5,51 @@ const notion = new Client({ auth: NOTION_API_KEY });
 /**
  * @type {import('@sveltejs/kit').RequestHandler}
  */
+
+export async function addTodayDate() {
+  try {
+    //get today date
+    const now = new Date()
+    console.log("Time now: ", now.toISOString())
+    const currDate = date.toLocaleDateString('en-GB', {
+      timeZone: 'Asia/Singapore',
+    })
+
+    //check if its monday or wednesday only
+    if (!DEBUG) {
+      if (!isValidTimeRange(now) || !isValidDay(now)) {
+        throw new Error('Sorry, currently this service is unavailable')
+      }
+    }
+
+    //add today date to database property
+    const response = await notion.databases.patch({
+      database_id: NOTION_MEMBERS_DATABASE_ID,
+      properties: {
+        [currDate] : {
+          date :{}
+        }
+      }
+    })
+    const successUrl = new URL('/attendance/success', "http://" + host)
+    successUrl.searchParams.append("name", "TESTINGONLY")
+
+    return {
+      status: 200,
+      body: successUrl.toString()
+    }
+
+
+  } catch (err) {
+    return {
+      status: 401,
+      body: "Error: \n" + err.message,
+    }
+  }
+
+
+}
+
 export async function get({ query, host }) {
   try {
     const now = new Date()
@@ -19,7 +64,7 @@ export async function get({ query, host }) {
 
     const nusnet = escapeHtml(query.get('nusnet')?.toUpperCase())
     const name = escapeHtml(query.get('name'))
-    const code = query.get('code')
+    const code = "m65821a74dc0582cad357"
 
     console.log(`Attempting to log in ${name} with nusnet ${nusnet}`)
 
@@ -94,6 +139,7 @@ async function getUniqueCode(newCode) {
 const escapeHtml = str => str.replace(/</g, '\\u003c')
 
 const isValidTimeRange = datetime => {
+  return true;
   // Cloudflare getHours return UTC time. + 8 because we are in GMT +8 tz
   const hr = (datetime.getHours() + 8) % 24
   const min = datetime.getMinutes()
@@ -105,6 +151,7 @@ const isValidTimeRange = datetime => {
 
 // only monday and wednesday
 const isValidDay = datetime => {
+  return true;
   const day = datetime.getDay()
   return day == 1 || day == 3
 }
