@@ -47,11 +47,9 @@ const config = {
         prerender: {
             crawl: true,
             enabled: true,
-            force: false,
-            pages: ['*'],
+            entries: ['*'],
         },
         vite: {
-            root: normalizePath(path.resolve('./')),
             plugins: [
                 newsTargetVirtualModule(),
                 //@ts-ignore
