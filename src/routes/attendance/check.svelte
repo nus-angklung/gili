@@ -1,26 +1,25 @@
 <script context="module">
-    let people = []
-    let data
     export async function load({ page, fetch }) {
         let url = '/api/check-script'
         const res = await fetch(url);
-        data = await res.json();
-
+        let data = await res.json();
+        let people = []
         // let names = []
         for (let page of data.results) {
             const name = page.properties.name;
-            const nusnet = page.properties.nusnet.title[0].plain_text;
+            const nusnet = page.properties.nusnet
             //console.log(nusnet)
             if (name.rich_text.length > 0) {
                 people.push({
                     name: name.rich_text[0].plain_text,
-                    nusnet: nusnet
+                    nusnet: nusnet.title[0].plain_text,
+                    dates: Object.keys(page.properties).filter(x => x.match("^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4}$"))
                 })
             }
         }
-
-        console.log(people)
-        console.log(data.results)
+        // sort alphabetically to enable easier search
+        people.sort((x, y) => x.name < y.name ? -1 : 1);
+        console.dir(people)
         return {
             props: {
                 currDate: data.date,
@@ -28,96 +27,26 @@
             }
         };
     }
-
-    async function handleButton(e, person){
-        const url = new URL('/api/update-attendance', window.location.origin);
-        url.searchParams.append('name', person.name);
-        url.searchParams.append('nusnet', person.nusnet);
-        await fetch(url).then((response) => {
-            if (response.status == 200) {
-                console.log("SUCCESS");
-            } else {
-                response.text().then((message) => {errorMessage = message});
-                stopLoadingAnimation();
-            }
-        });
-    }
-
-    // async function submitHandler() {
-    //     // const urlParams = new URLSearchParams(window.location.search);
-    //     // const code = urlParams.get('code');
-    //     // const name = document.querySelector('#name').value;
-    //     // const nusnet = document.querySelector('#nusnet').value;
-
-    //     // const url = new URL('/api/update-attendance', window.location.origin);
-    //     // url.searchParams.append('code', code);
-    //     // url.searchParams.append('name', name);
-    //     // url.searchParams.append('nusnet', nusnet);
-
-    //     await fetch(url).then((response) => {
-    //         if (response.status == 200) {
-    //             response
-    //                 .text()
-    //                 .then((location) => window.location.replace(location));
-    //         } else {
-    //             response.text().then((message) => {errorMessage = message});
-    //             stopLoadingAnimation();
-    //         }
-    //     });
-    // }
-
-    
 </script>
 
 <script>
+    import Person from './_Person.svelte'
     export let currDate
-    export let people = [];
+    export let people = []
 </script>
-
-<style>
-    .container {
-        line-height: 1.5;
-        list-style-type: none;
-        padding: 0;
-
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: center;
-    }
-    h3 {
-        color: beige;
-        font-size: 2em;
-        text-align: center;
-    }
-    .spacer {
-        height: 20px;
-    }
-</style>
 
 <svelte:head>
     <title>Check</title>
 </svelte:head>
 
-<h3>List of Attendees</h3>
+<h3 class="text-3xl text-center text-white p-4">Attendance on {currDate}</h3>
 
-<div class="spacer" />
+<div class="h-8" />
 
-<h3>Today is: {currDate}</h3>
-<hr />
-
-<ul class="container">
-    {#each people as person}
-        <li class="container"> 
-            {person.name} : <button on:click={(e) => (handleButton(e, person))} class="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded">
-                        Press this
-                    </button>
-        </li>
-        <br/>
-    {/each}
-</ul>
-
-<div>
-    Hello guys, whats up
+<div class="">
+    <div class="w-1/2 m-auto grid grid-cols-2 gap-4">
+        {#each people as person}
+        <Person {...person} />
+        {/each}
+    </div>
 </div>
-
-
