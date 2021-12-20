@@ -1,49 +1,26 @@
 <script>
     import { onMount } from 'svelte';
 
+    let password;
+
     let buttonInitialHTML;
     let checkInButton;
     let errorMessage;
 
-    onMount(() => {
-        // if (window.localStorage.getItem('name')) {
-        //     document.querySelector('#name').value =
-        //         window.localStorage.getItem('name');
-        //     document.querySelector('#nusnet').value =
-        //         window.localStorage.getItem('nusnet');
-        // }
-
-        document.querySelector('#form').addEventListener('submit', (event) => {
-            // window.localStorage.setItem(
-            //     'name',
-            //     document.querySelector('#name').value
-            // );
-            // window.localStorage.setItem(
-            //     'nusnet',
-            //     document.querySelector('#nusnet').value
-            // );
-        });
-    });
-
     async function submitHandler() {
         startLoadingAnimation();
-        const urlParams = new URLSearchParams(window.location.search);
-        const code = urlParams.get('code');
-        // const name = document.querySelector('#name').value;
-        // const nusnet = document.querySelector('#nusnet').value;
-
         const url = new URL('/api/admin-attendance', window.location.origin);
-        url.searchParams.append('code', code);
-        // url.searchParams.append('name', name);
-        // url.searchParams.append('nusnet', nusnet);
 
-        await fetch(url).then((response) => {
+        await fetch(url, {
+            method: 'POST',
+            body: JSON.stringify({ password })
+        }).then((response) => {
             if (response.status == 200) {
                 response
                     .text()
                     .then((location) => window.location.replace(location));
             } else {
-                response.text().then((message) => {errorMessage = message});
+                response.text().then((message) => { errorMessage = message });
                 stopLoadingAnimation();
             }
         });
@@ -72,26 +49,24 @@
     }
 </script>
 
-<div
-    class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8"
->
+<div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
     <div>
         <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
             Angklung Admin Attendance
         </h2>
         <div>
-            <form
-                on:submit|preventDefault={submitHandler}
-                id="form"
-                class="mt-8 space-y-6"
-            >
-
-                <p class:hidden={!errorMessage} class="rounded p-1.5 bg-red-500 text-xl text-white text-center">{errorMessage}</p>
+            <form on:submit|preventDefault={submitHandler} id="form" class="mt-8 space-y-6">
+                <div>
+                    <label class="sr-only" for="pswd">Password</label>
+                    <input type="password" autocomplete="password" bind:value={password} id="pswd" name="pswd" required
+                        class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" />
+                </div>
+                <p class:hidden={!errorMessage} class="rounded p-1.5 bg-red-500 text-xl text-white text-center">
+                    {errorMessage}</p>
                 <div>
                     <button
                         class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                        bind:this={checkInButton}
-                    >
+                        bind:this={checkInButton}>
                         Start Today Attendance
                     </button>
                 </div>
