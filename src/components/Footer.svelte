@@ -53,7 +53,7 @@
         </div>
     </div>
     <div class="copyright-tag">
-        Copyright 2020 - Present. NUS Angklung Ensemble. Sub-club of NUS
+        Copyright 2020 - Present. NUS CAC Angklung Ensemble. Sub-club of NUS
         Cultural Activities Club.
     </div>
 </footer>

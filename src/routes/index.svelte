@@ -169,7 +169,7 @@
     .faq details summary:hover {
         cursor: pointer;
     }
-    
+
     .faq details .answer {
         font-size: 0.95em;
         padding-top: 0.2em;
@@ -226,10 +226,10 @@
 </style>
 
 <svelte:head>
-    <title>NUS Angklung Ensemble</title>
+    <title>NUS CAC Angklung Ensemble</title>
 </svelte:head>
 
-<img src="client/home/header.svg" alt="NUS Angklung Ensemble" width="50%" />
+<img src="client/home/header.svg" alt="NUS CAC Angklung Ensemble" width="50%" />
 <br />
 <p>Listen to the sounds of NUSantara</p>
 
@@ -277,7 +277,7 @@
             <h3>Our Music</h3>
         </div>
         <p>
-            NUS Angklung Ensemble showcases angklung’s versatility that balances
+            NUS CAC Angklung Ensemble showcases angklung’s versatility that balances
             traditionality and modernity through performing pieces that cater to
             both traditional interests and current popular trends.
         </p>

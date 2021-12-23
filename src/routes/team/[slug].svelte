@@ -9,7 +9,6 @@
         const slug = parseSlug(page.params.slug)
         const url = `${slug}.json`;
         const res = await fetch(url);
-        const data = await res.json();
 
         if (res.status !== 200) {
             return {
