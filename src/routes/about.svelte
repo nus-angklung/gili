@@ -111,7 +111,7 @@
     alt="angklung stage performance banner" />
 
 <p>
-    Established in 2007, NUS Angklung Ensemble has reached a greater height as a
+    Established in 2007, NUS CAC Angklung Ensemble has reached a greater height as a
     part of NUS Cultural Activity Club (CAC). Its uniqueness has attracted both
     local and international students from all over NUS. Despite our relatively
     young age, we have been invited to perform in a broad range of events within
@@ -130,11 +130,11 @@
         <h3>Our Performance</h3>
         <p>
             We have been holding our annual concert since 2011, having the main
-            purpose of showcasing angklung and introducing NUS Angklung Ensemble
+            purpose of showcasing angklung and introducing NUS CAC Angklung Ensemble
             to the NUS community. In our 2015 concert, “The Chronicle”, we
             performed 13 well-known songs spanning diverse eras to take the
             audience in a journey through time. As the biggest concert in the
-            history of NUS Angklung Ensemble, “The Chronicle” successfully
+            history of NUS CAC Angklung Ensemble, “The Chronicle” successfully
             attracted 150 people, including the Education Attaché of the Embassy
             of the Republic of Indonesia in Singapore, Mr. Ismunandar, and the
             manager of NUS Office of Student Affairs, Ms. Lyana Wang Wanzhen.

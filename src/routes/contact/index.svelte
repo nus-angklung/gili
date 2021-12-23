@@ -13,7 +13,7 @@
     >
         <img
             src="client/contact/facebook.svg"
-            alt="NUS Angklung Facebook Profile"
+            alt="NUS CAC Angklung Facebook Profile"
         />
     </a>
 
@@ -24,7 +24,7 @@
     >
         <img
             src="client/contact/youtube.svg"
-            alt="NUS Angklung Youtube Channel"
+            alt="NUS CAC Angklung Youtube Channel"
         />
     </a>
 
@@ -35,7 +35,7 @@
     >
         <img
             src="client/contact/instagram.svg"
-            alt="NUS Angklung Instagram Account"
+            alt="NUS CAC Angklung Instagram Account"
         />
     </a>
 </div>
