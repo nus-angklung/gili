@@ -14,7 +14,7 @@
     <h2>
         <b>Track {trackNo}</b>
     </h2>
-    <h5>NUS Angklung Ensemble</h5>
+    <h5>NUS CAC Angklung Ensemble</h5>
     <h4>
         <b>{trackTitle}</b>
     </h4>

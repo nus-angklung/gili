@@ -143,7 +143,7 @@
             </h3>
             <p style="text-align:justify">
                 As stated in our Ensemble name, Angklung is the main instrument
-                of the NUS Angklung Ensemble (a.k.a NUSAE). In a single
+                of the NUS CAC Angklung Ensemble (a.k.a NUSAE). In a single
                 performance, there are usually around 10 to 20 people playing
                 Angklung, with each holding up to 3 Angklungs. The number of
                 players performing usually influences the complexity of our

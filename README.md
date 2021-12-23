@@ -1,6 +1,6 @@
-# NUS Angklung Ensemble
+# NUS CAC Angklung Ensemble
 
-This is the repository of NUS Angklung Ensemble website.
+This is the repository of NUS CAC Angklung Ensemble website.
 The website aims to introduce Angklung CCA to NUS Students as well as inviting them to join us.
 
 ## Running the project

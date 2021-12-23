@@ -1,6 +1,6 @@
 {
     "name": "gili",
-    "description": "NUS Angklung website",
+    "description": "NUS CAC Angklung website",
     "version": "0.0.2",
     "type": "module",
     "engines": {
